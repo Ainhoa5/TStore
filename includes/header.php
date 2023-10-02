@@ -12,8 +12,8 @@
 
 
     <div class="contenido">
-        <h1>Desarrollo Web Completo</h1>
-        <p>Introducción a PHP</p>
-        <p class="hashtag">#DesarrolloWebCompleto</p>
+        <h1>Desarrollo Web en Entorno Servidor</h1>
+        <p>Damián Gabriel Rodríguez Jiménez</p>
+        <p class="hashtag">#IntroducciónAPHP</p>
 
         <div class="resultado">
