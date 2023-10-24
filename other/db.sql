@@ -1,5 +1,11 @@
+-- Creando esquema TStore
+CREATE SCHEMA IF NOT EXISTS TStore;
+
+-- Usar el esquema creado
+USE TStore;
+
 -- Creando tabla Usuarios
-CREATE TABLE Usuarios (
+CREATE TABLE IF NOT EXISTS Usuarios (
     UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(255) NOT NULL,
     Apellido VARCHAR(255) NOT NULL,
@@ -13,7 +19,7 @@ CREATE TABLE Usuarios (
 );
 
 -- Creando tabla Productos
-CREATE TABLE Productos (
+CREATE TABLE IF NOT EXISTS Productos (
     ProductoID INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(255) NOT NULL,
     Descripción TEXT,
@@ -24,7 +30,7 @@ CREATE TABLE Productos (
 );
 
 -- Creando tabla Pedidos
-CREATE TABLE Pedidos (
+CREATE TABLE IF NOT EXISTS Pedidos (
     PedidoID INT PRIMARY KEY AUTO_INCREMENT,
     UsuarioID INT NOT NULL,
     Fecha DATE NOT NULL,
@@ -34,7 +40,7 @@ CREATE TABLE Pedidos (
 );
 
 -- Creando tabla DetallesPedidos
-CREATE TABLE DetallesPedidos (
+CREATE TABLE IF NOT EXISTS DetallesPedidos (
     DetalleID INT PRIMARY KEY AUTO_INCREMENT,
     PedidoID INT NOT NULL,
     ProductoID INT NOT NULL,
