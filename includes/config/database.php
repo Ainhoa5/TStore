@@ -4,7 +4,7 @@
         $host = "localhost";
         $user = "root";
         $password = "";
-        $database = "bienesraices_crud";
+        $database = "tstore";
     
         // Create a new connection
         $conn = new mysqli($host, $user, $password, $database);
@@ -53,12 +53,15 @@
         session_destroy();
     }
     
-    function customQuery($query, $params, $types){ // create a Query with given parameters like columns to fetch or table
+    function customQuery($query, $params = [], $types = '') {
         $conn = conectarDB();
         $stmt = $conn->prepare($query);
-        $stmt->bind_param($types, ...$params); // Using the splat operator to pass an array of arguments
+        if (!empty($types) && !empty($params)) {
+            $stmt->bind_param($types, ...$params); // Using the splat operator to pass an array of arguments
+        }
         $stmt->execute();
         return $stmt->get_result();
     }
+    
     
 ?>
