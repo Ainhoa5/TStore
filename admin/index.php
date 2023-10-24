@@ -1,3 +1,12 @@
+<?php
+// relative path
+$path = '../';
+include $path . 'includes/config/database.php';
+
+// Execute the query
+$result = customQuery("SELECT * FROM Productos ", [], '');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +19,12 @@
 
 <body>
     <!-- boton crear -->
+    <button type="button">CREAR</button>
+    <hr>
     <!-- tabla -->
     <table border="1">
         <thead>
-            <th>Imagen</th>
+            <!-- <th>Imagen</th> -->
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
@@ -21,26 +32,28 @@
             <th>Descripción</th>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                <td><?php echo $row["Nombre"]?></td>
+                <td><?php echo $row["Precio"]?></td>
+                <td><?php echo $row["Stock"]?></td>
+                <td><?php echo $row["Categoria"]?></td>
+                <td><?php echo $row["Descripción"]?></td>
                 <td>
-                    <form action="update.php" method="GET">
+                    <form action="propiedades/update.php" method="GET">
                         <input type="hidden" name="id_to_edit" value="<?php echo $row['id']; ?>">
                         <input type="submit" value="Edit">
                     </form>
                 </td>
                 <td>
-                    <form action="delete.php" method="POST">
+                    <form action="propiedades/delete.php" method="POST">
                         <input type="hidden" name="id_to_delete" value="<?php echo $row['id']; ?>">
                         <input type="submit" value="Delete">
                     </form>
                 </td>
             </tr>
+            <?php endwhile; ?>
+            
         </tbody>
     </table>
 </body>
