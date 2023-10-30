@@ -1,3 +1,9 @@
+<?php 
+// Tomar Valores del formulario
+// Validar
+// Insertar en la base de datos
+// Volver
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +32,8 @@
 
         <label for="Categoria">Categoria</label>
         <select name="Categoria" id="Categoria">
-            <option value="Red"></option>
+            <option value="Red">Red</option>
+            <option value="Speak Now">Speak Now</option>
         </select>
     </form>
 </body>
