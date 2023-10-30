@@ -19,43 +19,38 @@ $result = customQuery("SELECT * FROM Productos ", [], '');
 
 <body>
     <!-- boton crear -->
-    <button type="button">CREAR</button>
+    <form action="propiedades/create.php">
+        <input type="submit" value="Create">
+    </form>
     <hr>
-    <!-- tabla -->
-    <table border="1">
-        <thead>
-            <!-- <th>Imagen</th> -->
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Categoria</th>
-            <th>Descripción</th>
-        </thead>
-        <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <tr>
-                <td><?php echo $row["Nombre"]?></td>
-                <td><?php echo $row["Precio"]?></td>
-                <td><?php echo $row["Stock"]?></td>
-                <td><?php echo $row["Categoria"]?></td>
-                <td><?php echo $row["Descripción"]?></td>
-                <td>
-                    <form action="propiedades/update.php" method="GET">
-                        <input type="hidden" name="id_to_edit" value="<?php echo $row['id']; ?>">
-                        <input type="submit" value="Edit">
-                    </form>
-                </td>
-                <td>
-                    <form action="propiedades/delete.php" method="POST">
-                        <input type="hidden" name="id_to_delete" value="<?php echo $row['id']; ?>">
-                        <input type="submit" value="Delete">
-                    </form>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-            
-        </tbody>
-    </table>
+    
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <div>
+        <h1>
+            <?php echo $row["Nombre"] ?>
+        </h1>
+        <p>
+            <?php echo $row["Precio"] ?>
+        </p>
+        <p>
+            <?php echo $row["Stock"] ?>
+        </p>
+        <p>
+            <?php echo $row["Categoria"] ?>
+        </p>
+        <p>
+            <?php echo $row["Descripción"] ?>
+        </p>
+        <form action="propiedades/update.php" method="GET">
+            <input type="hidden" name="id_to_edit" value="<?php echo $row['id']; ?>">
+            <input type="submit" value="Edit">
+        </form>
+        <form action="propiedades/delete.php" method="POST">
+            <input type="hidden" name="id_to_delete" value="<?php echo $row['id']; ?>">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <?php endwhile; ?>
 </body>
 
 </html>
