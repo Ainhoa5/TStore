@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-// views/update_product_form.php
 
 <form action="ProductActions.php" method="post">
     <input type="hidden" name="action" value="update">
