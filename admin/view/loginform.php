@@ -60,8 +60,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Enlace al JS -->
-    <!-- <script src="scripts/script.js"></script> -->
 </body>
 </html>
