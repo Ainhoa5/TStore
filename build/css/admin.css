@@ -1,0 +1,102 @@
+.product-parent{
+    display: flex;
+    margin: 50px;
+    gap: 20px;
+}
+.product-buttons {
+    text-align: center; /* Centers the buttons/forms in the container */
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: stretch; /* Stretches the child buttons to fill the width */
+}
+
+.product-buttons form {
+    margin-bottom: 1rem; /* Adds space between the forms */
+}
+
+.product-buttons button {
+    width: 100%; /* Makes the button fill the container width */
+    padding: 1rem; /* Adds height to the button */
+    border: none;
+    border-radius: 4px; /* Rounds the corners of the button */
+    color: white; /* Text color */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.product-buttons form:first-child button {
+    background-color: #007bff; /* Blue color for the update button */
+}
+
+.product-buttons form:last-child button {
+    background-color: #dc3545; /* Red color for the delete button */
+}
+
+.product-buttons button:hover {
+    opacity: 0.9; /* Slight opacity change on hover */
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column; /* Aligns items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Align text in the center for all text elements */
+    gap: 10px; /* Adds space between the flex items */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Modern shadow for depth */
+    border-radius: 8px; /* Rounded corners for modern look */
+    background-color: #fff; /* A light background */
+    max-width: 300px; /* Maximum width of the container */
+}
+
+.product-container img {
+    width: 100%; /* Makes the image responsive */
+    height: auto;
+    border-radius: 8px; /* Optional: if you want the image to have rounded corners */
+}
+
+.product-container h1 {
+    font-size: 1.5rem;
+    color: #333; /* Dark grey for the title */
+    margin: 0;
+}
+
+.product-container p {
+    color: #666; /* Lighter grey for descriptions */
+    margin: 0;
+}
+
+.product-data {
+    display: flex;
+    justify-content: space-between; /* Aligns items horizontally and adds space between */
+    width: 100%;
+}
+
+.product-data p {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+    font-size: 0.9rem;
+}
+
+/* Example of using Font Awesome icons */
+.product-data p:before {
+    font-family: "Font Awesome 5 Free"; /* Use the appropriate Font Awesome font family */
+    font-weight: 900;
+}
+
+/* Customizing icons for different paragraphs if needed */
+.product-data p:nth-child(1):before {
+    content: "\f155"; /* Font Awesome icon for price tag */
+}
+
+.product-data p:nth-child(2):before {
+    content: "\f187"; /* Font Awesome icon for stock */
+}
+
+.product-data p:nth-child(3):before {
+    content: "\f1b2"; /* Font Awesome icon for category */
+}

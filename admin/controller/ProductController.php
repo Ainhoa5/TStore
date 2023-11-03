@@ -1,4 +1,5 @@
 <?php 
+
 class ProductController {
     private $productModel;
 
@@ -6,6 +7,10 @@ class ProductController {
         $this->productModel = $productModel;
     }
 
+    public function showProducts() {
+        $products = $this->productModel->getProducts();
+        include 'views/products_view.php';
+    }
     public function createProduct() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validate the input...

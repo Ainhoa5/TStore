@@ -6,6 +6,16 @@ class Product {
         $this->db = $db;
     }
 
+    public function getProducts(){
+        $sql = "SELECT * FROM productos";
+        $result = $this->db->query($sql);
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+        return $products;
+    }
     public function createProduct($data) {
         // Prepare an SQL statement to insert the product data
         $stmt = $this->db->prepare("INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES (?, ?, ?, ?, ?, ?)");
