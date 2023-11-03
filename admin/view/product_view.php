@@ -2,13 +2,13 @@
 require_once '../../includes/config/database.php';
 require_once '../model/Product.php';
 require_once '../controller/ProductController.php';
+require_once '../../includes/config/Database.php';
 
 // instanciate the model and controller
-$db = conectarDB();
-$productModel = new Product($db);
-/* $productController = new ProductController($productModel);
-$productController->showProducts(); */
-$products = $productModel->getProducts();
+$dbConnection = Database::getInstance()->getConnection();
+$productModel = new Product($dbConnection);
+$productController = new ProductController($productModel);
+$products = $productController->showProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,14 +41,14 @@ $products = $productModel->getProducts();
                 </div>
                 <div class="product-buttons">
                     <!-- Update Button/Form -->
-                    <form action="ProductController.php" method="post">
+                    <form action="../../includes/actions/ProductActions.php" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="update_form">
                         <button type="submit">Update</button>
                     </form>
 
                     <!-- Delete Button/Form -->
-                    <form action="ProductController.php" method="post">
+                    <form action="../../includes/actions/ProductActions.php" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="delete">
                         <button type="submit">Delete</button>
