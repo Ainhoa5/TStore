@@ -72,3 +72,8 @@ VALUES
 (1, 1, 1, 1200.99),
 (2, 2, 1, 799.99);
 
+
+-- Extra
+INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL)
+VALUES
+('Snow Glob', 'Something lol', 19.89, 13, 'Decoration', 'image3.jpg');

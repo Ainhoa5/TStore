@@ -1,67 +1,25 @@
 <?php 
-    function conectarDB(){ // return connection
-        // Database credentials
-        $host = "localhost";
-        $user = "root";
-        $password = "";
-        $database = "tstore";
-    
-        // Create a new connection
-        $conn = new mysqli($host, $user, $password, $database);
-    
-        // Check the connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+class Database {
+    private static $instance = null;
+    private $connection;
+
+    private function __construct() {
+        $this->connection = new mysqli('localhost', 'root', '', 'tstore');
+        // Handle connection errors
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
         }
-    
-        return $conn;
     }
-    function login($username, $password){ // log in with given parameters
-        $conn = conectarDB();
-    
-        $sql = "SELECT * FROM Usuarios WHERE Nombre = ?"; // SQL query with placeholder
-        $stmt = $conn->prepare($sql); // Prepare the SQL statement
-        $stmt->bind_param("s", $username); // Bind the parameter
-        $stmt->execute(); // Execute the prepared statement
-        $result = $stmt->get_result(); // Get the result
-    
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-            if (password_verify($password, $user['Password'])) { // Assuming Password is a column in your Usuarios table
-                return true;
-            }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new Database();
         }
-    
-        return false;
+        return self::$instance;
     }
-    
-    function signup($username, $password){ // sign up with given parameters
-        $conn = conectarDB();
-    
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
-    
-        $sql = "INSERT INTO Usuarios (Nombre, Password) VALUES (?, ?)"; // Assuming Password is a column in your Usuarios table
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $username, $hashed_password);
-        return $stmt->execute();
+
+    public function getConnection() {
+        return $this->connection;
     }
-    
-    function logout(){ // log user out
-        // Normally you'd unset session variables or destroy the session
-        session_start();
-        session_unset();
-        session_destroy();
-    }
-    
-    function customQuery($query, $params = [], $types = '') {
-        $conn = conectarDB();
-        $stmt = $conn->prepare($query);
-        if (!empty($types) && !empty($params)) {
-            $stmt->bind_param($types, ...$params); // Using the splat operator to pass an array of arguments
-        }
-        $stmt->execute();
-        return $stmt->get_result();
-    }
-    
-    
+}
 ?>
