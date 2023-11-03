@@ -42,17 +42,18 @@ class ProductController
     public function updateProduct($data) {
         // Validate and sanitize $data
         // ...
-    
+        echo 'conteol';
         // Update the product using the model
-        $result = $this->productModel->update($data);
+        /* $result = $this->productModel->update($data);
     
         // Redirect to the product list with a success/failure message
-        header('Location: product_view.php?message=' . urlencode($result ? 'Update successful' : 'Update failed'));
+        header('Location: product_view.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
         exit();
     }
     public function showUpdateForm($productId) {
+    
         $product = $this->productModel->findById($productId);
-        include 'update_product_form.php'; // path to your update form view
+        include '../../admin/view/update_product_form.php'; // path to your update form view
     }
     public function deleteProduct($id)
     {

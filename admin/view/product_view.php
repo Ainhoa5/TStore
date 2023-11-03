@@ -43,7 +43,7 @@ $products = $productController->showProducts();
                     <!-- Update Button/Form -->
                     <form action="../../includes/actions/ProductActions.php" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
-                        <input type="hidden" name="action" value="update_form">
+                        <input type="hidden" name="action" value="edit">
                         <button type="submit">Update</button>
                     </form>
 
