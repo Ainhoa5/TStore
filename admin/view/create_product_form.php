@@ -1,18 +1,8 @@
 <?php
-    require_once '../config/database.php';
-    require_once '../models/Product.php';
-    require_once '../controllers/ProductController.php';
-    
-    // instanciate the model and controller
-    $db = conectarDB();
-    $productModel = new Product($db);
-    $productController = new ProductController($productModel);
-    
-    // Check if form is submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Let the controller handle the form submission
-        $productController->createProduct();
-    }
+/* add header */
+require_once '../../includes/funciones.php';
+$RELATIVE_PATH_TO_ROOT = "../../";
+incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +15,7 @@
 </head>
 
 <body>
-    <form action="create_product_form.php" method="post" id="modern-form">
+    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post" id="modern-form">
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
@@ -49,11 +39,12 @@
                 <input type="text" id="category" name="category">
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="image_url">Image URL:</label>
                 <input type="url" id="image_url" name="image_url">
-            </div>
+            </div> -->
 
+            <input type="hidden" name="action" value="create">
             <input type="submit" value="Create Product">
     </form>
 </body>

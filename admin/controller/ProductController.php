@@ -13,45 +13,44 @@ class ProductController
     {
         return $this->productModel->getProducts();
     }
-    public function createProduct()
+    public function createProduct($data) // TO DO
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate the input...
-            $name = trim($_POST['name']);
-            $description = trim($_POST['description']);
-            // ...other fields
-
-            // Further validation like checking for empty strings, 
-            // proper formats, etc. would also take place here.
-            $isValid = true;
-
-            // If the data is valid, call the model to insert the product
-            if ($isValid) {
-                $this->productModel->createProduct([
-                    'name' => $name,
-                    'description' => $description,
-                    // ...other fields
-                ]);
-                // Redirect to a success page or display a success message
-            } else {
-                // Handle errors, possibly re-display the form with validation messages
-            }
-        }
-    }
-
-    public function updateProduct($data) {
         // Validate and sanitize $data
-        // ...
-        echo 'conteol';
-        // Update the product using the model
-        /* $result = $this->productModel->update($data);
-    
+        $productName = $data['name'];
+        $productDescription = $data['description'];
+        $productPrice = $data['price'];
+        $productStock = $data['stock'];
+        $productcategory = $data['category'];
+        echo $productName.' '.$productDescription.' '.$productPrice.' '.$productStock.' '.$productcategory;
+
+        // Create the product using the model
+        $result = $this->productModel->createProduct($data);
+
         // Redirect to the product list with a success/failure message
-        header('Location: product_view.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
+        /* header('Location: ../../admin/index.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
         exit();
     }
-    public function showUpdateForm($productId) {
-    
+
+    public function updateProduct($data) // TO DO
+    {
+        // Validate and sanitize $data
+        $productName = $data['name'];
+        $productDescription = $data['description'];
+        $productPrice = $data['price'];
+        $productStock = $data['stock'];
+        $productcategory = $data['category'];
+        /* echo $productName.' '.$productDescription.' '.$productPrice.' '.$productStock.' '.$productcategory; */
+
+        // Update the product using the model
+        $result = $this->productModel->update($data);
+
+        // Redirect to the product list with a success/failure message
+        /* header('Location: ../../admin/index.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
+        exit();
+    }
+    public function showUpdateForm($productId)
+    {
+
         $product = $this->productModel->findById($productId);
         include '../../admin/view/update_product_form.php'; // path to your update form view
     }
@@ -60,8 +59,7 @@ class ProductController
         $this->productModel->deleteProduct($id);
 
         // Redirect to prevent resubmission
-        header('Location: ../../admin/view/product_view.php');
+        header('Location: ../../admin/index.php');
         exit();
     }
 }
-?>

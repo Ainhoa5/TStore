@@ -23,13 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'update':
             $productController->updateProduct($_POST);
             break;
+        case 'create':
+            $productController->createProduct($_POST);
+            break;
         default:
             break;
-        // Other cases for 'update', etc.
+            // Other cases for 'update', etc.
     }
 
     // After action is performed, redirect back to the view (product list page)
     /* header('Location: path_to_your_product_list_view.php'); */
     exit();
 }
-?>

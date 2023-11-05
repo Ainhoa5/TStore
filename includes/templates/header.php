@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="<?= RELATIVE_PATH ?>build/css/app.css">
 </head>
 <body>
-    <div>
+    <header>
         <h1>TStore header</h1>
-    </div>
+    </header>
 </body>
 </html>
