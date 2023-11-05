@@ -1,8 +1,13 @@
+<?php 
+/* Add a header */
+require_once '../includes/funciones.php';
+$RELATIVE_PATH_TO_ROOT = "../";
+incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
+?>
 <?php
-require_once '../../includes/config/database.php';
-require_once '../model/Product.php';
-require_once '../controller/ProductController.php';
-require_once '../../includes/config/Database.php';
+require_once 'model/Product.php';
+require_once 'controller/ProductController.php';
+require_once '../includes/config/Database.php';
 
 // instanciate the model and controller
 $dbConnection = Database::getInstance()->getConnection();
@@ -24,8 +29,9 @@ $products = $productController->showProducts();
 </head>
 
 <body>
-    <h1>ADMIN PANEL</h1>
-    <a href="create_product_form.php">Create a Product</a>
+    <div class="button-link-div">
+        <a href="view/create_product_form.php" class="button-link">Create a Product</a>
+    </div>
     <div class="product-parent">
         <?php
         ?>
@@ -41,14 +47,14 @@ $products = $productController->showProducts();
                 </div>
                 <div class="product-buttons">
                     <!-- Update Button/Form -->
-                    <form action="../../includes/actions/ProductActions.php" method="post">
+                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="edit">
                         <button type="submit">Update</button>
                     </form>
 
                     <!-- Delete Button/Form -->
-                    <form action="../../includes/actions/ProductActions.php" method="post">
+                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="delete">
                         <button type="submit">Delete</button>

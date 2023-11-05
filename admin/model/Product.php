@@ -19,23 +19,15 @@ class Product
         }
         return $products;
     }
-    public function createProduct($data)
+    
+    public function createProduct($data) // TO DO
     {
-        // Prepare an SQL statement to insert the product data
-        $stmt = $this->db->prepare("INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param(
-            "ssdis",
-            $data['name'],
-            $data['description'],
-            $data['price'],
-            $data['stock'],
-            $data['category'],
-            $data['image_url']
-        );
-        $stmt->execute();
-
-        // Check for successful insertion and handle any errors
+        // get form data
+        // create query
+        // execute
+        // handle errors
     }
+
     public function deleteProduct($id)
     {
         $stmt = $this->db->prepare('DELETE FROM productos WHERE ProductoID = ?');
@@ -56,7 +48,9 @@ class Product
             return false;
         }
     }
-    public function findById($productId){
+
+    public function findById($productId)
+    {
         // Prepare a statement for execution and return a statement object or false on failure
         $stmt = $this->db->prepare("SELECT * FROM productos WHERE ProductoID = ?");
     
@@ -92,61 +86,12 @@ class Product
     }
     
     
-    public function update($data) {
-        // Check if ProductID is set in $data
-        if (!isset($data['ProductID'])) {
-            // Handle the error appropriately, maybe log it or throw an exception
-            error_log('ProductID not set in the update data');
-            return false;
-        }
-    
-        // Start building the SQL UPDATE statement
-        // The SQL string will contain placeholder names for the PDO prepared statement
-        $sql = "UPDATE productos SET ";
-        $updates = [];
-        $params = [];
-    
-        // Loop through the data and build the SQL dynamically
-        foreach ($data as $key => $value) {
-            // Skip the ProductID since it's used in the WHERE clause, not SET clause
-            if ($key != 'ProductID') {
-                $updates[] = "{$key} = :{$key}";
-                $params[$key] = $value;
-            }
-        }
-    
-        // Join all the individual column assignments into one string separated by commas
-        $sql .= implode(', ', $updates);
-        // Finish the SQL with the WHERE clause
-        $sql .= " WHERE ProductoID = :ProductID";
-    
-        // Prepare the SQL statement
-        $stmt = $this->db->prepare($sql);
-    
-        // Bind the values from $data to the corresponding placeholders in the SQL
-        foreach ($params as $key => &$val) {
-            $stmt->bindParam(':'.$key, $val);
-        }
-    
-        // Bind the ProductID separately
-        $stmt->bindParam(':ProductID', $data['ProductID'], PDO::PARAM_INT);
-    
-        // Execute the statement and return the result
-        if ($stmt->execute()) {
-            // Check if any rows were updated
-            if ($stmt->rowCount()) {
-                return true;
-            } else {
-                // No rows updated - could mean the ProductID was not found
-                return false;
-            }
-        } else {
-            // Handle execution error
-            error_log("Error in update: " . $stmt->errorInfo()[2]);
-            return false;
-        }
+    public function update($data) // TO DO
+    { 
+        // get form data
+        // create query
+        // execute
+        // handle errors
     }
     
 }
-
-?>
