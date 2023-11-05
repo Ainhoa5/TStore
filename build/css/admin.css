@@ -2,6 +2,9 @@
     display: flex;
     margin: 50px;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 .product-buttons {
     text-align: center; /* Centers the buttons/forms in the container */

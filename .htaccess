@@ -1,2 +1,0 @@
-RewriteEngine On
-RewriteRule ^admin$ admin/view/product_view.php [NC,L]
