@@ -10,88 +10,167 @@ class Product
 
     public function getProducts()
     {
+        // Prepare SQL query to prevent SQL injection
         $sql = "SELECT * FROM productos";
-        $result = $this->db->query($sql);
 
-        $products = [];
-        while ($row = $result->fetch_assoc()) {
-            $products[] = $row;
+        // Use try-catch block for error handling
+        try {
+            $result = $this->db->query($sql);
+
+            // Check if the query was successful
+            if (!$result) {
+                throw new Exception('Query failed: ' . $this->db->error);
+            }
+
+            // Fetch all rows at once
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+
+        } catch (Exception $e) {
+            // Handle any exceptions/errors here
+            // Log the error message and/or display a user-friendly message
+            error_log($e->getMessage());
+            return []; // Return an empty array on failure
         }
+
         return $products;
     }
-    
-    public function createProduct($data) // TO DO
+
+    public function createProduct($data)
     {
-        // get form data
-        // create query
-        // execute
-        // handle errors
+        try {
+            // Prepare an INSERT statement
+            $stmt = $this->db->prepare("INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria) VALUES (?, ?, ?, ?, ?)");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: (" . $this->db->errno . ") " . $this->db->error);
+            }
+
+            // Bind the parameters to the statement
+            if (!$stmt->bind_param('ssdis', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'])) {
+                throw new Exception("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
+            }
+
+            // Execute the statement
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+            }
+
+            // Check if the insert was successful
+            return $stmt->affected_rows > 0;
+
+        } catch (Exception $e) {
+            // Log the exception message
+            error_log($e->getMessage(), 3, "../../error.log");
+            return false;
+        }
     }
+
+
 
     public function deleteProduct($id)
     {
-        $stmt = $this->db->prepare('DELETE FROM productos WHERE ProductoID = ?');
-        $stmt->bind_param('i', $id);
+        try {
+            // Prepare the DELETE statement
+            $stmt = $this->db->prepare('DELETE FROM productos WHERE ProductoID = ?');
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . $this->db->error);
+            }
 
-        $success = $stmt->execute();
-        // Check if the deletion was successful.
-        if ($success) {
-            // If successful, commit the transaction and close the statement.
-            $this->db->commit();
-            $stmt->close();
+            // Bind the parameter
+            $stmt->bind_param('i', $id);
+
+            // Execute the statement
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
+
+            // The delete was successful
             return true;
-        } else {
-            echo 'error '.$stmt->error;
-            // If not successful, report the error.
-            error_log("Error: " . $stmt->error);
-            $stmt->close();
+
+        } catch (Exception $e) {
+            // Log the exception message
+            error_log($e->getMessage(), 3, "../../error.log");
             return false;
+
+        } finally {
+            // Close the statement in any case
+            if (isset($stmt)) {
+                $stmt->close();
+            }
         }
     }
+
 
     public function findById($productId)
     {
-        // Prepare a statement for execution and return a statement object or false on failure
-        $stmt = $this->db->prepare("SELECT * FROM productos WHERE ProductoID = ?");
-    
-        if (!$stmt) {
-            // Prepare failed
-            error_log("Prepare failed: (" . $this->db->errno . ") " . $this->db->error);
-            return false;
-        }
-    
-        // Bind the input parameter, productId, to the prepared statement
-        if (!$stmt->bind_param('i', $productId)) {
-            // Bind failed
-            error_log("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
-            return false;
-        }
-    
-        // Execute the statement and check for errors after execution
-        if (!$stmt->execute()) {
-            // Execute failed
-            error_log("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
-            return false;
-        }
-    
-        // Fetch the product
-        $result = $stmt->get_result();
-        $product = $result->fetch_assoc();
-        if ($product) {
-            return $product;
-        } else {
-            // No product was found
-            return null;
+        try {
+            // Prepare a SELECT statement
+            $stmt = $this->db->prepare("SELECT * FROM productos WHERE ProductoID = ?");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . $this->db->error);
+            }
+
+            // Bind the input parameter, productId, to the prepared statement
+            if (!$stmt->bind_param('i', $productId)) {
+                throw new Exception("Binding parameters failed: " . $stmt->error);
+            }
+
+            // Execute the statement
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
+
+            // Fetch the product
+            $result = $stmt->get_result();
+            $product = $result->fetch_assoc();
+
+            return $product ?: null; // Returns the product if found, otherwise null
+
+        } catch (Exception $e) {
+            // Log the exception message
+            error_log($e->getMessage(), 3, "../../error.log");
+            return null; // Return null if an exception occurred
+        } finally {
+            // Close the statement if it has been set
+            if (isset($stmt)) {
+                $stmt->close();
+            }
         }
     }
-    
-    
-    public function update($data) // TO DO
-    { 
-        // get form data
-        // create query
-        // execute
-        // handle errors
+
+    public function update($data)
+    {
+        try {
+            // Prepare an UPDATE statement
+            $stmt = $this->db->prepare("UPDATE Productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?, Categoria = ? WHERE ProductoID = ?");
+            if (!$stmt) {
+                throw new Exception("Prepare failed: " . $this->db->error);
+            }
+
+            // Bind the parameters to the statement
+            if (!$stmt->bind_param('ssdiss', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'], $data['ProductoID'])) {
+                throw new Exception("Binding parameters failed: " . $stmt->error);
+            }
+
+            // Execute the statement
+            if (!$stmt->execute()) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
+
+            // Check if the update was successful
+            
+            return $stmt->affected_rows > 0;
+
+        } catch (Exception $e) {
+            // Log the exception message
+            error_log($e->getMessage(), 3, "../../error.log");
+            return false;
+        } finally {
+            // Ensure the statement is closed
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+        }
     }
-    
+
+
 }

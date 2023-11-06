@@ -49,18 +49,54 @@ CREATE TABLE IF NOT EXISTS DetallesPedidos (
     FOREIGN KEY (PedidoID) REFERENCES Pedidos(PedidoID),
     FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
+
+-- Creando tabla Roles
+CREATE TABLE Roles (
+    RoleID INT PRIMARY KEY AUTO_INCREMENT,
+    RoleName VARCHAR(255) NOT NULL
+);
+
+-- Creando tabla UsuarioRoles
+CREATE TABLE UsuarioRoles (
+    UserID INT,
+    RoleID INT,
+    PRIMARY KEY (UserID, RoleID),
+    FOREIGN KEY (UserID) REFERENCES Usuarios(UserID),
+    FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
+);
+
+
 -- Inserting sample data into Usuarios
 INSERT INTO Usuarios (Nombre, Apellido, Email, UPassword, Direccion, Ciudad, Estado, Pais, CodigoPostal)
 VALUES
 ('Alice', 'Johnson', 'alice@email.com', 'password1', '123 Main St', 'Springfield', 'IL', 'USA', '62704'),
 ('Bob', 'Smith', 'bob@email.com', 'password2', '456 Elm St', 'Shelbyville', 'IL', 'USA', '62565');
 
+-- Inserting sample data into Roles
+INSERT INTO Roles (RoleName)
+VALUE
+('admin');
+
+-- Inserting sample data into UsuarioRoles
+INSERT INTO UsuarioRoles (UserID, RoleID) VALUES
+(1, 1)
 
 -- Inserting sample data into Productos
-INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL)
-VALUES
-('Laptop', 'A powerful laptop', 1200.99, 10, 'Electronics', 'image1.jpg'),
-('Smartphone', 'Latest model smartphone', 799.99, 20, 'Electronics', 'image2.jpg');
+INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES
+('Fearless T-Shirt', 'Exclusive design inspired by the Fearless album', 25.00, 10, 'Fearless', 'fearless_tshirt.jpg'),
+('1989 Vinyl', 'Limited edition vinyl of the 1989 album', 30.00, 15, '1989', '1989_vinyl.jpg'),
+('Lover Mug', 'Heart-shaped mug inspired by the Lover album', 15.00, 20, 'Lover', 'lover_mug.jpg'),
+('Reputation Hoodie', 'Black hoodie with Reputation album artwork', 40.00, 5, 'Reputation', 'reputation_hoodie.jpg'),
+('Folklore Necklace', 'Silver necklace with Folklore-inspired charms', 35.00, 10, 'Folklore', 'folklore_necklace.jpg'),
+('Evermore Blanket', 'Cozy blanket with Evermore album cover', 50.00, 8, 'Evermore', 'evermore_blanket.jpg'),
+('Red Scarf', 'Knitted scarf, a nod to the Red album', 20.00, 12, 'Red', 'red_scarf.jpg'),
+('Speak Now Journal', 'Purple journal for songwriting, inspired by Speak Now', 18.00, 15, 'Speak Now', 'speaknow_journal.jpg'),
+('Taylor Swift Debut Album Poster', 'Poster of the debut album cover', 10.00, 20, 'Taylor Swift', 'debut_album_poster.jpg'),
+('Fearless Keychain', 'Golden keychain commemorating the Fearless album', 8.00, 25, 'Fearless', 'fearless_keychain.jpg'),
+('1989 Phone Case', 'Phone case with 1989 album design', 12.00, 30, '1989', '1989_phonecase.jpg'),
+('Lover Socks', 'Pair of colorful socks inspired by the Lover album', 5.00, 40, 'Lover', 'lover_socks.jpg'),
+('Reputation Tour DVD', 'DVD of the Reputation Stadium Tour', 20.00, 10, 'Reputation', 'reputation_dvd.jpg');
+
 -- Inserting sample data into Pedidos
 INSERT INTO Pedidos (UsuarioID, Fecha, EstadoPedido, Total)
 VALUES
@@ -71,9 +107,3 @@ INSERT INTO DetallesPedidos (PedidoID, ProductoID, Cantidad, PrecioUnitario)
 VALUES
 (1, 1, 1, 1200.99),
 (2, 2, 1, 799.99);
-
-
--- Extra
-INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL)
-VALUES
-('Snow Glob', 'Something lol', 19.89, 13, 'Decoration', 'image3.jpg');

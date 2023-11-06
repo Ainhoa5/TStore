@@ -44,7 +44,7 @@ incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
                 <input type="file" id="image_url" name="image_url">
             </div> -->
 
-            <input type="hidden" name="ProductoID" value="<?php echo htmlspecialchars($product['ProductoID']); ?>">
+            <input type="hidden" name="ProductoID" id="ProductoID" value="<?php echo htmlspecialchars($product['ProductoID']); ?>">
             <input type="hidden" name="action" value="update">
             <input type="submit" value="Update Product">
     </form>

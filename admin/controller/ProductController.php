@@ -13,44 +13,76 @@ class ProductController
     {
         return $this->productModel->getProducts();
     }
-    public function createProduct($data) // TO DO
+    public function createProduct($data)
     {
-        // Validate and sanitize $data
-        $productName = $data['name'];
-        $productDescription = $data['description'];
-        $productPrice = $data['price'];
-        $productStock = $data['stock'];
-        $productcategory = $data['category'];
-        echo $productName.' '.$productDescription.' '.$productPrice.' '.$productStock.' '.$productcategory;
+        $validation = $this->validateAndSanitizeProductData($data);
 
-        // Create the product using the model
-        $result = $this->productModel->createProduct($data);
+        if (count($validation['errors']) > 0) {
+            return $validation['errors'];
+        }
 
-        // Redirect to the product list with a success/failure message
-        /* header('Location: ../../admin/index.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
+        $result = $this->productModel->createProduct($validation['data']);
+        header('Location: ../../admin/index.php?message=');
         exit();
     }
 
-    public function updateProduct($data) // TO DO
+    public function updateProduct($data)
     {
-        // Validate and sanitize $data
-        $productName = $data['name'];
-        $productDescription = $data['description'];
-        $productPrice = $data['price'];
-        $productStock = $data['stock'];
-        $productcategory = $data['category'];
-        /* echo $productName.' '.$productDescription.' '.$productPrice.' '.$productStock.' '.$productcategory; */
+        $validation = $this->validateAndSanitizeProductData($data);
 
-        // Update the product using the model
-        $result = $this->productModel->update($data);
+        if (count($validation['errors']) > 0) {
+            return $validation['errors'];
+        }
 
-        // Redirect to the product list with a success/failure message
-        /* header('Location: ../../admin/index.php?message=' . urlencode($result ? 'Update successful' : 'Update failed')); */
+        $validation['data']['ProductoID'] = $data['ProductoID']; // Add the ProductID for update
+
+        $result = $this->productModel->update($validation['data']);
+        header('Location: ../../admin/index.php?message=');
         exit();
     }
+
+
+
+    private function validateAndSanitizeProductData($data)
+    {
+        $errors = [];
+        $sanitizedData = [];
+
+        // Helper function to check if a string is essentially empty
+        $isEssentiallyEmpty = function ($str) {
+            return strlen(trim($str)) == 0;
+        };
+
+        // Validation and Sanitization for each field
+        foreach (['name', 'description', 'category'] as $field) {
+            if (empty($data[$field]) || $isEssentiallyEmpty($data[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required and cannot be blank';
+            } else {
+                $sanitizedData[$field] = filter_var($data[$field], FILTER_SANITIZE_STRING);
+            }
+        }
+
+        // Price validation
+        if (!is_numeric($data['price']) || $data['price'] < 0) {
+            $errors['price'] = 'Invalid price';
+        } else {
+            $sanitizedData['price'] = $data['price'];
+        }
+
+        // Stock validation
+        if (!is_numeric($data['stock']) || $data['stock'] < 0 || intval($data['stock']) != $data['stock']) {
+            $errors['stock'] = 'Invalid stock value';
+        } else {
+            $sanitizedData['stock'] = intval($data['stock']);
+        }
+
+        return ['errors' => $errors, 'data' => $sanitizedData];
+    }
+
+
+
     public function showUpdateForm($productId)
     {
-
         $product = $this->productModel->findById($productId);
         include '../../admin/view/update_product_form.php'; // path to your update form view
     }
