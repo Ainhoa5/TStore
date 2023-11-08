@@ -67,37 +67,56 @@ class Product
 
 
     public function deleteProduct($id)
-    {
-        try {
-            // Prepare the DELETE statement
-            $stmt = $this->db->prepare('DELETE FROM productos WHERE ProductoID = ?');
-            if (!$stmt) {
-                throw new Exception("Prepare failed: " . $this->db->error);
-            }
+{
+    try {
+        // First, find the product to get the image URL
+        $product = $this->findById($id);
+        if (!$product) {
+            throw new Exception("Product not found with ID: $id");
+        }
 
-            // Bind the parameter
-            $stmt->bind_param('i', $id);
-
-            // Execute the statement
-            if (!$stmt->execute()) {
-                throw new Exception("Execute failed: " . $stmt->error);
-            }
-
-            // The delete was successful
-            return true;
-
-        } catch (Exception $e) {
-            // Log the exception message
-            error_log($e->getMessage(), 3, "../../error.log");
-            return false;
-
-        } finally {
-            // Close the statement in any case
-            if (isset($stmt)) {
-                $stmt->close();
+        // Delete the image file if it exists
+        if (!empty($product['ImagenURL'])) {
+            $imagePath = '../../build/img/products/' . $product['ImagenURL'];
+            if (file_exists($imagePath)) {
+                if (!unlink($imagePath)) {
+                    // Optional: Decide how to handle the situation where the image file cannot be deleted
+                    // For instance, you can throw an exception or just log the error
+                    error_log("Failed to delete image file: $imagePath", 3, "../../error.log");
+                }
             }
         }
+
+        // Prepare the DELETE statement for the product
+        $stmt = $this->db->prepare('DELETE FROM productos WHERE ProductoID = ?');
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $this->db->error);
+        }
+
+        // Bind the parameter
+        $stmt->bind_param('i', $id);
+
+        // Execute the statement
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+
+        // The delete was successful
+        return true;
+
+    } catch (Exception $e) {
+        // Log the exception message
+        error_log($e->getMessage(), 3, "../../error.log");
+        return false;
+
+    } finally {
+        // Close the statement in any case
+        if (isset($stmt)) {
+            $stmt->close();
+        }
     }
+}
+
 
 
     public function findById($productId)
