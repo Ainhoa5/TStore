@@ -15,7 +15,7 @@ incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
 </head>
 
 <body>
-    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post" id="modern-form">
+    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post" id="modern-form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
@@ -39,10 +39,10 @@ incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
                 <input type="text" id="category" name="category">
             </div>
 
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="image_url">Image URL:</label>
-                <input type="url" id="image_url" name="image_url">
-            </div> -->
+                <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png">
+            </div>
 
             <input type="hidden" name="action" value="create">
             <input type="submit" value="Create Product">
