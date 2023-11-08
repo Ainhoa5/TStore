@@ -39,13 +39,13 @@ class Product
     {
         try {
             // Prepare an INSERT statement
-            $stmt = $this->db->prepare("INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $this->db->prepare("INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES (?, ?, ?, ?, ?, ?)");
             if (!$stmt) {
                 throw new Exception("Prepare failed: (" . $this->db->errno . ") " . $this->db->error);
             }
 
             // Bind the parameters to the statement
-            if (!$stmt->bind_param('ssdis', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'])) {
+            if (!$stmt->bind_param('ssdiss', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'], $data['ImagenURL'])) {
                 throw new Exception("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
             }
 
@@ -141,13 +141,13 @@ class Product
     {
         try {
             // Prepare an UPDATE statement
-            $stmt = $this->db->prepare("UPDATE Productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?, Categoria = ? WHERE ProductoID = ?");
+            $stmt = $this->db->prepare("UPDATE Productos SET Nombre = ?, Descripcion = ?, Precio = ?, Stock = ?, Categoria = ?, ImagenURL = ? WHERE ProductoID = ?");
             if (!$stmt) {
                 throw new Exception("Prepare failed: " . $this->db->error);
             }
 
             // Bind the parameters to the statement
-            if (!$stmt->bind_param('ssdiss', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'], $data['ProductoID'])) {
+            if (!$stmt->bind_param('ssdisss', $data['name'], $data['description'], $data['price'], $data['stock'], $data['category'], $data['ImagenURL'], $data['ProductoID'])) {
                 throw new Exception("Binding parameters failed: " . $stmt->error);
             }
 

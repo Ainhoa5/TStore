@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* Add a header */
 require_once '../includes/funciones.php';
 $RELATIVE_PATH_TO_ROOT = "../";
@@ -35,26 +35,42 @@ $products = $productController->showProducts();
     <div class="product-parent">
         <?php
         ?>
-        <?php foreach ($products as $product) : ?>
+        <?php foreach ($products as $product): ?>
             <div class="product-container">
-                <img src="../../build/img/products/default-placeholder.png" alt="">
-                <h1><?php echo htmlspecialchars($product['Nombre']); ?></h1>
-                <p><?php echo htmlspecialchars($product['Descripcion']); ?></p>
+                <?php echo $product['ImagenURL'];?>
+                <img src="<?php echo file_exists('../build/img/products/' . $product['ImagenURL']) ? '../build/img/products/' . $product['ImagenURL'] : '../build/img/products/default-placeholder.png'; ?>"
+                    alt="Product Image">
+
+
+                <h1>
+                    <?php echo htmlspecialchars($product['Nombre']); ?>
+                </h1>
+                <p>
+                    <?php echo htmlspecialchars($product['Descripcion']); ?>
+                </p>
                 <div class="product-data">
-                    <p><?php echo htmlspecialchars($product['Precio']); ?></p>
-                    <p><?php echo htmlspecialchars($product['Stock']); ?></p>
-                    <p><?php echo htmlspecialchars($product['Categoria']); ?></p>
+                    <p>
+                        <?php echo htmlspecialchars($product['Precio']); ?>
+                    </p>
+                    <p>
+                        <?php echo htmlspecialchars($product['Stock']); ?>
+                    </p>
+                    <p>
+                        <?php echo htmlspecialchars($product['Categoria']); ?>
+                    </p>
                 </div>
                 <div class="product-buttons">
                     <!-- Update Button/Form -->
-                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post">
+                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT . 'includes/actions/ProductActions.php' ?>"
+                        method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="edit">
                         <button type="submit">Update</button>
                     </form>
 
                     <!-- Delete Button/Form -->
-                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post">
+                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT . 'includes/actions/ProductActions.php' ?>"
+                        method="post">
                         <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
                         <input type="hidden" name="action" value="delete">
                         <button type="submit">Delete</button>

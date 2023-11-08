@@ -1,5 +1,6 @@
 <?php
 
+session_start(); // Start the session at the beginning of your script
 class ProductController
 {
     private $productModel;
@@ -15,7 +16,7 @@ class ProductController
     }
     public function createProduct($data)
     {
-        $validation = $this->validateAndSanitizeProductData($data);
+        $validation = $this->validateAndSanitizeProductData($data, $_FILES);
 
         if (count($validation['errors']) > 0) {
             return $validation['errors'];
@@ -26,24 +27,32 @@ class ProductController
         exit();
     }
 
+
     public function updateProduct($data)
     {
-        $validation = $this->validateAndSanitizeProductData($data);
+        var_dump('a');
+        var_dump($_FILES);
+        $validation = $this->validateAndSanitizeProductData($data, $_FILES);
 
         if (count($validation['errors']) > 0) {
-            return $validation['errors'];
+            // Store errors in the session
+            $_SESSION['errors'] = $validation['errors'];
+            // Redirect to the form page
+            $this->showUpdateForm($data['ProductoID']);
+            exit();
         }
 
         $validation['data']['ProductoID'] = $data['ProductoID']; // Add the ProductID for update
 
         $result = $this->productModel->update($validation['data']);
-        header('Location: ../../admin/index.php?message=');
+        header('Location: ../../admin/index.php?message=success');
         exit();
     }
 
 
 
-    private function validateAndSanitizeProductData($data)
+
+    private function validateAndSanitizeProductData($data, $fileData)
     {
         $errors = [];
         $sanitizedData = [];
@@ -76,8 +85,34 @@ class ProductController
             $sanitizedData['stock'] = intval($data['stock']);
         }
 
+        // Image validation and handling
+        if (isset($fileData['image_url']) && $fileData['image_url']['error'] == 0) {
+            $allowedTypes = ['image/jpeg', 'image/png'];
+            $maxSize = 5000000; // 5MB
+
+            if (!in_array($fileData['image_url']['type'], $allowedTypes)) {
+                $errors['image'] = 'Invalid image type. Only JPEG and PNG are allowed.';
+            } elseif ($fileData['image_url']['size'] > $maxSize) {
+                $errors['image'] = 'Image size is too large. Maximum allowed size is 5MB.';
+            } else {
+                $randomNumber = mt_rand();
+                $extension = pathinfo($fileData['image_url']['name'], PATHINFO_EXTENSION);
+                $newFileName = "product_" . $randomNumber . '.' . $extension;
+                $destination ='../../build/img/products/' . $newFileName;
+
+                if (move_uploaded_file($fileData['image_url']['tmp_name'], $destination)) {
+                    $sanitizedData['ImagenURL'] = $newFileName;
+                } else {
+                    $errors['image'] = 'Error in uploading the image.';
+                }
+            }
+        } else {
+            $errors['image'] = 'Image file is required.';
+        }
+
         return ['errors' => $errors, 'data' => $sanitizedData];
     }
+
 
 
 
