@@ -5,8 +5,8 @@ $RELATIVE_PATH_TO_ROOT = "../";
 incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
 ?>
 <?php
-require_once 'model/Product.php';
-require_once 'controller/ProductController.php';
+require_once '../includes/models/Product.php';
+require_once '../includes/controllers/ProductController.php';
 require_once '../includes/config/Database.php';
 
 // instanciate the model and controller
@@ -30,7 +30,7 @@ $products = $productController->showProducts();
 
 <body>
     <div class="button-link-div">
-        <a href="view/create_product_form.php" class="button-link">Create a Product</a>
+        <a href="../includes/views/create_product_form.php" class="button-link">Create a Product</a>
     </div>
     <div class="product-parent">
         <?php
