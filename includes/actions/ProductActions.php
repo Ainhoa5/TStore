@@ -2,8 +2,8 @@
 // This is a separate 'ProductActions.php' script that handles form submissions
 
 require_once '../config/database.php';
-require_once '../../admin/model/Product.php';
-require_once '../../admin/controller/ProductController.php';
+require_once '../models/Product.php';
+require_once '../controllers/ProductController.php';
 
 $dbConnection = Database::getInstance()->getConnection();
 $productModel = new Product($dbConnection);

@@ -119,7 +119,7 @@ class ProductController
     public function showUpdateForm($productId)
     {
         $product = $this->productModel->findById($productId);
-        include '../../admin/view/update_product_form.php'; // path to your update form view
+        include '../views/update_product_form.php'; // path to your update form view
     }
     public function deleteProduct($id)
     {
