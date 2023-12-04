@@ -23,6 +23,17 @@
                 <input type="button" value="Volver" id="sign-up">
             </div>
 
+    <script>
+    // Obtener el botón por su ID
+    var volverButton = document.getElementById('sign-up');
+
+    // Agregar un evento de clic al botón
+    volverButton.addEventListener('click', function() {
+        // Redirigir a la página de índice (cambia 'index.html' por la ruta correcta)
+        window.location.href = '../../index.php';
+        });
+    </script>
+
         </div>
         <div class="form-information">
             <div class="form-information-childs">
