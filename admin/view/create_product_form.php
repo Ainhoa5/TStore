@@ -1,18 +1,22 @@
 <?php
-    require_once '../config/database.php';
-    require_once '../models/Product.php';
-    require_once '../controllers/ProductController.php';
-    
-    // instanciate the model and controller
-    $db = conectarDB();
-    $productModel = new Product($db);
-    $productController = new ProductController($productModel);
-    
-    // Check if form is submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Let the controller handle the form submission
-        $productController->createProduct();
-    }
+require_once '../../includes/config/database.php';
+require_once '../model/Product.php';
+require_once '../controller/ProductController.php';
+
+
+// Get the instance of the Database class
+$database = Database::getInstance();
+// Get the database connection from the instance
+$db = $database->getConnection();
+// instanciate the model and controller
+$productModel = new Product($db);
+$productController = new ProductController($productModel);
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Let the controller handle the form submission
+    $productController->createProduct($_POST);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +29,7 @@
 </head>
 
 <body>
-    <form action="create_product_form.php" method="post" id="modern-form">
+    <form action="create_product_form.php" method="post" id="modern-form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
@@ -51,7 +55,8 @@
 
             <div class="form-group">
                 <label for="image_url">Image URL:</label>
-                <input type="url" id="image_url" name="image_url">
+                <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png">
+
             </div>
 
             <input type="submit" value="Create Product">

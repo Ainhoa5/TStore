@@ -32,6 +32,9 @@
         // Redirigir a la página de índice (cambia 'index.html' por la ruta correcta)
         window.location.href = '../../index.php';
         });
+
+
+        
     </script>
 
         </div>
@@ -52,7 +55,7 @@
                         <i class='bx bx-lock'></i>
                         <input type="password" placeholder="Contraseña">
                     </label>
-                    <input type="submit" value="Iniciar Sesión">
+                    <input type="submit" value="Iniciar Sesión" id="log-in">
                 </form>
             </div>
         </div>
