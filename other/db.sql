@@ -96,14 +96,3 @@ INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL)
 ('1989 Phone Case', 'Phone case with 1989 album design', 12.00, 30, '1989', '1989_phonecase.jpg'),
 ('Lover Socks', 'Pair of colorful socks inspired by the Lover album', 5.00, 40, 'Lover', 'lover_socks.jpg'),
 ('Reputation Tour DVD', 'DVD of the Reputation Stadium Tour', 20.00, 10, 'Reputation', 'reputation_dvd.jpg');
-
--- Inserting sample data into Pedidos
-INSERT INTO Pedidos (UsuarioID, Fecha, EstadoPedido, Total)
-VALUES
-(1, '2023-10-24', 'Processing', 1200.99),
-(2, '2023-10-24', 'Shipped', 799.99);
--- Inserting sample data into DetallesPedidos
-INSERT INTO DetallesPedidos (PedidoID, ProductoID, Cantidad, PrecioUnitario)
-VALUES
-(1, 1, 1, 1200.99),
-(2, 2, 1, 799.99);
