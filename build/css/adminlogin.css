@@ -1,0 +1,192 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* para resetear lo margenes por defecto que tiene el navegador */
+    box-sizing: border-box; 
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../img/login/background-lover-2.png);
+    background-size: cover; /*Propiedad para ajustar correctamente la imagen */
+}
+
+.container-form{
+    display: flex;/*Para que los div se coloquen uno al lado del otro */
+    border-radius: 20px;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, .1); /* Para crear una transición*/
+    height: 500px;
+    max-width: 900px; /*Tamaño máximo que tendrá el formulario */
+    transition: all 1s ease;
+    margin: 10px;
+    /* border: solid thin black; */
+}
+
+.information{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #fff0c0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+/* todo el div de iniciar sesion */
+.info-childs{
+    width: 100%;
+    padding: 0 30px;
+}
+
+/* Bienvenido */
+.info-childs h2 {
+    font-size: 2.5rem;
+}
+/* contenido del iniciar sesion */
+.info-childs p {
+    margin: 15px 0
+}
+/* botón de iniciar sesión */
+.info-childs input{
+    background-color: transparent;
+    outline: none;
+    border: solid 2px #ffffff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3 ease;
+}
+/*transición del botón de iniciar sesión */
+.info-childs input:hover{
+    background-color: #fdcdcd;
+    border: none;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+/*Parte derecha del contenedor */
+.form-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    text-align: center;
+    background-color: #f8f8f8;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.form-information-childs{
+   padding: 0 30px; 
+}
+
+.form-information-childs h2{
+    font-size: 2rem;
+}
+
+.icons {
+    margin: 15px 0;
+}
+
+.icons i {
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0 10px;
+    color: #fdcdcd;
+    border: solid thin #fdcdcd;
+    transition: background-color 0.3 ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.icons i:hover{
+    background-color: #c7c7f3;
+    color: #fff;
+}
+
+/*Formulario crear una cuenta*/
+.form{
+    margin: 30px 0 0 0;
+}
+
+.form label{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    padding: 0 10px;
+    box-shadow: 0 2px 5px rgb(0, 0, 0, .1);
+    background-color: #fff;
+}
+
+.form label input{
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+}
+
+.form label i {
+    color: #a7a7a7;
+}
+
+/*Botón de registrarse*/
+.form input[type="submit"]{
+    background-color: #fdcdcd;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgb(0, 0, 0, .1);
+}
+.form input[type="submit"]:hover{
+    background-color: #7a7a9a;
+}
+
+/*Ocultar el formulario de iniciar sesión lo colacamos en la parte superior*/
+.hide{
+    position: absolute;
+    transform: translateY(-300%);
+}
+
+/*RESPONSIVE FORM*/
+@media screen and (max-width:750px) {
+    html{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:580px) {
+    html{
+        font-size: 10px;
+    }
+    .container-form{
+        height: auto;
+        flex-direction: column;
+    }
+
+    .information{
+        width: 100%;
+        padding: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .form-information{
+        width: 100%;
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0px;
+    }
+}

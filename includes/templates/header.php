@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>TStore header</h1>
+        <h1>TStore header header</h1>
     </header>
 </body>
 </html>
