@@ -37,14 +37,22 @@ class User
         // Retornar false si las credenciales no son correctas
         return false;
     }
-    function verifyAdmin() {
-        if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
-            header('Location: login.php'); // Redirige al login
-            exit();
-        }
-    }
-    public function getUserRole()
+ 
+    public function createUser($email, $passwordHash)
     {
+        // Preparar la consulta SQL para insertar el nuevo usuario
+    $query = "INSERT INTO Usuarios (Email, UPassword, ...) VALUES (?, ?)";
+
+    // Preparar y ejecutar la consulta
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("ss", $email, $passwordHash); // Asegúrate de enlazar todos los datos necesarios
+    $stmt->execute();
+
+    // Comprobar si la inserción fue exitosa
+    if ($stmt->affected_rows > 0) {
+        return true; // Usuario creado exitosamente
+    }
+    return false; // Error al crear el usuario
     }
 
 
