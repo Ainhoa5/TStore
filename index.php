@@ -21,8 +21,8 @@
             <ul class="navbar">
             <li><a href="#">HOME</a></li>
             <li><a href="#">ERAS TOUR</a></li>
-            <li><a href="includes/views/login_form.php">LOGIN</a></li>
-            <li><a href="admin/view/loginform.php">ADMIN</a></li>
+            <li><a href="includes/views/user_form.php">LOGIN</a></li>
+            <li><a href="includes/views/admin_form.php">ADMIN</a></li>
         </ul>
         </header>
     <!-- INDEX -->

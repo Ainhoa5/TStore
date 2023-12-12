@@ -1,22 +1,8 @@
 <?php
-require_once '../../includes/config/database.php';
-require_once '../model/Product.php';
-require_once '../controller/ProductController.php';
-
-
-// Get the instance of the Database class
-$database = Database::getInstance();
-// Get the database connection from the instance
-$db = $database->getConnection();
-// instanciate the model and controller
-$productModel = new Product($db);
-$productController = new ProductController($productModel);
-
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Let the controller handle the form submission
-    $productController->createProduct($_POST);
-}
+/* add header */
+require_once '../../includes/funciones.php';
+$RELATIVE_PATH_TO_ROOT = "../../";
+incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form action="create_product_form.php" method="post" id="modern-form" enctype="multipart/form-data">
+    <form action="<?php echo $RELATIVE_PATH_TO_ROOT.'includes/actions/ProductActions.php'?>" method="post" id="modern-form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" id="name" name="name" required>
@@ -56,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="image_url">Image URL:</label>
                 <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png">
-
             </div>
 
+            <input type="hidden" name="action" value="create">
             <input type="submit" value="Create Product">
     </form>
 </body>
