@@ -10,6 +10,10 @@ class ProductController
         $this->productModel = $productModel;
     }
 
+    public function showLatestProducts() {
+        return $this->productModel->getLatestProducts();
+    }
+
     public function showProducts()
     {
         return $this->productModel->getProducts();
@@ -26,7 +30,6 @@ class ProductController
         header('Location: ../../admin/index.php?message=');
         exit();
     }
-
 
     public function updateProduct($data)
     {
@@ -48,9 +51,6 @@ class ProductController
         header('Location: ../../admin/index.php?message=success');
         exit();
     }
-
-
-
 
     private function validateAndSanitizeProductData($data, $fileData)
     {
@@ -86,10 +86,10 @@ class ProductController
         }
 
         // Image validation and handling
-        if (isset($fileData['image_url']) && $fileData['image_url']['error'] == 0) {
+        if (isset($fileData['image_url']) && $fileData['image_url']['error'] != UPLOAD_ERR_NO_FILE) {
             $allowedTypes = ['image/jpeg', 'image/png'];
             $maxSize = 5000000; // 5MB
-
+        
             if (!in_array($fileData['image_url']['type'], $allowedTypes)) {
                 $errors['image'] = 'Invalid image type. Only JPEG and PNG are allowed.';
             } elseif ($fileData['image_url']['size'] > $maxSize) {
@@ -99,7 +99,7 @@ class ProductController
                 $extension = pathinfo($fileData['image_url']['name'], PATHINFO_EXTENSION);
                 $newFileName = "product_" . $randomNumber . '.' . $extension;
                 $destination ='../../build/img/products/' . $newFileName;
-
+        
                 if (move_uploaded_file($fileData['image_url']['tmp_name'], $destination)) {
                     $sanitizedData['ImagenURL'] = $newFileName;
                 } else {
@@ -113,14 +113,12 @@ class ProductController
         return ['errors' => $errors, 'data' => $sanitizedData];
     }
 
-
-
-
     public function showUpdateForm($productId)
     {
         $product = $this->productModel->findById($productId);
         include '../views/update_product_form.php'; // path to your update form view
     }
+
     public function deleteProduct($id)
     {
         $this->productModel->deleteProduct($id);

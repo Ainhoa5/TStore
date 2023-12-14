@@ -36,7 +36,7 @@ class User
         return false;
     }
 
-
+    
     public function createUser($email, $passwordHash)
     {
         // Preparar la consulta SQL para insertar el nuevo usuario

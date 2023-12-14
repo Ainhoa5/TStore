@@ -36,12 +36,12 @@ incluirTemplate('header', true, $RELATIVE_PATH_TO_ROOT);
 
             <div class="form-group">
                 <label for="category">Category:</label>
-                <input type="text" id="category" name="category">
+                <input type="text" id="category" name="category" required>
             </div>
 
             <div class="form-group">
                 <label for="image_url">Image URL:</label>
-                <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png">
+                <input type="file" id="image_url" name="image_url" accept="image/jpeg, image/png" required>
             </div>
 
             <input type="hidden" name="action" value="create">

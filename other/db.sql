@@ -13,8 +13,10 @@ CREATE TABLE IF NOT EXISTS Productos (
     Precio DECIMAL(10,2) NOT NULL,
     Stock INT NOT NULL,
     Categoria VARCHAR(255),
-    ImagenURL VARCHAR(255)
+    ImagenURL VARCHAR(255),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 -- Creando tabla Pedidos
 CREATE TABLE IF NOT EXISTS Pedidos (

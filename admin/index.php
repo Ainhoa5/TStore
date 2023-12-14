@@ -29,6 +29,7 @@ $products = $productController->showProducts();
 </head>
 
 <body>
+    <a href="../">Go Back</a>
     <div class="button-link-div">
         <a href="../includes/views/create_product_form.php" class="button-link">Create a Product</a>
     </div>

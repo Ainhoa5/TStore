@@ -191,5 +191,18 @@ class Product
         }
     }
 
+    public function getLatestProducts($limit = 6) {
+        $query = "SELECT * FROM productos ORDER BY fecha_creacion DESC LIMIT ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+
+        return $products;
+    }
 }

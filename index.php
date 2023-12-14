@@ -1,6 +1,9 @@
 <?php
 
 require_once 'includes/classes/UserClass.php';
+require_once 'includes/config/database.php';
+require_once 'includes/controllers/ProductController.php';
+require_once 'includes/models/Product.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,81 +81,44 @@ require_once 'includes/classes/UserClass.php';
             <h2>Taylor's Products</h2>
         </div>
 
-        <!-- FIRST ROW -->
         <div class="merch-container">
+            <?php
+            // Suponiendo que ya has instanciado tu controlador
 
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
+            $dbConnection = Database::getInstance()->getConnection();
+            $model = new Product($dbConnection); // Asegúrate de que la clase User esté incluida o cargada
+            $controller = new ProductController($model);
 
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
+            $latestProducts = $controller->showLatestProducts();
 
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
+            foreach ($latestProducts as $product) {
+                echo "<div class='box'>";
+                echo "<div class='box-img'>";
 
+                // Construir la ruta de la imagen
+                $imagePath = "build/img/products/";
+                $fullImagePath = $imagePath . $product['ImagenURL'];
 
+                // Verificar si el archivo de imagen existe
+                if (!empty($product['ImagenURL']) && file_exists($fullImagePath)) {
+                    $imagePath .= $product['ImagenURL']; // Utilizar la imagen de la base de datos
+                } else {
+                    $imagePath .= "default-placeholder.png"; // Utilizar imagen por defecto
+                }
 
+                echo "<img src='" . htmlspecialchars($imagePath) . "'>";
+                echo "</div>";
+                echo "<h2>" . htmlspecialchars($product['Nombre']) . "</h2>";
+                echo "<h3>" . htmlspecialchars($product['Descripcion']) . "</h3>";
+                echo "<span>" . htmlspecialchars($product['Precio']) . "€</span>";
+                echo "<i class='bx bxs-cart'></i>";
+                echo "</div>";
+            }
+
+            ?>
         </div>
-
-        <!-- SECOND ROW -->
-        <div class="merch-container">
-
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
-
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
-
-            <div class="box">
-                <div class="box-img">
-                    <img src="build/img/index/merch.png">
-                </div>
-                <h2>T-Shirt</h2>
-                <h3>Eras Tour</h3>
-                <span>12.99€</span>
-                <i class='bx bxs-cart'></i>
-            </div>
-
-
-
-        </div>
-
     </section>
+
 
     <!-- FOOTER -->
     <section id="contact">

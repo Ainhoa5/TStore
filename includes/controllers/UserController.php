@@ -3,7 +3,7 @@ require_once '../models/User.php';
 require_once '../config/database.php';
 require_once '../classes/UserClass.php';
 session_start(); // Start the session at the beginning of your script
-class ProductController
+class UserController
 {
     private $model;
 
@@ -71,7 +71,7 @@ class ProductController
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dbConnection = Database::getInstance()->getConnection();
     $userModel = new User($dbConnection); // Asegúrate de que la clase User esté incluida o cargada
-    $controller = new ProductController($userModel);
+    $controller = new UserController($userModel);
     if (isset($_POST['login'])) {
 
         // Obtener datos del formulario
@@ -101,6 +101,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($controller->signup($email, $password)) {
             // Redirigir a la página de inicio o panel de usuario
+            // Intentar iniciar sesión
+            if ($controller->login($email, $password)) {
+                // Redirigir a la página de inicio o panel de usuario
+                header("Location: ../../index.php"); // Asegúrate de que la ruta sea correcta
+                exit();
+            } else {
+                // Manejar el error de inicio de sesión
+                // Por ejemplo, puedes redirigir a la misma página con un mensaje de error
+                // O simplemente mostrar un mensaje de error en esta página
+                echo "<pre>";
+                echo "error login";
+                echo "<pre>";
+                exit;
+            }
+
             header("Location: ../../index.php"); // Asegúrate de que la ruta sea correcta
             exit();
         } else {

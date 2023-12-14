@@ -157,14 +157,15 @@ color: var(--main-color);
     font-size: var(--h2-font);
 }
 
-.merch-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-    grid-gap: 1.5rem;
-    align-items: center;
+.merch-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 /*MERCH BOX*/
 .box{
+    flex-basis: calc(33.333% - 10px); /* Ajusta para 3 cajas por fila, menos un pequeño margen */
+    margin-bottom: 20px;
     position: relative;
     margin-top: 4rem;
     height: auto;
@@ -177,9 +178,11 @@ color: var(--main-color);
     border-radius: 0.5rem;
 }
 /* SIZE IMG */
-.box-img{
-   width: 220px;
-   height: 220px; 
+.box-img {
+    transition: transform 0.3s ease; /* Agregar transición suave */
+    display: block; /* o inline-block, dependiendo de tu layout */
+    margin: auto; /* Centrar la imagen si es necesario */
+    transform-origin: center; /* Establecer el origen de la transformación */
 }
 .box-img img{
     width: 100%;
@@ -188,10 +191,9 @@ color: var(--main-color);
     cursor: pointer;
 }
 /* PRDOUCT EFFECT */
-.box-img img:active{
-
-    transform: scale(1.558) translateY(24px);
-    background:rgba(0, 0, 0, 0.2);
+.box-img:hover {
+    transform: scale(1.1); /* Escalar la imagen */
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 20px;
 }
 /* NAME PRODUCT */
@@ -410,6 +412,16 @@ font-weight: 600;
     }
 }
 
+@media (max-width: 768px) {
+    .box {
+        flex-basis: calc(50% - 10px); /* En pantallas más pequeñas, dos cajas por fila */
+    }
+}
 
+@media (max-width: 480px) {
+    .box {
+        flex-basis: 100%; /* En pantallas muy pequeñas, una caja por fila */
+    }
+}
 
  
