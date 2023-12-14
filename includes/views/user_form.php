@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
 
     <title>CLIENT FORM</title>
 </head>
+
 <body>
     <div class="container-form register">
         <div class="information">
@@ -31,20 +33,20 @@
                     <i class='bx bxl-meta'></i>
                 </div>
                 <p>o usa tu email para registrarte</p>
-                <form class="form" >
-                    <label >
+                <form class="form" action="../controllers/UserController.php" method="post">
+                    <label>
                         <i class='bx bx-user'></i>
                         <input type="text" placeholder="Nombre">
                     </label>
-                    <label >
+                    <label>
                         <i class='bx bxs-envelope'></i>
-                        <input type="email" placeholder="Correo electrónico">
+                        <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
-                    <label >
+                    <label>
                         <i class='bx bx-lock'></i>
-                        <input type="password" placeholder="Contraseña">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </label>
-                    <input type="submit" value="Registrarse">
+                    <input type="submit" name="registrarse" value="Registrarse">
                 </form>
             </div>
         </div>
@@ -65,20 +67,21 @@
             <div class="form-information-childs">
                 <h2>Iniciar Sesión</h2>
                 <div class="icons">
-                <i class='bx bx-envelope'></i>
+                    <i class='bx bx-envelope'></i>
                     <i class='bx bxl-meta'></i>
                 </div>
                 <p>Iniciar Sesión con una cuenta</p>
-                <form class="form" >
-                    <label >
+                <form class="form" action="../controllers/UserController.php" method="post">
+                    <label>
                         <i class='bx bxs-envelope'></i>
-                        <input type="email" placeholder="Correo electrónico">
+                        <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
-                    <label >
+                    <label>
                         <i class='bx bx-lock'></i>
-                        <input type="password" placeholder="Contraseña">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </label>
-                    <input type="submit" value="Iniciar Sesión">
+
+                    <input type="submit" name="login" value="Iniciar Sesión">
                 </form>
             </div>
         </div>
@@ -87,4 +90,5 @@
     <!-- Enlace al JS -->
     <script src="../../build/scripts/clientlogin.js"></script>
 </body>
+
 </html>

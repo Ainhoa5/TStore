@@ -4,19 +4,6 @@ CREATE SCHEMA IF NOT EXISTS TStore;
 -- Usar el esquema creado
 USE TStore;
 
--- Creando tabla Usuarios
-CREATE TABLE IF NOT EXISTS Usuarios (
-    UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(255) NOT NULL,
-    Apellido VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) UNIQUE NOT NULL,
-    UPassword VARCHAR(255) NOT NULL,
-    Direccion VARCHAR(255),
-    Ciudad VARCHAR(255),
-    Estado VARCHAR(255),
-    Pais VARCHAR(255),
-    CodigoPostal VARCHAR(20)
-);
 
 -- Creando tabla Productos
 CREATE TABLE IF NOT EXISTS Productos (
@@ -50,36 +37,21 @@ CREATE TABLE IF NOT EXISTS DetallesPedidos (
     FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
 
--- Creando tabla Roles
-CREATE TABLE Roles (
-    RoleID INT PRIMARY KEY AUTO_INCREMENT,
-    RoleName VARCHAR(255) NOT NULL
+-- Creando tabla Usuarios
+CREATE TABLE IF NOT EXISTS Usuarios (
+    UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(255) NOT NULL,
+    Apellido VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    UPassword VARCHAR(255) NOT NULL,
+    Direccion VARCHAR(255),
+    Ciudad VARCHAR(255),
+    Estado VARCHAR(255),
+    Pais VARCHAR(255),
+    CodigoPostal VARCHAR(20),
+    Rol VARCHAR(255) NOT NULL DEFAULT 'usuario'
 );
 
--- Creando tabla UsuarioRoles
-CREATE TABLE UsuarioRoles (
-    UserID INT,
-    RoleID INT,
-    PRIMARY KEY (UserID, RoleID),
-    FOREIGN KEY (UserID) REFERENCES Usuarios(UserID),
-    FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
-);
-
-
--- Inserting sample data into Usuarios
-INSERT INTO Usuarios (Nombre, Apellido, Email, UPassword, Direccion, Ciudad, Estado, Pais, CodigoPostal)
-VALUES
-('Alice', 'Johnson', 'alice@email.com', 'password1', '123 Main St', 'Springfield', 'IL', 'USA', '62704'),
-('Bob', 'Smith', 'bob@email.com', 'password2', '456 Elm St', 'Shelbyville', 'IL', 'USA', '62565');
-
--- Inserting sample data into Roles
-INSERT INTO Roles (RoleName)
-VALUE
-('admin');
-
--- Inserting sample data into UsuarioRoles
-INSERT INTO UsuarioRoles (UserID, RoleID) VALUES
-(1, 1)
 
 -- Inserting sample data into Productos
 INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES
