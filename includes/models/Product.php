@@ -192,7 +192,7 @@ class Product
     }
 
     public function getLatestProducts($limit = 6) {
-        $query = "SELECT * FROM productos ORDER BY fecha_creacion DESC LIMIT ?";
+        $query = "SELECT * FROM productos WHERE stock > 0 ORDER BY fecha_creacion DESC LIMIT ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $limit);
         $stmt->execute();
