@@ -4,6 +4,20 @@ CREATE SCHEMA IF NOT EXISTS TStore;
 -- Usar el esquema creado
 USE TStore;
 
+-- Creando tabla Usuarios
+CREATE TABLE IF NOT EXISTS Usuarios (
+    UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(255) NOT NULL,
+    Apellido VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    UPassword VARCHAR(255) NOT NULL,
+    Direccion VARCHAR(255),
+    Ciudad VARCHAR(255),
+    Estado VARCHAR(255),
+    Pais VARCHAR(255),
+    CodigoPostal VARCHAR(20),
+    Rol VARCHAR(255) NOT NULL DEFAULT 'usuario'
+);
 
 -- Creando tabla Productos
 CREATE TABLE IF NOT EXISTS Productos (
@@ -39,21 +53,11 @@ CREATE TABLE IF NOT EXISTS DetallesPedidos (
     FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
 );
 
--- Creando tabla Usuarios
-CREATE TABLE IF NOT EXISTS Usuarios (
-    UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(255) NOT NULL,
-    Apellido VARCHAR(255) NOT NULL,
-    Email VARCHAR(255) UNIQUE NOT NULL,
-    UPassword VARCHAR(255) NOT NULL,
-    Direccion VARCHAR(255),
-    Ciudad VARCHAR(255),
-    Estado VARCHAR(255),
-    Pais VARCHAR(255),
-    CodigoPostal VARCHAR(20),
-    Rol VARCHAR(255) NOT NULL DEFAULT 'usuario'
-);
 
+-- Inserting sample data into Usuarios
+INSERT INTO Usuarios (Nombre, Apellido, Email, UPassword, Direccion, Ciudad, Estado, Pais, CodigoPostal, Rol) VALUES
+('Juan', 'Perez', 'juan.perez@email.com', 'password123', 'Calle 123', 'Ciudad', 'Estado', 'Pais', '12345', 'usuario'),
+('Ana', 'Gomez', 'ana.gomez@email.com', 'password123', 'Calle 456', 'Ciudad', 'Estado', 'Pais', '67890', 'usuario');
 
 -- Inserting sample data into Productos
 INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria, ImagenURL) VALUES
