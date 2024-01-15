@@ -1,14 +1,13 @@
 -- Creando esquema TStore
 CREATE SCHEMA IF NOT EXISTS TStore;
-
 -- Usar el esquema creado
 USE TStore;
 
 -- Creando tabla Usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
     UsuarioID INT PRIMARY KEY AUTO_INCREMENT,
-    Nombre VARCHAR(255) NOT NULL,
-    Apellido VARCHAR(255) NOT NULL,
+    Nombre VARCHAR(255),
+    Apellido VARCHAR(255),
     Email VARCHAR(255) UNIQUE NOT NULL,
     UPassword VARCHAR(255) NOT NULL,
     Direccion VARCHAR(255),
@@ -18,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     CodigoPostal VARCHAR(20),
     Rol VARCHAR(255) NOT NULL DEFAULT 'usuario'
 );
+
 
 -- Creando tabla Productos
 CREATE TABLE IF NOT EXISTS Productos (
