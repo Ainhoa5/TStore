@@ -21,6 +21,9 @@ require_once CONFIG_DIR . 'database.php';    // Include the Database class
 // Models
 require_once MODELS_DIR . 'Product.php';     // Include the Product model
 
+// Controllers 
+require CONTROLLERS_DIR . 'HomeController.php';
+require CONTROLLERS_DIR . 'AdminController.php';
 // Additional configuration
 require_once CONFIG_DIR . 'functions.php'; 
 

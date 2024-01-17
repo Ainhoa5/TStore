@@ -9,5 +9,3 @@ class Product extends ActiveRecord {
 
     // Add any product-specific methods here
 }
-
-?>

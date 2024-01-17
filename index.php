@@ -1,8 +1,6 @@
 <?php 
 // In /index.php
-require 'Router.php';
-require 'app/controllers/HomeController.php';
-require 'app/controllers/AdminController.php';
+require 'config/app.php';
 
 $router = new Router;
 
