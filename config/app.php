@@ -13,16 +13,13 @@ define('CONFIG_DIR', ROOT_DIR . '/config/');
 
 // Core classes
 require_once CORE_DIR . 'ActiveRecord.php'; // Include the ActiveRecord class
-require_once CORE_DIR . 'Router.php';       // Include the Router class
+require_once ROOT_DIR . '/Router.php';       // Include the Router class
 
 // Database configuration
 require_once CONFIG_DIR . 'database.php';    // Include the Database class
 
 // Models
 require_once MODELS_DIR . 'Product.php';     // Include the Product model
-
-// Routes
-require_once ROOT_DIR . '/routes.php';       // Include routes
 
 // Additional configuration
 require_once CONFIG_DIR . 'functions.php'; 

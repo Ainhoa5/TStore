@@ -1,17 +1,20 @@
 <?php 
 // In /index.php
-require_once 'config/app.php';
-$router = new Router();
+require 'Router.php';
+require 'app/controllers/HomeController.php';
+require 'app/controllers/AdminController.php';
 
-require_once 'routes.php'; // This should be here to ensure routes are loaded
+$router = new Router;
 
-// Get the 'url' parameter from the query string
-$uri = $_GET['url'] ?? '';  // Use the null coalescing operator for default empty string
+$router->define([
+    '' => 'HomeController@index',
+    'admin/dashboard' => 'AdminController@showDashboard',
+    // other routes...
+]);
 
-echo "URI: $uri"; // Debugging line
-list($controller, $method) = explode('@', $router->direct($uri));
+$uri = $_SERVER['REQUEST_URI'];
+$uri = str_replace('/Projects/TStore/', '', $uri); // Adjust this based on your project structure
+$uri = trim($uri, '/');
+$router->direct($uri);
 
-// Instantiate the controller and call the method
-$controllerInstance = new $controller();
-$controllerInstance->$method();
 
