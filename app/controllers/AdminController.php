@@ -14,7 +14,8 @@ class AdminController
     public function showDashboard()
     {
         $products = $this->productModel->findAll();
-        require 'dashboard.php'; // Load the view
+        Functions::debug($products);
+        require 'app/views/admin/dashboard.php'; // Load the view
     }
 
     // Other methods for handling create, update, delete...

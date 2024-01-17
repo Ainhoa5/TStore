@@ -1,6 +1,6 @@
 <?php 
 // In /app/models/Product.php
-require_once '../../config/app.php';
+require_once 'config/app.php';
 
 class Product extends ActiveRecord {
     public function __construct($db) {

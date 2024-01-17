@@ -4,7 +4,8 @@
 $router = new Router();
 
 $router->define([
-    'admin/dashboard' => 'Controllers\AdminController@showDashboard',
+    '' => 'HomeController@index', // Example route for the root URI
+    'admin/dashboard' => 'AdminController@showDashboard',
     // other routes...
 ]);
 
