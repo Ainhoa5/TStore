@@ -7,6 +7,9 @@ $router = new Router;
 $router->define([
     '' => 'HomeController@index',
     'admin/dashboard' => 'AdminController@showDashboard',
+    'admin/product/create' => 'ProductController@createForm',
+    'admin/product/edit/(:num)' => 'ProductController@createForm',
+    'product/save' => 'ProductController@save',
     // other routes...
 ]);
 
