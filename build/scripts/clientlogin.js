@@ -12,3 +12,29 @@ const btnSignIn = document.getElementById("sign-in"),
         formLogin.classList.add("hide");
         formRegister.classList.remove("hide");
     })
+
+//SCROLL
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '85px',
+    duration: 2200,
+    reset: true
+})
+
+ sr.reveal ('.information',{delay:300});
+ sr.reveal ('.form-information',{delay:300});
+ sr.reveal ('.scroll',{delay:300});
+
+
+
+
+//LOADER
+function loader(){
+    document.querySelector('.loader-container').classList.add('fade-out');
+}
+
+function fadeOut(){
+    setInterval(loader, 500);
+}
+
+window.onload = fadeOut;

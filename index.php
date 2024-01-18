@@ -42,8 +42,8 @@ require_once 'includes/models/Product.php';
 
         <ul class="navlist">
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="/includes/views/shop.php">Eras</a></li>
-            <li><a href="/pages/form.html">Formulario</a></li>
+            <li><a href="/includes/views/Eras.php">Eras</a></li>
+            <li><a href="/includes/views/user_form.php">Formulario</a></li>
         </ul>
 
         <div class="nav-icons">
@@ -172,6 +172,7 @@ require_once 'includes/models/Product.php';
     <div class="loader-container">
         <!-- <img src="img/index/Cube-white.gif" alt=""> -->
         <i class='bx bxs-album bx-spin' ></i>
+         <!-- <i class='bx bxs-ghost bx-tada' ></i> -->
     </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>

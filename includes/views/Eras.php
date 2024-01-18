@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tienda de la página web Aromas&Recetas">
     <title>T-Store-Shop</title>
-    <link rel="stylesheet" href="../style/tienda.css">
+    <link rel="stylesheet" href="../../build/css/Eras.css">
     <!--BOX ICONS-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -23,13 +23,13 @@
             </noscript>
         <!--HEADER-->
         <header>
-            <a href="../index.html" class="logo">
+            <a href="../../index.php" class="logo">
                 <i class='bx bxs-album'></i>
                 T-Store
             </a>
     
             <ul class="navlist">
-                <li><a href="../index.html">Home</a></li>
+                <li><a href="../../index.php">Home</a></li>
                 <li><a href="#" class="active">Reputation</a></li>
                 <li><a href="#" >Speak Now</a></li>
                 <li><a href="#" >1989</a></li>
@@ -171,6 +171,6 @@
     </a>
     
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="/script/tienda.js"></script>
+    <script src="../../build/scripts/Eras.js"></script>
 </body>
 </html>

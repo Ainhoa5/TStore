@@ -16,7 +16,40 @@
 </head>
 
 <body>
-    <div class="container-form register">
+<div class="container-form login">
+        <div class="information">
+            <div class="info-childs">
+                <h2>Bienvenido</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui deleniti ratione tempora, alias pariatur non doloremque enim hic impedit praesentium repellat.</p>
+                <input type="button" value="Registrarse" id="sign-up">
+            </div>
+
+        </div>
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Iniciar Sesión</h2>
+                <div class="icons">
+                    <i class='bx bx-envelope'></i>
+                    <i class='bx bxl-meta'></i>
+                </div>
+                <p>Iniciar Sesión con una cuenta</p>
+                <form class="form" action="../controllers/UserController.php" method="post">
+                    <label>
+                        <i class='bx bxs-envelope'></i>
+                        <input type="email" name="email" placeholder="Correo electrónico">
+                    </label>
+                    <label>
+                        <i class='bx bx-lock'></i>
+                        <input type="password" name="password" placeholder="Contraseña">
+                    </label>
+
+                    <input type="submit" name="login" value="Iniciar Sesión">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-form register hide">
         <div class="information">
             <div class="info-childs">
                 <h2>Bienvenido</h2>
@@ -54,39 +87,22 @@
 
 
 
-    <div class="container-form login hide">
-        <div class="information">
-            <div class="info-childs">
-                <h2>Bienvenido</h2>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui deleniti ratione tempora, alias pariatur non doloremque enim hic impedit praesentium repellat.</p>
-                <input type="button" value="Registrarse" id="sign-up">
-            </div>
 
-        </div>
-        <div class="form-information">
-            <div class="form-information-childs">
-                <h2>Iniciar Sesión</h2>
-                <div class="icons">
-                    <i class='bx bx-envelope'></i>
-                    <i class='bx bxl-meta'></i>
-                </div>
-                <p>Iniciar Sesión con una cuenta</p>
-                <form class="form" action="../controllers/UserController.php" method="post">
-                    <label>
-                        <i class='bx bxs-envelope'></i>
-                        <input type="email" name="email" placeholder="Correo electrónico">
-                    </label>
-                    <label>
-                        <i class='bx bx-lock'></i>
-                        <input type="password" name="password" placeholder="Contraseña">
-                    </label>
 
-                    <input type="submit" name="login" value="Iniciar Sesión">
-                </form>
-            </div>
-        </div>
+            <!--Scroll top-->
+            <a href="../../index.php" class="scroll">
+            <i class='bx bxs-home-heart bx-tada' ></i>
+        </a>
+
+     <!--LOADER-->
+     <div class="loader-container">
+        <!-- <img src="img/index/Cube-white.gif" alt=""> -->
+        <i class='bx bxs-album bx-spin' ></i>
+        <!-- <i class='bx bxs-ghost bx-tada' ></i> -->
     </div>
 
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
     <!-- Enlace al JS -->
     <script src="../../build/scripts/clientlogin.js"></script>
 </body>
