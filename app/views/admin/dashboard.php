@@ -57,17 +57,13 @@ $imgPath = $baseUrl . '/public/img/products';
                 </div>
                 <div class="product-buttons">
                     <!-- Update Button/Form -->
-                    <a href="admin/product/edit/<?php echo $product['ProductoID']; ?>" class="button-link">Edit</a>
+                    <a href="product/edit/<?php echo $product['ProductoID']; ?>" class="button-link">Edit</a>
 
 
 
                     <!-- Delete Button/Form -->
-                    <form action="<?php echo $RELATIVE_PATH_TO_ROOT . 'includes/actions/ProductActions.php' ?>"
-                        method="post">
-                        <input type="hidden" name="product_id" value="<?php echo $product['ProductoID']; ?>">
-                        <input type="hidden" name="action" value="delete">
-                        <button type="submit">Delete</button>
-                    </form>
+                    <a href="product/delete/<?php echo $product['ProductoID']; ?>" class="button-link">Delete</a>
+
                 </div>
             </div>
         <?php endforeach; ?>

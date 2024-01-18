@@ -16,9 +16,10 @@ class ActiveRecord {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
-        $stmt->bindParam(':id', $id);
+    public function findById($ProductoID) {
+        /* Functions::debug("id: ".$ProductoID); */
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE ProductoID = :ProductoID");
+        $stmt->bindParam(':ProductoID', $ProductoID);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -38,28 +39,28 @@ class ActiveRecord {
         return $stmt->execute();
     }
 
-    public function update($data, $id) {
+    public function update($data, $ProductoID) {
         $updates = [];
         foreach ($data as $key => $value) {
             $updates[] = "{$key} = :{$key}";
         }
         $updatesString = implode(', ', $updates);
     
-        $sql = "UPDATE {$this->table} SET {$updatesString} WHERE id = :id";
+        $sql = "UPDATE {$this->table} SET {$updatesString} WHERE ProductoID = :ProductoID";
         $stmt = $this->db->prepare($sql);
     
         foreach ($data as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':ProductoID', $ProductoID);
     
         return $stmt->execute();
     }
 
-    public function delete($id) {
-        $sql = "DELETE FROM {$this->table} WHERE id = :id";
+    public function delete($ProductoID) {
+        $sql = "DELETE FROM {$this->table} WHERE ProductoID = :ProductoID";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':ProductoID', $ProductoID);
     
         return $stmt->execute();
     }
