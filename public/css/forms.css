@@ -6,17 +6,6 @@
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.error-message {
-    color: #ff0000; /* Red color for errors */
-    background-color: #ffe0e0; /* Light red background */
-    border: 1px solid #ff0000; /* Red border */
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-family: Arial, sans-serif; /* Optional: Change as per your design */
-    font-size: 14px; /* Optional: Change as per your design */
-    text-align: left;
-}
 
 #modern-form .form-group {
     margin-bottom: 1rem;

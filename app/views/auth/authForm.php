@@ -44,18 +44,37 @@ $jsPath = $baseUrl . '/public/scripts/';
                 </div>
                 <p>o usa tu email para registrarte</p>
                 <form class="form" action="process-signup" method="post">
-                    <label>
-                        <i class='bx bx-user'></i>
-                        <input type="text" placeholder="Nombre">
-                    </label>
+                    <?php
+                    session_start();
+                    ?>
+                    <!-- EMAIL -->
                     <label>
                         <i class='bx bxs-envelope'></i>
                         <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
+                    <?php if (isset($_SESSION['validation_errors']['email'])) : ?>
+                        <div class="error-message">
+                            <?php foreach ($_SESSION['validation_errors']['email'] as $error) : ?>
+                                <p><?php echo htmlspecialchars($error); ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- PASSWORD -->
                     <label>
                         <i class='bx bx-lock'></i>
                         <input type="password" name="password" placeholder="Contraseña">
                     </label>
+                    <div class="error-message">
+                        <p>AAA</p>
+                    </div>
+                    <?php if (isset($_SESSION['validation_errors']['password'])) : ?>
+                        <div class="error-message">
+                            <?php foreach ($_SESSION['validation_errors']['password'] as $error) : ?>
+                                <p><?php echo htmlspecialchars($error); ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                     <input type="submit" name="registrarse" value="Registrarse">
                 </form>
             </div>
@@ -97,6 +116,12 @@ $jsPath = $baseUrl . '/public/scripts/';
         </div>
     </div>
 
+    <?php
+    if (isset($_SESSION['form_data'])) {
+        // Form fields are populated using $_SESSION['form_data']
+        unset($_SESSION['validation_errors'], $_SESSION['form_data']); // Clear the form data after populating the form
+    }
+    ?>
     <!-- Enlace al JS -->
     <link rel="stylesheet" href="<?php echo $cssPath; ?>clientlogin.css">
     <script src="<?php echo $jsPath; ?>clientlogin.js"></script>

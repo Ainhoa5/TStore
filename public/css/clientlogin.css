@@ -14,7 +14,6 @@ body{
     background-image: url(../img/login/background-1989-2.2.png);
     background-size: cover; /*Propiedad para ajustar correctamente la imagen */
 }
-
 .container-form{
     display: flex;/*Para que los div se coloquen uno al lado del otro */
     border-radius: 20px;
@@ -137,6 +136,18 @@ body{
     color: #a7a7a7;
 }
 
+/* Errores */
+.error-message {
+    color: #ff0000; /* Red color for errors */
+    background-color: #ffe0e0; /* Light red background */
+    border: 1px solid #ff0000; /* Red border */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-family: Arial, sans-serif; /* Optional: Change as per your design */
+    font-size: 14px; /* Optional: Change as per your design */
+    text-align: left;
+}
 /*Botón de registrarse*/
 .form input[type="submit"]{
     background-color: #cec0fc;

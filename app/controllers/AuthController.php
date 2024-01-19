@@ -17,7 +17,7 @@ class AuthController
     {
         require 'app/views/auth/user.php'; // Path to your home view file
     }
-    public function processLogin()
+    public function processLogin() /* UPDATE ERRORS */
     {
 
         $validator = new Validator();
@@ -43,7 +43,6 @@ class AuthController
             session_start();
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_role'] = $userRole;
-            Functions::debug($_SESSION['user_role']);
 
             // Redirect to the appropriate page
             header('Location: ./');
@@ -68,7 +67,7 @@ class AuthController
         ];
         $rules = [
             'email' => ['isEmpty', 'isValidEmail'],
-            'password' => ['isEmpty'] // Add other rules like 'isSecurePassword' as needed
+            'password' => ['isEmpty', 'isSecurePassword'] // Add other rules like 'isSecurePassword' as needed
         ];
 
         $errors = $validator->validate($fields, $rules);
@@ -77,12 +76,24 @@ class AuthController
         if (empty($errors['email']) && $this->userModel->emailExists($fields['email'])) {
             $errors['email'][] = 'Email already in use';
         }
-        // Hash the password
-        if (!empty($fields['password'])) {
-            $fields['password'] = password_hash($fields['password'], PASSWORD_DEFAULT);
+
+        /* SEND BACK IF ERROR */
+        if (!empty($errors)) {
+            // Save errors and form data to the session
+            session_start();
+            $_SESSION['validation_errors'] = $errors;
+            $_SESSION['form_data'] = $fields; // Exclude password for security reasons
+            // Redirect back to the sign-up form
+            header('Location: authForm');
+            exit;
         }
 
-        if (empty($errors) && $this->userModel->createUser($fields)) {
+        /* CONTINUE */
+        // Hash the password
+        // Continue with the user creation process
+        $fields['password'] = password_hash($fields['password'], PASSWORD_DEFAULT);
+
+        if ($this->userModel->createUser($fields)) {
             $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
             $userId = $userInfo['UsuarioID'];
             $userRole = $userInfo['Rol'];
@@ -98,7 +109,7 @@ class AuthController
             // You can iterate over $errors to display them to the user
 
             // Redirect to the appropriate page
-            header('Location: ./');
+            header('Location: authForm');
             exit;
         }
     }

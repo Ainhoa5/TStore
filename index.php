@@ -6,8 +6,8 @@ $router = new Router;
 
 $router->define([
     '' => 'HomeController@index',
-    'authForm' => 'AuthController@showAuthForm',
     'user' => 'AuthController@showUserPage',
+    'authForm' => 'AuthController@showAuthForm',
     'process-login' => 'AuthController@processLogin',
     'process-signup' => 'AuthController@processSignUp',
     'logout' => 'AuthController@logout',

@@ -47,7 +47,7 @@ class ProductController
             'Precio' => $_POST['Precio'] ?? '',
             'Stock' => $_POST['Stock'] ?? '',
             'Categoria' => $_POST['Categoria'] ?? '',
-            'ImagenURL' => $_POST['ImagenURL'] ?? '',
+            //'ImagenURL' => $_POST['ImagenURL'] ?? '',
             // ... extract other fields
         ];
 
@@ -58,7 +58,7 @@ class ProductController
             'Precio' => ['isEmpty', 'isValidDecimal'],
             'Stock' => ['isEmpty', 'isNumeric'],
             'Categoria' => ['isEmpty', 'isValidString'],
-            'ImagenURL' => ['isEmpty'],
+            //'ImagenURL' => ['isEmpty'],
             // ... additional rules
         ];
 
@@ -66,7 +66,6 @@ class ProductController
         $errors = $validator->validate($data, $rules);
 
         if (!empty($errors)) {
-            Functions::debug($errors);
             // Save errors and form data to the session
             session_start();
             $_SESSION['validation_errors'] = $errors;
@@ -79,7 +78,6 @@ class ProductController
             header("Location: $redirectUrl");
             exit;
         }
-        Functions::debug($_POST);
         // Proceed with creating or updating the product
         if (empty($_POST['ProductoID'])) {
             $this->productModel->create($data);

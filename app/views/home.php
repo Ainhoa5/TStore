@@ -28,30 +28,29 @@ $imgPath = $baseUrl . '/public/img/index/';
 
 <body>
     <!-- HEADER -->
-    
+
 
     <header>
-    <?php
-    // Start the session at the beginning of the script
-    session_start();
-    echo $_SESSION['user_role'];
-    ?>
+        <?php
+        // Start the session at the beginning of the script
+        session_start();
+        ?>
         <a href="#" class="logo">Eras Tour</a>
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
             <li><a href="#">HOME</a></li>
             <li><a href="#">ERAS TOUR</a></li>
 
-            <?php if (isset($_SESSION['user_role'])): ?>
+            <?php if (isset($_SESSION['user_role'])) : ?>
                 <!-- User is logged in, show user page link -->
                 <li><a href="user">USER PAGE</a></li>
 
-                <?php if ($_SESSION['user_role'] == 'admin'): ?>
+                <?php if ($_SESSION['user_role'] == 'admin') : ?>
                     <!-- Additional link for admin users -->
                     <li><a href="admin/dashboard">ADMIN</a></li>
                 <?php endif; ?>
 
-            <?php else: ?>
+            <?php else : ?>
                 <!-- User is not logged in, show login link -->
                 <li><a href="authForm">LOGIN</a></li>
             <?php endif; ?>
@@ -93,7 +92,7 @@ $imgPath = $baseUrl . '/public/img/index/';
         </div>
 
         <div class="merch-container">
-            <?php foreach ($latestProducts as $product): ?>
+            <?php foreach ($latestProducts as $product) : ?>
                 <div class='box'>
                     <div class='box-img'>
                         <!-- Image and product details -->
