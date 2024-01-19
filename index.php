@@ -6,7 +6,11 @@ $router = new Router;
 
 $router->define([
     '' => 'HomeController@index',
-    'login' => 'AuthController@showAuthForm',
+    'authForm' => 'AuthController@showAuthForm',
+    'user' => 'AuthController@showUserPage',
+    'process-login' => 'AuthController@processLogin',
+    'process-signup' => 'AuthController@processSignUp',
+    'logout' => 'AuthController@logout',
     'admin/dashboard' => 'AdminController@showDashboard',
     'admin/product/create' => 'ProductController@createForm',
     'admin/product/edit/(:num)' => 'ProductController@createForm',

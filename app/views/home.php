@@ -1,19 +1,5 @@
 <!-- In /app/views/home.php -->
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Welcome to My Online Store</h1>
-    <p>This is the home page of your application.</p>
-
-    <a href="admin/dashboard">Admin Dashboard</a>
-</body>
-</html> -->
 <?php
 // Include the Functions class
 require_once 'config/functions.php';
@@ -21,6 +7,7 @@ require_once 'config/functions.php';
 // Use the function
 $baseUrl = Functions::getBaseUrl();
 $cssPath = $baseUrl . '/public/css/';
+$scriptPath = $baseUrl . '/public/scripts/';
 $imgPath = $baseUrl . '/public/img/index/';
 ?>
 <!DOCTYPE html>
@@ -52,19 +39,22 @@ $imgPath = $baseUrl . '/public/img/index/';
         <ul class="navbar">
             <li><a href="#">HOME</a></li>
             <li><a href="#">ERAS TOUR</a></li>
-            <?php if (isset($_SESSION['user'])) : ?>
+
+            <?php if (isset($_SESSION['user_role'])): ?>
                 <!-- User is logged in, show user page link -->
-                <li><a href="includes/views/user_page.php">USER PAGE</a></li>
-            <?php else : ?>
+                <li><a href="user">USER PAGE</a></li>
+
+                <?php if ($_SESSION['user_role'] == 'admin'): ?>
+                    <!-- Additional link for admin users -->
+                    <li><a href="admin/dashboard">ADMIN</a></li>
+                <?php endif; ?>
+
+            <?php else: ?>
                 <!-- User is not logged in, show login link -->
-                <li><a href="login">LOGIN</a></li>
-
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['user']) && $_SESSION['user']->rol == 'admin') : ?>
-                <li><a href="admin/">ADMIN</a></li>
+                <li><a href="authForm">LOGIN</a></li>
             <?php endif; ?>
         </ul>
+
     </header>
 
 
@@ -88,8 +78,47 @@ $imgPath = $baseUrl . '/public/img/index/';
         <div class="about-text">
             <span>About US</span>
             <h2>We speak of Taylor's merch</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fuga omnis ipsam consequuntur dolor consequatur ullam, voluptas esse optio minima porro corrupti eveniet. Sint, quos ullam aliquid maxime sit tenetur.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fuga omnis ipsam consequuntur dolor
+                consequatur ullam, voluptas esse optio minima porro corrupti eveniet. Sint, quos ullam aliquid maxime
+                sit tenetur.</p>
             <a href="#" class="btn">Today's Stock</a>
+        </div>
+    </section>
+    <section class="merch" id="merch">
+        <div class="heading">
+            <span>Merch</span>
+            <h2>Taylor's Products</h2>
+        </div>
+
+        <div class="merch-container">
+            <?php foreach ($latestProducts as $product): ?>
+                <div class='box'>
+                    <div class='box-img'>
+                        <!-- Image and product details -->
+                        <?php
+                        // Assuming $imgPath contains the path to the image folder relative to the server file system
+                        $imgRealPath = "public/img/products/";
+                        // Check if the image file exists, and set the image URL accordingly
+                        $imageUrl = file_exists($imgRealPath . $product['ImagenURL'])
+                            ? $imgRealPath . $product['ImagenURL']
+                            : $imgRealPath . 'default-placeholder.png';
+                        ?>
+
+                        <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="Product Image">
+
+                    </div>
+                    <h2>
+                        <?php echo htmlspecialchars($product['Nombre']); ?>
+                    </h2>
+                    <h3>
+                        <?php echo htmlspecialchars($product['Descripcion']); ?>
+                    </h3>
+                    <span>
+                        <?php echo htmlspecialchars($product['Precio']); ?>€
+                    </span>
+                    <i class='bx bxs-cart'></i>
+                </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -133,7 +162,7 @@ $imgPath = $baseUrl . '/public/img/index/';
     </section>
 
     <!-- JavaScript -->
-    <script src="build/scripts/index.js"></script>
+    <script src="<?php echo $scriptPath; ?>index.js"></script>
 
 </body>
 

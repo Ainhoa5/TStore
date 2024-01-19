@@ -8,4 +8,17 @@ class Product extends ActiveRecord {
     }
 
     // Add any product-specific methods here
+    public function getLatestProducts() {
+        $query = "SELECT * FROM Productos ORDER BY fecha_creacion DESC LIMIT 9";
+        
+        // Prepare the statement
+        $stmt = $this->db->prepare($query);
+    
+        // Execute the query
+        $stmt->execute();
+    
+        // Fetch and return the results
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }

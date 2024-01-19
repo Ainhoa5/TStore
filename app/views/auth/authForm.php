@@ -43,7 +43,7 @@ $jsPath = $baseUrl . '/public/scripts/';
                     <i class='bx bxl-meta'></i>
                 </div>
                 <p>o usa tu email para registrarte</p>
-                <form class="form" action="../controllers/UserController.php" method="post">
+                <form class="form" action="process-signup" method="post">
                     <label>
                         <i class='bx bx-user'></i>
                         <input type="text" placeholder="Nombre">
@@ -81,7 +81,7 @@ $jsPath = $baseUrl . '/public/scripts/';
                     <i class='bx bxl-meta'></i>
                 </div>
                 <p>Iniciar Sesión con una cuenta</p>
-                <form class="form" action="../controllers/UserController.php" method="post">
+                <form class="form" action="process-login" method="post">
                     <label>
                         <i class='bx bxs-envelope'></i>
                         <input type="email" name="email" placeholder="Correo electrónico">

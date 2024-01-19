@@ -33,7 +33,6 @@ $imgPath = $baseUrl . '/public/img/products';
         ?>
         <?php foreach ($products as $product): ?>
             <div class="product-container">
-                <?php echo $product['ImagenURL']; ?>
                 <img src="<?php echo file_exists('public/img/products/' . $product['ImagenURL']) ? $imgPath . '/' . $product['ImagenURL'] : $imgPath . '/default-placeholder.png'; ?>"
                     alt="Product Image">
 

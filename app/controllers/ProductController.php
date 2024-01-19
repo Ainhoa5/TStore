@@ -7,7 +7,7 @@ class ProductController
 
     public function __construct()
     {
-        $db = Database::connect(); // Assuming you have a static method to get the DB instance
+        $db = Database::connect();
         $this->productModel = new Product($db);
     }
 
