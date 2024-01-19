@@ -29,11 +29,10 @@ class AuthController
         ];
         $rules = [
             'email' => ['isEmpty', 'isValidEmail'],
-            'password' => ['isEmpty'] // Add other rules like 'isSecurePassword' as needed
+            'password' => ['isEmpty', 'isSecurePassword'] // Add other rules like 'isSecurePassword' as needed
         ];
 
         $errors = $validator->validate($fields, $rules);
-
         if (empty($errors) && $this->userModel->verificarCredenciales($fields)) {
             $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
             $userId = $userInfo['UsuarioID'];
@@ -44,6 +43,7 @@ class AuthController
             session_start();
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_role'] = $userRole;
+            Functions::debug($_SESSION['user_role']);
 
             // Redirect to the appropriate page
             header('Location: ./');
@@ -51,7 +51,8 @@ class AuthController
         } else {
             // Authentication failed
             // Handle error, maybe redirect back to login with an error message
-            header('Location: ./');
+            Functions::debug($errors);
+            header('Location: authForm');
             exit;
         }
     }
@@ -110,5 +111,4 @@ class AuthController
         header("Location: ./"); // Redirigir a la página de inicio de sesión
         exit();
     }
-
 }

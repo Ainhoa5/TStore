@@ -28,12 +28,14 @@ $imgPath = $baseUrl . '/public/img/index/';
 
 <body>
     <!-- HEADER -->
+    
+
+    <header>
     <?php
     // Start the session at the beginning of the script
     session_start();
+    echo $_SESSION['user_role'];
     ?>
-
-    <header>
         <a href="#" class="logo">Eras Tour</a>
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">

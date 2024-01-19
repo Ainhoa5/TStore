@@ -26,6 +26,31 @@ class Validator {
         }
     }
 
+    private function isSecurePassword($password, $field) {
+        if (strlen($password) < 8) {
+            $this->errors[$field][] = 'Password must be at least 8 characters long';
+        }
+        // Add more password checks (uppercase, number, symbol, etc.) as needed
+    }
+
+    private function isNumeric($value, $field) {
+        if (!is_numeric($value)) {
+            $this->errors[$field][] = 'Field must be a number';
+        }
+    }
+
+    private function isValidString($value, $field) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $value)) {
+            $this->errors[$field][] = 'Field must contain only letters and spaces';
+        }
+    }
+
+    private function isValidDecimal($value, $field) {
+        if (!preg_match("/^[0-9]+(\.[0-9]{1,2})?$/", $value)) {
+            $this->errors[$field][] = 'Field must be a valid decimal number';
+        }
+    }
+
     // Add more validation methods as needed...
 }
 

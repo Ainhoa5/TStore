@@ -15,7 +15,12 @@ class ProductController
     public function createForm($id = null)
     {
         $product = null;
-        if ($id) {
+        
+
+        session_start();
+        if (isset($_SESSION['form_data'])) {
+            $product = $_SESSION['form_data'];
+        } elseif ($id) {
             $product = $this->productModel->findById($id); // Fetch product data for editing
         }
 
@@ -33,14 +38,55 @@ class ProductController
 
     public function save()
     {
-        $data = $_POST;
-        if (empty($data['ProductoID'])) {
-            // Create product
+        $validator = new Validator();
+
+        // Extract the data from $_POST
+        $data = [
+            'Nombre' => $_POST['Nombre'] ?? '',
+            'Descripcion' => $_POST['Descripcion'] ?? '',
+            'Precio' => $_POST['Precio'] ?? '',
+            'Stock' => $_POST['Stock'] ?? '',
+            'Categoria' => $_POST['Categoria'] ?? '',
+            'ImagenURL' => $_POST['ImagenURL'] ?? '',
+            // ... extract other fields
+        ];
+
+        // Validation rules
+        $rules = [
+            'Nombre' => ['isEmpty', 'isValidString'],
+            'Descripcion' => ['isEmpty'],
+            'Precio' => ['isEmpty', 'isValidDecimal'],
+            'Stock' => ['isEmpty', 'isNumeric'],
+            'Categoria' => ['isEmpty', 'isValidString'],
+            'ImagenURL' => ['isEmpty'],
+            // ... additional rules
+        ];
+
+        // Perform validation
+        $errors = $validator->validate($data, $rules);
+
+        if (!empty($errors)) {
+            Functions::debug($errors);
+            // Save errors and form data to the session
+            session_start();
+            $_SESSION['validation_errors'] = $errors;
+            $data['ProductoID'] = $_POST['ProductoID']; // add ID to data
+            $_SESSION['form_data'] = $data;
+
+            // Redirect back to the form
+            $baseUrl = Functions::getBaseUrl();
+            $redirectUrl = "$baseUrl/admin/product/create";
+            header("Location: $redirectUrl");
+            exit;
+        }
+        Functions::debug($_POST);
+        // Proceed with creating or updating the product
+        if (empty($_POST['ProductoID'])) {
             $this->productModel->create($data);
         } else {
-            // Update product
-            $this->productModel->update($data, $data['ProductoID']);
+            $this->productModel->update($data, $_POST['ProductoID']);
         }
+
         // Redirect to dashboard
         $baseUrl = Functions::getBaseUrl();
         header("Location: $baseUrl/admin/dashboard");
