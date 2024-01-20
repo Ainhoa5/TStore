@@ -109,6 +109,105 @@ section{
    gap: 2rem;
 }
 
+/*S L I D E R */
+.slider{
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 150px;
+    
+}
+.slides{
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+.slides input{
+    display: none;
+}
+.slide{
+    width: 20%;
+    transition: 2s;
+}
+.slide img{
+    width: 800px;
+    height: 500px;
+}
+
+/*MANUAL SLIDE NAVIGATION*/
+.navigation-manual{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+.manual-btn{
+    border: 2px solid #dec0fc;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+.manual-btn:hover{
+    background: #dec0fc;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+#radio2:checked ~ .first{
+    margin-left: -20%;
+}
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+#radio4:checked ~ .first{
+    margin-left: -60%;
+}
+#radio5:checked ~ .first{
+    margin-left: -80%;
+}
+
+/* AUTOMATIC NAVIGATION */
+.navigation-auto{
+    position: absolute;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    margin-top: 460px;
+}
+.navigation-auto div{
+    border: 2px solid #dec0fc;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background: #dec0fc;
+}
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    background: #dec0fc;
+}
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    background: #dec0fc;
+}
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    background: #dec0fc;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    background: #dec0fc;
+}
+
 
 
 /*MÉTODO EN JS PARA EL HEADER DEL MENÚ*/
@@ -303,6 +402,31 @@ color: var(--main-color);
     }
     .navlist.open{
         top: 100%;
+    }
+    .slider{
+        width: 600px;
+        height: 300px;
+        border-radius: 10px;
+       
+        margin: auto;
+        margin-top: 125px;
+ 
+        
+    }
+    .navigation-manual{
+        width: 800px;
+        margin-top: -240px;
+        justify-content: center;
+        padding-right: 130px;
+        
+       
+    }
+    .navigation-auto{
+        
+        width: 800px;
+        margin-top: 260px;
+        justify-content: center;
+        padding-right: 130px;
     }
 }
 

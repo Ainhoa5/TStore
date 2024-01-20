@@ -30,10 +30,10 @@
     
             <ul class="navlist">
                 <li><a href="../../index.php">Home</a></li>
-                <li><a href="#" class="active">Reputation</a></li>
-                <li><a href="#" >Speak Now</a></li>
-                <li><a href="#" >1989</a></li>
-                <li><a href="#">Midnights</a></li>
+                <li><a href="#" class="active">Speak Now</a></li>
+                <li><a href="#" >Red</a></li>
+                <li><a href="#">1989</a></li>
+                <li><a href="#" >Reputation</a></li>
                 <li><a href="#">Lover</a></li>
             </ul>
     
@@ -167,7 +167,7 @@
 
     <!--Scroll top-->
     <a href="#" class="scroll">
-        <i class='bx bxs-up-arrow'></i>
+    <i class='bx bxs-up-arrow bx-tada' ></i>
     </a>
     
     <script src="https://unpkg.com/scrollreveal"></script>

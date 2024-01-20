@@ -54,7 +54,68 @@ require_once 'includes/models/Product.php';
     </header>
 
   <!-- INDEX -->
-  <section class="home" id="home">
+
+<!-- SLIDER -->
+<div class="slider">
+    <div class="slides">
+        <!-- radio buttons-->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <input type="radio" name="radio-btn" id="radio5">
+        <!-- slide images start -->
+        <div class="slide first">
+            <img src="/build/img/index/01_Speak_Now_Slider.png" alt="">
+        </div>
+        <div class="slide">
+            <img src="/build/img/index/02_Red_Slider.png" alt="">
+        </div>
+        <div class="slide">
+            <img src="/build/img/index/03_1989_Slider.png" alt="">
+        </div>
+        <div class="slide">
+            <img src="/build/img/index/04_Reputation_Slider.png" alt="">
+        </div>
+        <div class="slide">
+            <img src="/build/img/index/05_Lover_Slider.png" alt="">
+        </div>
+
+        <!-- automatic navigation -->
+        <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+            <div class="auto-btn5"></div>
+        </div>
+    </div>
+    <!-- manual navigation  -->
+    <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+        <label for="radio5" class="manual-btn"></label>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var counter = 1;
+    setInterval(function(){
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if(counter > 5){
+            counter = 1;
+        }
+    }, 3500);
+</script>
+
+
+
+
+
+  <!-- <section class="home" id="home">
         <div class="home-text">
             <h1>Full Website</h1>
             <h2>Products the <br> Most interesting Things</h2>
@@ -63,10 +124,10 @@ require_once 'includes/models/Product.php';
         <div class="home-img">
             <img src="build/img/index/DICS-1989.png">
         </div>
-    </section>
+    </section> -->
 
     <!--ABOUT-->
-    <section class="about" id="about">
+    <!-- <section class="about" id="about">
         <div class="about-img">
             <img src="build/img/index/merch.png">
         </div>
@@ -76,10 +137,10 @@ require_once 'includes/models/Product.php';
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fuga omnis ipsam consequuntur dolor consequatur ullam, voluptas esse optio minima porro corrupti eveniet. Sint, quos ullam aliquid maxime sit tenetur.</p>
             <a href="#" class="btn">Today's Stock</a>
         </div>
-    </section>
+    </section> -->
 
     <!-- MERCH -->
-    <section class="merch" id="merch">
+    <!-- <section class="merch" id="merch">
         <div class="heading">
             <span>Merch</span>
             <h2>Taylor's Products</h2>
@@ -121,7 +182,7 @@ require_once 'includes/models/Product.php';
 
             ?>
         </div>
-    </section>
+    </section> -->
 
     <!--Contact-->
     <section class="contact" id="contact">
@@ -165,7 +226,7 @@ require_once 'includes/models/Product.php';
 
     <!--Scroll top-->
     <a href="#" class="scroll">
-        <i class='bx bxs-up-arrow'></i>
+    <i class='bx bxs-up-arrow bx-tada' ></i>
     </a>
 
     <!--LOADER-->
