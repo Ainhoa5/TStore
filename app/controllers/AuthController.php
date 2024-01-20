@@ -17,44 +17,52 @@ class AuthController
     {
         require 'app/views/auth/user.php'; // Path to your home view file
     }
-    public function processLogin() /* UPDATE ERRORS */
+    public function processLogin()
     {
-
         $validator = new Validator();
 
         $fields = [
             'email' => $_POST['email'] ?? '',
             'password' => $_POST['password'] ?? '',
-            // Add other fields as needed
         ];
         $rules = [
             'email' => ['isEmpty', 'isValidEmail'],
-            'password' => ['isEmpty', 'isSecurePassword'] // Add other rules like 'isSecurePassword' as needed
+            'password' => ['isEmpty'], // Removed 'isSecurePassword' as it's not needed for login
         ];
 
         $errors = $validator->validate($fields, $rules);
-        if (empty($errors) && $this->userModel->verificarCredenciales($fields)) {
-            $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
-            $userId = $userInfo['UsuarioID'];
-            $userRole = $userInfo['Rol'];
 
-            // Store in session
+        // If there are no initial validation errors, proceed to check against the database
+        if (empty($errors)) {
+            if ($this->userModel->verificarCredenciales($fields)) {
+                // Credentials are correct
+                $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
+                $userId = $userInfo['UsuarioID'];
+                $userRole = $userInfo['Rol'];
 
+                // Store in session
+                session_start();
+                $_SESSION['user_id'] = $userId;
+                $_SESSION['user_role'] = $userRole;
+
+                // Redirect to the dashboard or appropriate page
+                header('Location: ./');
+                exit;
+            } else {
+                // Credentials are incorrect
+                $errors['login'] = ['Incorrect email or password'];
+            }
+        }
+
+        // If there are any errors (either initial validation or credential checking)
+        if (!empty($errors)) {
             session_start();
-            $_SESSION['user_id'] = $userId;
-            $_SESSION['user_role'] = $userRole;
-
-            // Redirect to the appropriate page
-            header('Location: ./');
-            exit;
-        } else {
-            // Authentication failed
-            // Handle error, maybe redirect back to login with an error message
-            Functions::debug($errors);
-            header('Location: authForm');
+            $_SESSION['validation_errors'] = $errors;
+            header('Location: authForm'); // Redirect back to login with error messages
             exit;
         }
     }
+
 
     public function processSignUp()
     {

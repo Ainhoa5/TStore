@@ -65,9 +65,7 @@ $jsPath = $baseUrl . '/public/scripts/';
                         <i class='bx bx-lock'></i>
                         <input type="password" name="password" placeholder="Contraseña">
                     </label>
-                    <div class="error-message">
-                        <p>AAA</p>
-                    </div>
+                    
                     <?php if (isset($_SESSION['validation_errors']['password'])) : ?>
                         <div class="error-message">
                             <?php foreach ($_SESSION['validation_errors']['password'] as $error) : ?>
@@ -105,11 +103,32 @@ $jsPath = $baseUrl . '/public/scripts/';
                         <i class='bx bxs-envelope'></i>
                         <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
+                    <?php if (isset($_SESSION['validation_errors']['email'])) : ?>
+                        <div class="error-message">
+                            <?php foreach ($_SESSION['validation_errors']['email'] as $error) : ?>
+                                <p><?php echo htmlspecialchars($error); ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                     <label>
                         <i class='bx bx-lock'></i>
                         <input type="password" name="password" placeholder="Contraseña">
                     </label>
+                    <?php if (isset($_SESSION['validation_errors']['password'])) : ?>
+                        <div class="error-message">
+                            <?php foreach ($_SESSION['validation_errors']['password'] as $error) : ?>
+                                <p><?php echo htmlspecialchars($error); ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
 
+                    <?php if (isset($_SESSION['validation_errors']['login'])) : ?>
+                        <div class="error-message">
+                            <?php foreach ($_SESSION['validation_errors']['login'] as $error) : ?>
+                                <p><?php echo htmlspecialchars($error); ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                     <input type="submit" name="login" value="Iniciar Sesión">
                 </form>
             </div>
