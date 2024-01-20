@@ -22,27 +22,7 @@
                 </div>
             </noscript>
         <!--HEADER-->
-        <header>
-            <a href="../../index.php" class="logo">
-                <i class='bx bxs-album'></i>
-                T-Store
-            </a>
-    
-            <ul class="navlist">
-                <li><a href="../../index.php">Home</a></li>
-                <li><a href="#" class="active">Speak Now</a></li>
-                <li><a href="#" >Red</a></li>
-                <li><a href="#">1989</a></li>
-                <li><a href="#" >Reputation</a></li>
-                <li><a href="#">Lover</a></li>
-            </ul>
-    
-            <div class="nav-icons">
-                <a href="#"><i class='bx bx-search-alt' ></i></a>
-                <a href="#"><i class='bx bx-cart-alt'></i></a>
-                <div class="bx bx-menu" id="menu-icon"></div>
-            </div>
-        </header>
+        <?php include '../templates/header.php'; ?>
      
     <!--TIENDA-->
     <section class="shop" id="shop">
