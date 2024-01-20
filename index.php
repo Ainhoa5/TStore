@@ -29,29 +29,9 @@ require_once 'includes/models/Product.php';
                 Parece que JavaScript no está habilitado en tu navegador. Algunas características de esta página no funcionarán correctamente sin JavaScript.
             </div>
         </noscript>
+
     <!--HEADER-->
-    <header>
-        <a href="#" class="logo">
-            <!-- <i class='bx bx-music'></i> -->
-            <!-- <i class='bx bxs-music'></i> -->
-            <!-- <i class='bx bx-store'></i> -->
-            <!-- <i class='bx bxs-album'></i> -->
-            <i class='bx bxs-album bx-tada' ></i>
-            T-Store
-        </a>
-
-        <ul class="navlist">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="/includes/views/Eras.php">Eras</a></li>
-            <li><a href="/includes/views/user_form.php">Formulario</a></li>
-        </ul>
-
-        <div class="nav-icons">
-            <a href="/pages/widget.html"><i class='bx bx-search-alt' ></i></a>
-            <a href="/pages/tienda.html"><i class='bx bx-cart-alt'></i></a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-        </div>
-    </header>
+    <?php include 'includes/templates/header.php'; ?>
 
   <!-- INDEX -->
 
@@ -99,7 +79,7 @@ require_once 'includes/models/Product.php';
         <label for="radio5" class="manual-btn"></label>
     </div>
 </div>
-
+<!-- SLIDER SCRIPT -->
 <script type="text/javascript">
     var counter = 1;
     setInterval(function(){
@@ -184,45 +164,8 @@ require_once 'includes/models/Product.php';
         </div>
     </section> -->
 
-    <!--Contact-->
-    <section class="contact" id="contact">
-        <div class="contact-content">
-           <div class="contact-text">
-                <h2>Contáctanos</h2>
-                <p>
-                    Para contactarnos, no dudes en utilizar la información proporcionada a continuación.
-                    Puedes escribirnos a nuestra dirección de correo electrónico o llamarnos.
-                    Además, te invitamos a seguirnos en nuestras redes sociales para mantenerte al tanto de nuestras últimas novedades y actualizaciones.
-                   
-                </p>
-                <div class="social">
-                    <a href="#" class="clr"><i class='bx bxl-instagram'></i></a>
-                    <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
-                    <a href="#"><i class='bx bxl-whatsapp'></i></a>
-                    <a href="#"><i class='bx bx-envelope'></i></a>
-                </div>
-           </div>
-
-           <div class="details">
-                <!--Ubicación-->
-                <div class="main-d">
-                    <a href="#"><i class='bx bx-location-plus'></i>Las Palmas de Gran Canaria</a>
-                </div>
-
-                <!--Correo-->
-                <div class="main-d">
-                    <a href="#"><i class='bx bx-envelope'></i></i>Aromas&Recetas@gmail.com</i></a>
-                </div>
-
-                <!--Telefono-->
-                <div class="main-d">
-                    <a href="#"><i class='bx bx-phone-call'></i>+34 726 15 43 19</i></a>
-                </div>
-
-           </div>
-        </div>
-    </section>
+    <!--Footer-->
+    <?php include 'includes/templates/footer.php'; ?>
 
     <!--Scroll top-->
     <a href="#" class="scroll">
@@ -231,9 +174,7 @@ require_once 'includes/models/Product.php';
 
     <!--LOADER-->
     <div class="loader-container">
-        <!-- <img src="img/index/Cube-white.gif" alt=""> -->
         <i class='bx bxs-album bx-spin' ></i>
-         <!-- <i class='bx bxs-ghost bx-tada' ></i> -->
     </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>
