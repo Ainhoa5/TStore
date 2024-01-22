@@ -13,8 +13,9 @@ class Database {
         try {
             self::$conn = new PDO('mysql:host=' . self::$host . ';dbname=' . self::$db_name, self::$username, self::$password);
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
+        } catch (PDOException $e) {
+            Functions::logError($e->getMessage());
+            return false;
         }
 
         return self::$conn;
