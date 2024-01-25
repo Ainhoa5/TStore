@@ -1,4 +1,5 @@
 <?php 
+namespace Config;
 // In /config/app.php
 
 // Define directories

@@ -1,4 +1,5 @@
 <?php 
+namespace Config;
 // In /config/function.php
 class Functions {
     public static function debug($content) {

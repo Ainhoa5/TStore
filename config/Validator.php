@@ -1,4 +1,5 @@
 <?php 
+namespace Config;
 // In /config/Validator.php
 class Validator {
     private $errors = [];

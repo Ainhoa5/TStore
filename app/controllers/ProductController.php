@@ -1,4 +1,5 @@
 <?php
+namespace App\Controllers;
 // In /app/controllers/ProductController.php
 require_once 'config/app.php';
 class ProductController
@@ -7,8 +8,8 @@ class ProductController
 
     public function __construct()
     {
-        $db = Database::connect();
-        $this->productModel = new Product($db);
+        $db = \Config\Database::connect();
+        $this->productModel = new \App\Models\Product($db);
     }
 
 
@@ -31,14 +32,14 @@ class ProductController
     {
         $this->productModel->delete($id); // Fetch product data for editing
         // Redirect to the dashboard
-        $baseUrl = Functions::getBaseUrl();
+        $baseUrl = \Config\Functions::getBaseUrl();
         header("Location: $baseUrl/admin/dashboard");
         exit;
     }
 
     public function save()
     {
-        $validator = new Validator();
+        $validator = new \Config\Validator();
 
         // Extract the data from $_POST
         $data = [
@@ -73,7 +74,7 @@ class ProductController
             $_SESSION['form_data'] = $data;
 
             // Redirect back to the form
-            $baseUrl = Functions::getBaseUrl();
+            $baseUrl = \Config\Functions::getBaseUrl();
             $redirectUrl = "$baseUrl/admin/product/create";
             header("Location: $redirectUrl");
             exit;
@@ -86,7 +87,7 @@ class ProductController
         }
 
         // Redirect to dashboard
-        $baseUrl = Functions::getBaseUrl();
+        $baseUrl = \Config\Functions::getBaseUrl();
         header("Location: $baseUrl/admin/dashboard");
         exit;
     }

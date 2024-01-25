@@ -1,4 +1,5 @@
 <?php
+namespace App\Controllers;
 // In /app/controllers/AuthController.php
 
 class AuthController
@@ -6,8 +7,8 @@ class AuthController
     private $userModel;
     public function __construct()
     {
-        $db = Database::connect(); // Assuming you have a static method to get the DB instance
-        $this->userModel = new User($db);
+        $db = \Config\Database::connect(); // Assuming you have a static method to get the DB instance
+        $this->userModel = new \App\Models\User($db);
     }
     public function showAuthForm()
     {
@@ -19,7 +20,7 @@ class AuthController
     }
     public function processLogin()
     {
-        $validator = new Validator();
+        $validator = new \Config\Validator();
 
         $fields = [
             'email' => $_POST['email'] ?? '',
@@ -66,7 +67,7 @@ class AuthController
 
     public function processSignUp()
     {
-        $validator = new Validator();
+        $validator = new \Config\Validator();
 
         $fields = [
             'email' => $_POST['email'] ?? '',

@@ -82,16 +82,21 @@ class Router
         asumiendo que la estructura de la URI es siempre /base/controller/method/param.
     */
     protected function callAction($controller, $action, ...$params) {
-        $controller = new $controller;
+        $controller = "App\\Controllers\\" . $controller;
     
-        if (!method_exists($controller, $action)) {
-            throw new Exception(
-                "{$controller} does not respond to the {$action} action."
-            );
+        if (!class_exists($controller)) {
+            throw new Exception("Controller {$controller} not found.");
         }
     
-        return $controller->{$action}(...$params);
+        $controllerInstance = new $controller();
+    
+        if (!method_exists($controllerInstance, $action)) {
+            throw new Exception("{$controller} does not respond to the {$action} action.");
+        }
+    
+        return $controllerInstance->{$action}(...$params);
     }
+    
     
     
     

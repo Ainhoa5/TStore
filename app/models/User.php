@@ -1,5 +1,6 @@
-<!-- In /app/models/User.php -->
 <?php
+namespace App\Models;
+// In /app/models/User.php
 class User
 {
     protected $db;
@@ -25,7 +26,7 @@ class User
             $stmt->execute();
 
             // Obtener los resultados
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
             // Verificar si el usuario existe y si la contraseña es correcta
             if ($user && password_verify($fields['password'], $user['UPassword'])) {
@@ -35,8 +36,8 @@ class User
 
             // Retornar false si las credenciales no son correctas
             return false;
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -73,8 +74,8 @@ class User
                 return true; // User created successfully
             }
             return false; // Error creating the user
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
     }
@@ -87,9 +88,9 @@ class User
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -107,8 +108,8 @@ class User
             $count = $stmt->fetchColumn();
 
             return $count > 0;
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 

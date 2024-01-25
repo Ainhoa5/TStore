@@ -1,4 +1,5 @@
 <?php 
+namespace Config;
 // config/database.php
 class Database {
     private static $host = 'localhost';
@@ -11,9 +12,9 @@ class Database {
         self::$conn = null;
 
         try {
-            self::$conn = new PDO('mysql:host=' . self::$host . ';dbname=' . self::$db_name, self::$username, self::$password);
-            self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+            self::$conn = new \PDO('mysql:host=' . self::$host . ';dbname=' . self::$db_name, self::$username, self::$password);
+            self::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
             Functions::logError($e->getMessage());
             return false;
         }

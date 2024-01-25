@@ -1,8 +1,9 @@
 <?php
+namespace App\Models;
 // In /app/models/Product.php
 require_once 'config/app.php';
 
-class Product extends ActiveRecord
+class Product extends \Core\ActiveRecord
 {
     public function __construct($db)
     {
@@ -22,9 +23,9 @@ class Product extends ActiveRecord
             $stmt->execute();
 
             // Fetch and return the results
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 

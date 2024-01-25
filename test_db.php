@@ -2,7 +2,7 @@
 // test_db.php
 require_once 'config/app.php';
 
-$db = Database::connect();
+$db = \Config\Database::connect();
 
 if ($db) {
     echo "Connection successful!";

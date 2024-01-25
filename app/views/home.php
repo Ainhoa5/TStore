@@ -5,7 +5,7 @@
 require_once 'config/functions.php';
 
 // Use the function
-$baseUrl = Functions::getBaseUrl();
+$baseUrl = \Config\Functions::getBaseUrl();
 $cssPath = $baseUrl . '/public/css/';
 $scriptPath = $baseUrl . '/public/scripts/';
 $imgPath = $baseUrl . '/public/img/index/';

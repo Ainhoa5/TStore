@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 // In /core/ActiveRecord.php
 
 class ActiveRecord
@@ -17,9 +18,9 @@ class ActiveRecord
         try {
             $stmt = $this->db->prepare("SELECT * FROM {$this->table}");
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -31,9 +32,9 @@ class ActiveRecord
             $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE ProductoID = :ProductoID");
             $stmt->bindParam(':ProductoID', $ProductoID);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+            return $stmt->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -54,8 +55,8 @@ class ActiveRecord
             }
 
             return $stmt->execute();
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -79,8 +80,8 @@ class ActiveRecord
             $stmt->bindValue(':ProductoID', $ProductoID);
 
             return $stmt->execute();
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 
@@ -94,8 +95,8 @@ class ActiveRecord
             $stmt->bindValue(':ProductoID', $ProductoID);
 
             return $stmt->execute();
-        } catch (PDOException $e) {
-            Functions::logError($e->getMessage());
+        } catch (\PDOException $e) {
+            \Config\Functions::logError($e->getMessage());
             return false;
         }
 

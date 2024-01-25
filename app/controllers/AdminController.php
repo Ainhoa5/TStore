@@ -1,4 +1,5 @@
 <?php
+namespace App\Controllers;
 // In /app/controllers/AdminController.php
 
 require_once 'config/app.php';
@@ -7,8 +8,8 @@ class AdminController
     private $productModel;
 
     public function __construct() {
-        $db = Database::connect(); // Get the PDO instance
-        $this->productModel = new Product($db); // Pass it to the Product model
+        $db = \Config\Database::connect(); // Get the PDO instance
+        $this->productModel = new \App\Models\Product($db); // Pass it to the Product model
     }
 
     public function showDashboard()
