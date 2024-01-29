@@ -11,6 +11,12 @@ define('CORE_DIR', ROOT_DIR . '/core/');
 define('PARTIALS_DIR', VIEWS_DIR . 'partials/');
 define('PRODUCTS_DIR', VIEWS_DIR . 'products/');
 define('CONFIG_DIR', ROOT_DIR . '/config/');
+define('CSS_PATH', '/css/');
+define('IMG_PATH', 'img/');
+define('IMG_INDEX_PATH', IMG_PATH .'index/');
+define('IMG_PRODUCTS_PATH', IMG_PATH .'products/');
+define('JS_PATH', 'scripts/');
+
 
 // Core classes
 require_once CORE_DIR . 'ActiveRecord.php'; // Include the ActiveRecord class

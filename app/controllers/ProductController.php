@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 // In /app/controllers/ProductController.php
-require_once 'config/app.php';
+//require_once 'config/app.php';
 class ProductController
 {
     private $productModel;
@@ -25,15 +25,14 @@ class ProductController
             $product = $this->productModel->findById($id); // Fetch product data for editing
         }
 
-        require 'app/views/admin/formProduct.php';
+        require VIEWS_DIR . 'admin/formProduct.php';
     }
 
     public function delete($id)
     {
         $this->productModel->delete($id); // Fetch product data for editing
         // Redirect to the dashboard
-        $baseUrl = \Config\Functions::getBaseUrl();
-        header("Location: $baseUrl/admin/dashboard");
+        header("Location: /admin/dashboard");
         exit;
     }
 
@@ -73,10 +72,7 @@ class ProductController
             $data['ProductoID'] = $_POST['ProductoID']; // add ID to data
             $_SESSION['form_data'] = $data;
 
-            // Redirect back to the form
-            $baseUrl = \Config\Functions::getBaseUrl();
-            $redirectUrl = "$baseUrl/admin/product/create";
-            header("Location: $redirectUrl");
+            header("Location: /admin/product/create");
             exit;
         }
         // Proceed with creating or updating the product
@@ -87,8 +83,7 @@ class ProductController
         }
 
         // Redirect to dashboard
-        $baseUrl = \Config\Functions::getBaseUrl();
-        header("Location: $baseUrl/admin/dashboard");
+        header("Location: /admin/dashboard");
         exit;
     }
 }

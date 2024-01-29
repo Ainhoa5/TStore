@@ -1,8 +1,6 @@
 <?php
 namespace App\Controllers;
 // In /app/controllers/AdminController.php
-
-require_once 'config/app.php';
 class AdminController
 {
     private $productModel;
@@ -15,7 +13,7 @@ class AdminController
     public function showDashboard()
     {
         $products = $this->productModel->findAll();
-        require 'app/views/admin/dashboard.php'; // Load the view
+        require VIEWS_DIR . 'admin/dashboard.php'; // Load the view
     }
 
     // Other methods for handling create, update, delete...

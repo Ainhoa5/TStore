@@ -1,13 +1,4 @@
 <!-- In /app/views/admin/dashboard.php -->
-<?php
-// Include the Functions class
-require_once 'config/functions.php';
-
-// Use the function
-$baseUrl = \Config\Functions::getBaseUrl();
-$cssPath = $baseUrl . '/public/css/';
-$imgPath = $baseUrl . '/public/img/products';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +6,7 @@ $imgPath = $baseUrl . '/public/img/products';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo $cssPath; ?>admin.css">
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>admin.css">
     <!-- Add this line for Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -33,10 +24,8 @@ $imgPath = $baseUrl . '/public/img/products';
         ?>
         <?php foreach ($products as $product): ?>
             <div class="product-container">
-                <img src="<?php echo file_exists('public/img/products/' . $product['ImagenURL']) ? $imgPath . '/' . $product['ImagenURL'] : $imgPath . '/default-placeholder.png'; ?>"
+                <img src="<?php echo file_exists(IMG_PRODUCTS_PATH . $product['ImagenURL']) ? IMG_PRODUCTS_PATH . $product['ImagenURL'] : IMG_PRODUCTS_PATH . 'default-placeholder.png'; ?>"
                     alt="Product Image">
-
-
                 <h1>
                     <?php echo htmlspecialchars($product['Nombre']); ?>
                 </h1>

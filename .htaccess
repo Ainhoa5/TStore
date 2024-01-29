@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /Projects/TStore/
+RewriteBase /Projects/TStore/public/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php [QSA,L]

@@ -1,22 +1,11 @@
 <!-- In /app/views/home.php -->
-
-<?php
-// Include the Functions class
-require_once 'config/functions.php';
-
-// Use the function
-$baseUrl = \Config\Functions::getBaseUrl();
-$cssPath = $baseUrl . '/public/css/';
-$scriptPath = $baseUrl . '/public/scripts/';
-$imgPath = $baseUrl . '/public/img/index/';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo $cssPath; ?>index.css">
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>index.css">
     <!-- ICONS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- links de la fuente de letra -->
@@ -41,16 +30,16 @@ $imgPath = $baseUrl . '/public/img/index/';
             <li><a href="#">HOME</a></li>
             <li><a href="#">ERAS TOUR</a></li>
 
-            <?php if (isset($_SESSION['user_role'])) : ?>
+            <?php if (isset($_SESSION['user_role'])): ?>
                 <!-- User is logged in, show user page link -->
                 <li><a href="user">USER PAGE</a></li>
 
-                <?php if ($_SESSION['user_role'] == 'admin') : ?>
+                <?php if ($_SESSION['user_role'] == 'admin'): ?>
                     <!-- Additional link for admin users -->
                     <li><a href="admin/dashboard">ADMIN</a></li>
                 <?php endif; ?>
 
-            <?php else : ?>
+            <?php else: ?>
                 <!-- User is not logged in, show login link -->
                 <li><a href="authForm">LOGIN</a></li>
             <?php endif; ?>
@@ -67,14 +56,14 @@ $imgPath = $baseUrl . '/public/img/index/';
             <a href="#" class="btn">Today's Stock</a>
         </div>
         <div class="home-img">
-            <img src="<?php echo $imgPath; ?>DICS-1989.png">
+            <img src="img/index/DICS-1989.png">
         </div>
     </section>
 
     <!--ABOUT-->
     <section class="about" id="about">
         <div class="about-img">
-            <img src="<?php echo $imgPath; ?>merch.png">
+            <img src="<?php echo IMG_INDEX_PATH; ?>merch.png">
         </div>
         <div class="about-text">
             <span>About US</span>
@@ -92,13 +81,13 @@ $imgPath = $baseUrl . '/public/img/index/';
         </div>
 
         <div class="merch-container">
-            <?php foreach ($latestProducts as $product) : ?>
+            <?php foreach ($latestProducts as $product): ?>
                 <div class='box'>
                     <div class='box-img'>
                         <!-- Image and product details -->
                         <?php
                         // Assuming $imgPath contains the path to the image folder relative to the server file system
-                        $imgRealPath = "public/img/products/";
+                        $imgRealPath = IMG_PRODUCTS_PATH;
                         // Check if the image file exists, and set the image URL accordingly
                         $imageUrl = file_exists($imgRealPath . $product['ImagenURL'])
                             ? $imgRealPath . $product['ImagenURL']
@@ -163,7 +152,7 @@ $imgPath = $baseUrl . '/public/img/index/';
     </section>
 
     <!-- JavaScript -->
-    <script src="<?php echo $scriptPath; ?>index.js"></script>
+    <script src=<?php echo JS_PATH."index.js"?>></script>
 
 </body>
 

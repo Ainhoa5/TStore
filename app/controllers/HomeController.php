@@ -11,6 +11,6 @@ class HomeController {
     }
     public function index() {
         $latestProducts = $this->productModel->getLatestProducts(); // Method to fetch latest products
-        require 'app/views/home.php'; // Path to your home view file
+        require VIEWS_DIR . 'home.php';
     }
 }

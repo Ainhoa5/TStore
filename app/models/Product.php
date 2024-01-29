@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 // In /app/models/Product.php
-require_once 'config/app.php';
 
 class Product extends \Core\ActiveRecord
 {

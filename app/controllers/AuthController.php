@@ -12,11 +12,11 @@ class AuthController
     }
     public function showAuthForm()
     {
-        require 'app/views/auth/authForm.php'; // Path to your home view file
+        require VIEWS_DIR . 'auth/authForm.php'; // Path to your home view file
     }
     public function showUserPage()
     {
-        require 'app/views/auth/user.php'; // Path to your home view file
+        require VIEWS_DIR . 'auth/user.php'; // Path to your home view file
     }
     public function processLogin()
     {

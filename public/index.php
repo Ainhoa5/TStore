@@ -1,6 +1,6 @@
 <?php 
 // In /index.php
-require 'config/app.php';
+require '../config/app.php';
 
 $router = new Router;
 

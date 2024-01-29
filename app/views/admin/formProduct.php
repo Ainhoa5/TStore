@@ -1,14 +1,4 @@
 <!-- In /app/views/admin/formProduct.php -->
-<?php
-// Include the Functions class
-require_once 'config/functions.php';
-
-// Use the function
-$baseUrl = \Config\Functions::getBaseUrl();
-$cssPath = $baseUrl . '/public/css/';
-$imgPath = $baseUrl . '/public/img/products';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,11 +6,11 @@ $imgPath = $baseUrl . '/public/img/products';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($product) ? 'Edit Product' : 'Create Product'; ?></title>
-    <link rel="stylesheet" href="<?php echo $cssPath; ?>forms.css">
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>forms.css">
 </head>
 
 <body>
-    <form action="<?php echo $baseUrl; ?>/product/save" method="POST" id="modern-form" enctype="multipart/form-data">
+    <form action="/product/save" method="POST" id="modern-form" enctype="multipart/form-data">
         <input type="hidden" name="ProductoID" value="<?php echo isset($product) ? $product['ProductoID'] : ''; ?>">
 
         <!-- NOMBRE -->
