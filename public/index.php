@@ -1,5 +1,8 @@
 <?php 
 // In /index.php
+
+// to start:
+// php -S localhost:3000 -t public
 require '../config/app.php';
 
 $router = new Router;
