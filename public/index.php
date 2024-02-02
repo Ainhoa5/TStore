@@ -22,9 +22,11 @@ $router->define([
     // other routes...
 ]);
 
-$uri = $_SERVER['REQUEST_URI'];
+/* $uri = $_SERVER['REQUEST_URI'];
 $uri = str_replace('/Projects/TStore/', '', $uri); // Adjust this based on your project structure
 $uri = trim($uri, '/');
+$router->direct($uri); */
+$uri = trim($_SERVER['REQUEST_URI'], '/');
 $router->direct($uri);
 
 
