@@ -23,7 +23,7 @@ $router->define([
 ]);
 
 $uri = $_SERVER['REQUEST_URI'];
-$uri = str_replace('/Projects/TStore/', '', $uri); // Adjust this based on your project structure
+$uri = str_replace('/proyectos/TStore/', '', $uri); // Adjust this based on your project structure
 $uri = trim($uri, '/');
 $router->direct($uri);
 
