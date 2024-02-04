@@ -13,4 +13,7 @@ class HomeController {
         $latestProducts = $this->productModel->getLatestProducts(); // Method to fetch latest products
         require VIEWS_DIR . 'home.php';
     }
+    public function erasTour() {
+        require VIEWS_DIR . 'erasTour.php';
+    }
 }
