@@ -132,9 +132,9 @@
     </a>
 
     <!--LOADER-->
-    <!-- <div class="loader-container">
+    <div class="loader-container">
         <i class='bx bxs-album bx-spin' ></i>
-    </div> -->
+    </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     

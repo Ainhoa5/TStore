@@ -267,8 +267,8 @@ color: var(--main-color);
 .box{
     flex-basis: calc(25% - 10px); /* Ajusta para 3 cajas por fila, menos un pequeño margen */
     margin-bottom: 20px;
-    margin-right: 40px;
-    margin-left: 40px;
+    margin-right: 65px;
+    margin-left: 65px;
     position: relative;
     margin-top: 4rem;
     height: auto;

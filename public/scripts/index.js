@@ -36,7 +36,7 @@ sr.reveal ('.row-btn,.shop-content',{delay:250});
 
 sr.reveal ('.slider',{delay:300});
 sr.reveal ('.review-content,.contact',{delay:250});
-sr.reveal ('.merch-container',{delay:250});
+sr.reveal ('.merch-container, .box',{delay:250});
 
 //LOADER
 function loader(){
