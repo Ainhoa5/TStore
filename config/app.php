@@ -36,5 +36,6 @@ require CONTROLLERS_DIR . 'HomeController.php';
 require CONTROLLERS_DIR . 'AdminController.php';
 require CONTROLLERS_DIR . 'ProductController.php';
 require CONTROLLERS_DIR . 'AuthController.php';
+require CONTROLLERS_DIR . 'ErrorController.php';
 
 

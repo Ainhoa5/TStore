@@ -9,6 +9,7 @@ $router = new Router;
 
 $router->define([
     '' => 'HomeController@index',
+    'errorPage' => 'ErrorController@errorPage',
     'user' => 'AuthController@showUserPage',
     'authForm' => 'AuthController@showAuthForm',
     'process-login' => 'AuthController@processLogin',
