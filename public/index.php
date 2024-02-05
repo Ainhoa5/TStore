@@ -21,6 +21,15 @@ $router->define([
     'admin/product/delete/(:num)' => 'ProductController@delete',
     'product/save' => 'ProductController@save',
     'erasTour' => 'HomeController@erasTour',
+    // API
+    'admin/dashboard/categorias' => 'AdminController@showCategoriasDashboard',
+    'createCategoria' => 'CategoriesController@showForm',
+    'api/categorias' => 'CategoriesController@getCategoriasJson',
+    'api/deleteCategoria' => 'CategoriesController@deleteCategoria',
+    'api/getCategoriaById' => 'CategoriesController@getCategoriaById',
+    'api/addCategoria' => 'CategoriesController@addCategoria',
+    'api/updateCategoria' => 'CategoriesController@updateCategoria',
+    'updateFormCategoria' => 'CategoriesController@fillUpdateForm',
     // other routes...
 ]);
 

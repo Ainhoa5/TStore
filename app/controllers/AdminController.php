@@ -16,6 +16,11 @@ class AdminController
         require VIEWS_DIR . 'admin/dashboard.php'; // Load the view
     }
 
+    public function showCategoriasDashboard()
+    {
+        require VIEWS_DIR . 'admin/dashboardCategorias.php'; // Load the view
+    }
+
     // Other methods for handling create, update, delete...
 }
 

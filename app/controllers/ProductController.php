@@ -57,7 +57,6 @@ class ProductController
             //'ImagenURL' => $_POST['ImagenURL'] ?? '',
             // ... extract other fields
         ];
-
         // Validation rules
         $rules = [
             'Nombre' => ['isEmpty', 'isValidString'],
