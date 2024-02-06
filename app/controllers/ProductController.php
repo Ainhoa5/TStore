@@ -1,5 +1,9 @@
 <?php
+
 namespace App\Controllers;
+
+use Config\Functions;
+
 // In /app/controllers/ProductController.php
 //require_once 'config/app.php';
 class ProductController
@@ -23,7 +27,7 @@ class ProductController
     public function createForm($id = null)
     {
         $product = null;
-        
+
 
         session_start();
         if (isset($_SESSION['form_data'])) {
@@ -54,7 +58,6 @@ class ProductController
             'Precio' => $_POST['Precio'] ?? '',
             'Stock' => $_POST['Stock'] ?? '',
             'Categoria' => $_POST['Categoria'] ?? '',
-            //'ImagenURL' => $_POST['ImagenURL'] ?? '',
             // ... extract other fields
         ];
         // Validation rules
@@ -64,7 +67,7 @@ class ProductController
             'Precio' => ['isEmpty', 'isValidDecimal'],
             'Stock' => ['isEmpty', 'isNumeric'],
             'Categoria' => ['isEmpty', 'isValidString'],
-            //'ImagenURL' => ['isEmpty'],
+            'ImagenURL' => ['isValidImage'],
             // ... additional rules
         ];
 
@@ -81,6 +84,30 @@ class ProductController
             header("Location: /admin/product/create");
             exit;
         }
+
+        // Aquí maneja la carga de la imagen si no hay errores
+        if (isset($_FILES['ImagenURL']) && $_FILES['ImagenURL']['error'] == UPLOAD_ERR_OK) {
+
+            // Asumiendo que ya has validado la imagen con 'isValidImage'
+            // Obtiene la extensión original del archivo
+            $extension = pathinfo($_FILES['ImagenURL']['name'], PATHINFO_EXTENSION);
+
+            // Genera un nombre de archivo único para evitar sobrescribir archivos existentes
+            $uniqueFileName = uniqid('img_', true) . '.' . $extension; // Prefijo 'img_' y extensión original
+
+            // Construye la ruta de destino con el nombre de archivo único
+            $targetPath = IMG_PRODUCTS_PATH . $uniqueFileName;
+
+            if (move_uploaded_file($_FILES['ImagenURL']['tmp_name'], $targetPath)) {
+                // Si la imagen se guarda correctamente, guarda el nombre del archivo único en $data
+                $data['ImagenURL'] = $uniqueFileName; // Guarda el nombre único del fichero en $data
+            } else {
+                // Manejar el error de carga de la imagen
+            }
+        }
+
+
+
         // Proceed with creating or updating the product
         if (empty($_POST['ProductoID'])) {
             $this->productModel->create($data);

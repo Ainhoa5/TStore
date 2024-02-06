@@ -12,6 +12,13 @@ class Validator {
                 }
             }
         }
+        foreach ($_FILES as $fileField => $fileValue) {
+            if (isset($rules[$fileField])) {
+                foreach ($rules[$fileField] as $rule) {
+                    $this->$rule($fileValue, $fileField);
+                }
+            }
+        }
         return $this->errors;
     }
 
@@ -52,6 +59,29 @@ class Validator {
         }
     }
 
+     private function isValidImage($file, $field) {
+        // Define allowed file types and max file size (5MB in this case)
+        $allowedTypes = ['image/jpeg', 'image/png'];
+        $maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+
+        // Check if file is uploaded
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $this->errors[$field][] = 'Error uploading file';
+            return;
+        }
+
+        // Check file size
+        if ($file['size'] > $maxFileSize) {
+            $this->errors[$field][] = 'File is too large. Maximum size is 5MB.';
+            return;
+        }
+
+        // Check file type
+        if (!in_array($file['type'], $allowedTypes)) {
+            $this->errors[$field][] = 'Invalid file type. Only JPEG and PNG are allowed.';
+            return;
+        }
+    }
     // Add more validation methods as needed...
 }
 
