@@ -22,10 +22,24 @@
 
     </div>
     <div class="product-parent">
-        <?php foreach ($products as $product): ?>
+        <?php
+        ?>
+        <?php foreach ($products as $product) : ?>
             <div class="product-container">
-                <img src="<?php echo file_exists(IMG_PRODUCTS_PATH . $product['ImagenURL']) ? IMG_PRODUCTS_PATH . $product['ImagenURL'] : IMG_PRODUCTS_PATH . 'default-placeholder.png'; ?>"
-                    alt="Product Image">
+
+                <?php
+                $imgRealPath = IMG_PRODUCTS_PATH;
+                // Check if the image file exists, and set the image URL accordingly
+                $imageUrl = file_exists($imgRealPath . $product['ImagenURL'])
+                    ? $imgRealPath . $product['ImagenURL']
+                    : $imgRealPath . 'default-placeholder.png';
+                    
+                ?>
+
+
+                <img src="<?php echo htmlspecialchars('/' . $imageUrl); ?>" alt="Product Image">
+
+
                 <h1>
                     <?php echo htmlspecialchars($product['Nombre']); ?>
                 </h1>
