@@ -9,6 +9,7 @@ $router = new Router;
 
 $router->define([
     '' => 'HomeController@index',
+    'errorPage' => 'ErrorController@errorPage',
     'user' => 'AuthController@showUserPage',
     'authForm' => 'AuthController@showAuthForm',
     'process-login' => 'AuthController@processLogin',
@@ -19,6 +20,16 @@ $router->define([
     'admin/product/edit/(:num)' => 'ProductController@createForm',
     'admin/product/delete/(:num)' => 'ProductController@delete',
     'product/save' => 'ProductController@save',
+    'erasTour' => 'HomeController@erasTour',
+    // API
+    'admin/dashboard/categorias' => 'AdminController@showCategoriasDashboard',
+    'createCategoria' => 'CategoriesController@showForm',
+    'api/categorias' => 'CategoriesController@getCategoriasJson',
+    'api/deleteCategoria' => 'CategoriesController@deleteCategoria',
+    'api/getCategoriaById' => 'CategoriesController@getCategoriaById',
+    'api/addCategoria' => 'CategoriesController@addCategoria',
+    'api/updateCategoria' => 'CategoriesController@updateCategoria',
+    'updateFormCategoria' => 'CategoriesController@fillUpdateForm',
     // other routes...
 ]);
 

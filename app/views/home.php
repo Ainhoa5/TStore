@@ -5,80 +5,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>index.css">
+    <link rel="stylesheet" href="css/index.css">
+   
     <!-- ICONS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- links de la fuente de letra -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+     <!--GOOGLE FONTS-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Lato:wght@300;400;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <title>Eras Tour</title>
+
 </head>
 
 <body>
     <!-- HEADER -->
+        <!-- NOSCRIPT -->
+        <noscript>
+            <div style="background-color: white; color: black; padding: 10px; text-align: center;">
+                Parece que JavaScript no está habilitado en tu navegador. Algunas características de esta página no funcionarán correctamente sin JavaScript.
+            </div>
+        </noscript>
 
+    <!-- TEMPLATE HEADER -->
+    <?php include '../app/views/partials/header.php'; ?>
 
-    <header>
-        <?php
-        // Start the session at the beginning of the script
-        session_start();
-        ?>
-        <a href="#" class="logo">Eras Tour</a>
-        <div class="bx bx-menu" id="menu-icon"></div>
-        <ul class="navbar">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">ERAS TOUR</a></li>
+        <!-- SLIDER -->
+        <div class="slider">
+            <div class="slides">
+                <!-- radio buttons-->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+                <input type="radio" name="radio-btn" id="radio5">
+                <!-- slide images start -->
+                <div class="slide first">
+                    <img src="img/index/01_Speak_Now_Slider.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/index/02_Red_Slider.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/index/03_1989_Slider.png" alt="">
+                </div>
+                <div class="slide">
+                    <img src="img/index/04_Reputation_Slider.png" alt="">
+                </div>
 
-            <?php if (isset($_SESSION['user_role'])): ?>
-                <!-- User is logged in, show user page link -->
-                <li><a href="user">USER PAGE</a></li>
+                <div class="slide">
+                    <img src="img/index/05_Lover_Slider.png" alt="">
+                </div>
 
-                <?php if ($_SESSION['user_role'] == 'admin'): ?>
-                    <!-- Additional link for admin users -->
-                    <li><a href="admin/dashboard">ADMIN</a></li>
-                <?php endif; ?>
-
-            <?php else: ?>
-                <!-- User is not logged in, show login link -->
-                <li><a href="authForm">LOGIN</a></li>
-            <?php endif; ?>
-        </ul>
-
-    </header>
-
-
-    <!-- INDEX -->
-    <section class="home" id="home">
-        <div class="home-text">
-            <h1>Full Website</h1>
-            <h2>Products the <br> Most interesting Things</h2>
-            <a href="#" class="btn">Today's Stock</a>
+                <!-- automatic navigation -->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                    <div class="auto-btn5"></div>
+                </div>
+            </div>
+            <!-- manual navigation  -->
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+                <label for="radio5" class="manual-btn"></label>
+            </div>
         </div>
-        <div class="home-img">
-            <img src="img/index/DICS-1989.png">
-        </div>
-    </section>
+        <!-- SLIDER SCRIPT -->
+        <script type="text/javascript">
+            var counter = 1;
+            setInterval(function(){
+                document.getElementById('radio' + counter).checked = true;
+                counter++;
+                if(counter > 5){
+                    counter = 1;
+                }
+            }, 3500);
+        </script>
 
-    <!--ABOUT-->
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="<?php echo IMG_INDEX_PATH; ?>merch.png">
-        </div>
-        <div class="about-text">
-            <span>About US</span>
-            <h2>We speak of Taylor's merch</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fuga omnis ipsam consequuntur dolor
-                consequatur ullam, voluptas esse optio minima porro corrupti eveniet. Sint, quos ullam aliquid maxime
-                sit tenetur.</p>
-            <a href="#" class="btn">Today's Stock</a>
-        </div>
-    </section>
-    <section class="merch" id="merch">
-        <div class="heading">
-            <span>Merch</span>
-            <h2>Taylor's Products</h2>
-        </div>
 
         <div class="merch-container">
             <?php foreach ($latestProducts as $product): ?>
@@ -113,46 +122,24 @@
     </section>
 
 
-    <!-- FOOTER -->
-    <section id="contact">
-        <div class="footer">
-            <div class="main">
+    <!-- TEMPLATE FOOTER -->
+    <?php include '../app/views/partials/footer.php'; ?>
 
-                <div class="col">
-                    <h4>Menu Links</h4>
-                    <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">ERAS TOUR</a></li>
-                        <li><a href="#">CART</a></li>
-                        <li><a href="#">ADMIN</a></li>
-                    </ul>
-                </div>
 
-                <div class="col">
-                    <h4>Information</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Term & Conditions</a></li>
-                    </ul>
-                </div>
+    <!--Scroll top-->
+    <a href="#" class="scroll">
+    <i class='bx bxs-up-arrow bx-tada' ></i>
+    </a>
 
-                <div class="col">
-                    <h4>Contact US</h4>
-                    <div class="social">
-                        <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                        <a href=""><i class='bx bxl-youtube'></i></a>
-                    </div>
-                </div>
+    <!--LOADER-->
+    <div class="loader-container">
+        <i class='bx bxs-album bx-spin' ></i>
+    </div>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- JavaScript -->
-    <script src=<?php echo JS_PATH."index.js"?>></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+  <!-- JavaScript -->
+  <script src=<?php echo JS_PATH."index.js"?>></script>
 
 </body>
 

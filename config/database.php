@@ -16,7 +16,7 @@ class Database {
             self::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             Functions::logError($e->getMessage());
-            return false;
+            // En lugar de retornar false, lanzar una excepción
         }
 
         return self::$conn;

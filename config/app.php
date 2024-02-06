@@ -28,13 +28,17 @@ require_once CONFIG_DIR . 'functions.php'; // last
 require_once CONFIG_DIR . 'Validator.php'; // last
 
 // Models
-require_once MODELS_DIR . 'Product.php';     // Include the Product model
-require_once MODELS_DIR . 'User.php';     // Include the Product model
+require_once MODELS_DIR . 'Product.php';
+require_once MODELS_DIR . 'User.php';
+require_once MODELS_DIR . 'Categories.php';
 
 // Controllers 
 require CONTROLLERS_DIR . 'HomeController.php';
 require CONTROLLERS_DIR . 'AdminController.php';
 require CONTROLLERS_DIR . 'ProductController.php';
 require CONTROLLERS_DIR . 'AuthController.php';
+require CONTROLLERS_DIR . 'ErrorController.php';
+require CONTROLLERS_DIR . 'CategoriesController.php';
+require CONTROLLERS_DIR . 'ApiClient.php';
 
 

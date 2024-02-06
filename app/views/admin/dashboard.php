@@ -16,6 +16,7 @@
     <a href="../">Go Back</a>
     <div class="button-link-div">
         <a href="product/create" class="button-link">Create a Product</a>
+        <a href="/admin/dashboard/categorias" class="button-link">Manejar Categorias</a>
 
 
     </div>
