@@ -121,30 +121,32 @@
     }
     ?>
 
-    <script>
-        async function loadCategories() {
-            try {
-                const response = await fetch('/api/categorias');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const categories = await response.json();
-
-                const select = document.getElementById('Categoria');
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function loadCategories() {
+        $.ajax({
+            url: '/api/categorias', // Adjust this URL to your correct endpoint.
+            method: 'GET',
+            dataType: 'json', // Expects a response in JSON format.
+            success: function(categories) {
+                const select = $('#Categoria'); // Use jQuery to select the element.
                 categories.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.cat_nom; // Usar el nombre de la categoría como valor
-                    option.textContent = category.cat_nom;
-                    select.appendChild(option);
+                    // Append an option element to the select element for each category.
+                    select.append($('<option>', {
+                        value: category.cat_nom, // Use the category name as the option value.
+                        text: category.cat_nom // Also use the category name as the option text.
+                    }));
                 });
-
-            } catch (error) {
-                console.error('Error al cargar las categorías:', error);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error loading categories:', textStatus, errorThrown);
             }
-        }
+        });
+    }
 
-        document.addEventListener('DOMContentLoaded', loadCategories);
-    </script>
+    $(document).ready(loadCategories);
+</script>
+
 </body>
 
 </html>
