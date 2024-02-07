@@ -1,5 +1,8 @@
 <?php 
 namespace Config;
+
+use Dotenv\Dotenv;
+
 // In /config/app.php
 
 // Define directories
@@ -23,6 +26,8 @@ require_once CORE_DIR . 'ActiveRecord.php'; // Include the ActiveRecord class
 require_once ROOT_DIR . '/Router.php';       // Include the Router class
 
 // Config files
+require __DIR__ . '/../vendor/autoload.php';
+
 require_once CONFIG_DIR . 'database.php';    // Include the Database class
 require_once CONFIG_DIR . 'functions.php'; // last
 require_once CONFIG_DIR . 'Validator.php'; // last
@@ -41,4 +46,7 @@ require CONTROLLERS_DIR . 'ErrorController.php';
 require CONTROLLERS_DIR . 'CategoriesController.php';
 require CONTROLLERS_DIR . 'ApiClient.php';
 
+// Define enviroment variables
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->safeLoad();
 

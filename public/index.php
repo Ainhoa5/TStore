@@ -5,7 +5,7 @@
 // php -S localhost:3000 -t public
 require '../config/app.php';
 
-$router = new Router;
+$router = new Router();
 
 $router->define([
     '' => 'HomeController@index',
