@@ -1,0 +1,11 @@
+{
+  "name": "tstore",
+  "version": "1.0.0",
+  "description": "Este proyecto tiene como objetivo crear una página web para vender merchandising de Taylor Swift. El desarrollo se llevará a cabo sin el uso de frameworks, utilizando PHP y JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
