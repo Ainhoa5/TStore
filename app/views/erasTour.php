@@ -25,32 +25,27 @@
         <?php include '../app/views/partials/header.php'; ?>
      
         <div class="container">
-        <header>
-            <h1>Your Shopping Cart</h1>
-            <div class="shopping">
-                <a href="#"><i class='bx bx-cart-alt'></i></a>
-                <span class="quantity">0 </span>
-            </div>
-        </header>
-        <div class="list"></div>
-    </div>
-    <div class="card">
-        <h1>Card</h1>
-        <ul class="listCard"></ul>
-        <div class="checkout">
-            <div class="total">0</div>
-            <div class="closeShopping">Close</div>
+            <div class="list"></div>
         </div>
-    </div>
 
-    <!-- FOOTER -->
-     <?php include '../templates/footer.php'; ?>
+    <!--TIENDA-->
+    <div class="card">
+            <h1>Card</h1>
+            <ul class="listCard"></ul>
+            <div class="checkout">
+                <div class="total">0</div>
+                <div class="closeShopping">Close</div>
+            </div>
+        </div>        
+
+   
+   
 
 
       <!--Scroll top-->
-      <a href="#" class="scroll">
+      <!-- <a href="#" class="scroll">
     <i class='bx bxs-up-arrow bx-tada' ></i>
-    </a>
+    </a> -->
 
 
     <script src="https://unpkg.com/scrollreveal"></script>

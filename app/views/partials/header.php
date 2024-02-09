@@ -3,14 +3,14 @@
         // Start the session at the beginning of the script
         session_start();
         ?>
-        <a href="#" class="logo">
+        <a href="/" class="logo">
             <i class='bx bxs-album bx-tada' ></i>
             T-Store
         </a>
 
         <ul class="navlist">
 
-            <li><a href="#" class="active">Home</a></li>
+            <li><a href="/" class="active">Home</a></li>
 
             <li><a href="erasTour">Eras</a></li>
             
@@ -27,13 +27,18 @@
                 <!-- User is not logged in, show login link -->
                 <li><a href="authForm">LOGIN</a></li>
             <?php endif; ?>
-
-            <div class="nav-icons">
-            <a href="/pages/widget.html"><i class='bx bx-search-alt' ></i></a>
-            <a href="/pages/tienda.html"><i class='bx bx-cart-alt'></i></a>
-            <div class="bx bx-menu" id="menu-icon"></div>
-            </div>
         </ul>
+        
+        <div class="nav-icons">
+                    <a href="#"><i class='bx bx-search-alt' ></i></a>
+
+                    <div class="shopping">
+                        <a href="#"><i class='bx bx-cart-alt'></i></a>
+                        <span class="quantity">0 </span>
+                    </div>
+
+                    <div class="bx bx-menu" id="menu-icon"></div>
+                </div>
 
 
     </header>
