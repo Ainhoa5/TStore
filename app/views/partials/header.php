@@ -12,7 +12,7 @@
 
             <li><a href="/" class="active">Home</a></li>
 
-            <li><a href="erasTour">Eras</a></li>
+            <li><a href="/erasTour">Eras</a></li>
             
             <?php if (isset($_SESSION['user_role'])): ?>
                 <!-- User is logged in, show user page link -->

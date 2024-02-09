@@ -27,43 +27,8 @@ closeShopping.addEventListener('click', ()=>{
 
 //PRODUCTS
 let products = [
-    {
-        id: 1,
-        name: 'Product 01',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 2,
-        name: 'Product 02',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 3,
-        name: 'Product 03',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 4,
-        name: 'Product 04',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 5,
-        name: 'Product 05',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 6,
-        name: 'Product 06',
-        image: '01.png',
-        price: 12      
-    }
 ];
+
 let listCards = [];
 function initApp(){
     products.forEach((value, key)=>{

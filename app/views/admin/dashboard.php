@@ -20,8 +20,6 @@
 
     </div>
     <div class="product-parent">
-        <?php
-        ?>
         <?php foreach ($products as $product): ?>
             <div class="product-container">
                 <img src="<?php echo file_exists(IMG_PRODUCTS_PATH . $product['ImagenURL']) ? IMG_PRODUCTS_PATH . $product['ImagenURL'] : IMG_PRODUCTS_PATH . 'default-placeholder.png'; ?>"

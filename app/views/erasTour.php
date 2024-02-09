@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Lato:wght@300;400;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
             <!-- NOSCRIPT -->
             <noscript>
                 <div style="background-color: white; color: black; padding: 10px; text-align: center;">
@@ -25,7 +27,44 @@
         <?php include '../app/views/partials/header.php'; ?>
      
         <div class="container">
-            <div class="list"></div>
+            <div class="list">
+            <?php foreach ($products as $product): ?>
+            <div class="product-container">
+                <img src="<?php echo file_exists(IMG_PRODUCTS_PATH . $product['ImagenURL']) ? IMG_PRODUCTS_PATH . $product['ImagenURL'] : IMG_PRODUCTS_PATH . 'default-placeholder.png'; ?>"
+                    alt="Product Image">
+                <h1>
+                    <?php echo htmlspecialchars($product['Nombre']); ?>
+                </h1>
+                <p>
+                    <?php echo htmlspecialchars($product['Descripcion']); ?>
+                </p>
+                <div class="product-data">
+                    <p>
+                        <?php echo htmlspecialchars($product['Precio']); ?>
+                    </p>
+                    <p>
+                        <?php echo htmlspecialchars($product['Stock']); ?>
+                    </p>
+                    <p>
+                        <?php echo htmlspecialchars($product['Categoria']); ?>
+                    </p>
+                </div>
+                <div class="product-buttons">
+                    <!-- Update Button/Form -->
+                    <a href="product/edit/<?php echo $product['ProductoID']; ?>" class="button-link">Edit</a>
+
+
+
+                    <!-- Delete Button/Form -->
+                    <a href="product/delete/<?php echo $product['ProductoID']; ?>" class="button-link">Delete</a>
+
+                </div>
+            </div>
+        <?php endforeach; ?>  
+            </div>
+
+            
+
         </div>
 
     <!--TIENDA-->
