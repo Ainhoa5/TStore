@@ -131,9 +131,27 @@
         unset($_SESSION['validation_errors'], $_SESSION['form_data']); // Clear the form data after populating the form
     }
     ?>
+
+        <!--Scroll top-->
+        <a href="/" class="scroll">
+        <i class='bx bxs-home-heart bx-tada' ></i>
+        </a>
+
+        <!--LOADER-->
+     <div class="loader-container">
+        <!-- <img src="img/index/Cube-white.gif" alt=""> -->
+        <i class='bx bxs-album bx-spin' ></i>
+        <!-- <i class='bx bxs-ghost bx-tada' ></i> -->
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+
+
     <!-- Enlace al JS -->
     <link rel="stylesheet" href="<?php echo $cssPath; ?>clientlogin.css">
     <script src="<?php echo JS_PATH; ?>clientlogin.js"></script>
+    
 </body>
 
 </html>
