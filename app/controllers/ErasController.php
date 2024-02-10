@@ -13,10 +13,15 @@ class ErasController
     public function erasTour()
     {
         $products = $this->productModel->findAll();
+
+        $productosJson = json_encode($products);
+
         require VIEWS_DIR . 'erasTour.php'; // Load the view
+
     }
 
     // Other methods for handling create, update, delete...
+    
 }
 
 ?>

@@ -24,30 +24,31 @@ openShopping.addEventListener('click', ()=>{
 closeShopping.addEventListener('click', ()=>{
     body.classList.remove('active');
 })
+console.log(productos);
+//productos
 
-//PRODUCTS
-let products = [
-];
 
 let listCards = [];
 function initApp(){
-    products.forEach((value, key)=>{
+    productos.forEach((value, key)=>{
         let newDiv = document.createElement('div');
         newDiv.classList.add('item');
         newDiv.innerHTML = `
-            <img src="img/${value.image}"/>
-            <div class="title">${value.name}</div>
-            <div class="price">${value.price+"€"}</div>
+            <img src="img/products/${value.ImagenURL}"/>
+            <div class="title">${value.Nombre}</div>
+            <div class="price">${value.Precio+"€"}</div>
+
             <button onclick="addToCard(${key})">Add To Card</button>
+            
         `;
         list.appendChild(newDiv);
     })
 }
 initApp();
 function addToCard(key) {
-    let productId = products[key].id;
+    let productId = productos[key].ProductoID;
     if(!listCards[productId]){
-        listCards[productId] = {...products[key], quantity: 1};
+        listCards[productId] = {...productos[key], quantity: 1};
     } else {
         listCards[productId].quantity++;
     }
@@ -60,18 +61,18 @@ function reloadCard(){
     let totalPrice = 0;
 
     Object.values(listCards).forEach((product) => {
-        let productTotalPrice = product.price * product.quantity;
+        let productTotalPrice = product.Precio * product.quantity;
         totalPrice += productTotalPrice;
         count += product.quantity;
 
         let newDiv = document.createElement('li');
         newDiv.innerHTML = `
-            <div><img src="img/${product.image}"></div>
-            <div>${product.name}</div>
+            <div><img src="img/products/${product.ImagenURL}"></div>
+            <div>${product.Nombre}</div>
             <div>
-                <button onclick="changeQuantity(${product.id}, ${product.quantity - 1})">-</button>
+                <button onclick="changeQuantity(${product.ProductoID}, ${product.quantity - 1})">-</button>
                 <div class="count">${product.quantity}</div>
-                <button onclick="changeQuantity(${product.id}, ${product.quantity + 1})">+</button>
+                <button onclick="changeQuantity(${product.ProductoID}, ${product.quantity + 1})">+</button>
             </div>
         `;
         listCard.appendChild(newDiv);
