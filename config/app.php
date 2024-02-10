@@ -30,6 +30,8 @@ require_once CONFIG_DIR . 'Validator.php'; // last
 // Models
 require_once MODELS_DIR . 'Product.php';     // Include the Product model
 require_once MODELS_DIR . 'User.php';     // Include the Product model
+require_once MODELS_DIR . 'Pedidos.php';
+require_once MODELS_DIR . 'DetallePedido.php';  
 
 // Controllers 
 require CONTROLLERS_DIR . 'HomeController.php';
@@ -37,5 +39,6 @@ require CONTROLLERS_DIR . 'AdminController.php';
 require CONTROLLERS_DIR . 'ProductController.php';
 require CONTROLLERS_DIR . 'AuthController.php';
 require CONTROLLERS_DIR . 'ErasController.php';
+require CONTROLLERS_DIR . 'PedidosController.php';
 
 

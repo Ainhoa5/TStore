@@ -46,8 +46,10 @@
             <h1>Card</h1>
             <ul class="listCard"></ul>
             <div class="checkout">
+            <button onclick="finalizeOrder()">Puta</button>
                 <div class="total">0</div>
                 <div class="closeShopping">Close</div>
+                
             </div>
         </div>        
 

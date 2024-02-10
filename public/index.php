@@ -20,6 +20,7 @@ $router->define([
     'admin/product/delete/(:num)' => 'ProductController@delete',
     'product/save' => 'ProductController@save',
     'erasTour' => 'ErasController@erasTour',
+    'order' => 'PedidosController@crearPedido'
     // other routes...
 ]);
 

@@ -39,7 +39,7 @@ function initApp(){
             <div class="price">${value.Precio+"€"}</div>
 
             <button onclick="addToCard(${key})">Add To Card</button>
-            
+
         `;
         list.appendChild(newDiv);
     })
@@ -89,6 +89,26 @@ function changeQuantity(productId, quantity){
         listCards[productId].quantity = quantity;
     }
     reloadCard();
+}
+
+function finalizeOrder() {
+    fetch('/order', { // Asegúrate de reemplazar esto con la URL correcta del servidor
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            productos: Object.values(listCards) // Convierte el objeto listCards a un array y lo envía
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Pedido creado con éxito:', data);
+        // Aquí puedes manejar la respuesta del servidor, como redirigir al usuario o mostrar un mensaje de éxito
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
 
 
