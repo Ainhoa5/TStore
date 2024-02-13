@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="container-form register">
+    <div class="container-form register hide">
         <div class="information">
             <div class="info-childs">
                 <h2>Welcome</h2>
@@ -63,7 +63,7 @@
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
-                    <input type="submit" name="registrarse" value="Sign up">
+                    <input type="submit" name="sign up" value="Sign up">
                 </form>
             </div>
         </div>
@@ -71,12 +71,12 @@
 
 
 
-    <div class="container-form login hide">
+    <div class="container-form login ">
         <div class="information">
             <div class="info-childs">
                 <h2>Welcome</h2>
                 <p>Being a Swiftie is a lifestyle that may not be financially profitable, but emotionally, it's the best experience in this life.</p>
-                <input type="button" value="Registrarse" id="sign-up">
+                <input type="button" value="sign-up" id="sign-up">
             </div>
 
         </div>

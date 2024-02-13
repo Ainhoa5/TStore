@@ -10,7 +10,7 @@
 }
 :root{
 
-    --main-color: #dec0fc; 
+    --main-color: #94e1ea; 
     --text-color: #111111;
     --other-color: #212121;
     --second-color: #111111;
@@ -274,6 +274,29 @@ header.sticky{
     border-radius: 2rem;
 }
 
+/*LOADER*/
+.loader-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+    color: #94e1ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.loader-container i{
+    /* width: 15rem; */
+    font-size: 350px;
+}
+.loader-container.fade-out{
+    top: 110%;
+    opacity: 0;
+}
 
 
 

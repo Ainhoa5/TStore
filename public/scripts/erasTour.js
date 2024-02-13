@@ -34,12 +34,10 @@ function initApp(){
         let newDiv = document.createElement('div');
         newDiv.classList.add('item');
         newDiv.innerHTML = `
-            <img src="img/products/${value.ImagenURL}"/>
+        <img src="img/products/${value.ImagenURL}" onerror="this.onerror=null;this.src='img/products/default-placeholder.png';">
             <div class="title">${value.Nombre}</div>
             <div class="price">${value.Precio+"€"}</div>
-
             <button onclick="addToCard(${key})">Add To Card</button>
-
         `;
         list.appendChild(newDiv);
     })
@@ -103,7 +101,8 @@ function finalizeOrder() {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Pedido creado con éxito:', data);
+        console.log( data.message);
+       alert(String(data.message));
         // Aquí puedes manejar la respuesta del servidor, como redirigir al usuario o mostrar un mensaje de éxito
     })
     .catch((error) => {
@@ -137,7 +136,16 @@ const sr = ScrollReveal({
 
 sr.reveal ('.container',{delay:400});
 
-sr.reveal ('.middle-text',{});
-sr.reveal ('.row-btn,.shop-content',{delay:200});
+sr.reveal ('.card',{delay:200});
 
-sr.reveal ('.review-content,.contact',{delay:200});
+
+//LOADER
+function loader(){
+    document.querySelector('.loader-container').classList.add('fade-out');
+}
+
+function fadeOut(){
+    setInterval(loader, 1200);
+}
+
+window.onload = fadeOut;

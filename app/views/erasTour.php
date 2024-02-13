@@ -55,13 +55,10 @@
 
    
    
-
-
-      <!--Scroll top-->
-      <!-- <a href="#" class="scroll">
-    <i class='bx bxs-up-arrow bx-tada' ></i>
-    </a> -->
-
+ <!--LOADER-->
+ <div class="loader-container">
+    <i class='bx bx-dollar bx-tada' ></i>
+    </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     
