@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($product) ? 'Edit Product' : 'Create Product'; ?></title>
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>forms.css">
+            <!--BOX ICONS-->
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -100,6 +102,11 @@
         unset($_SESSION['validation_errors'], $_SESSION['form_data']); // Clear the form data after populating the form
     }
     ?>
+
+            <!--Scroll top-->
+            <a href="/admin/dashboard" class="scroll">
+          <i class='bx bxs-ghost bx-tada' ></i>
+        </a>
 </body>
 
 </html>

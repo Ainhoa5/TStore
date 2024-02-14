@@ -31,7 +31,7 @@
 }
 
 .product-buttons form:first-child button {
-    background-color: #007bff; /* Blue color for the update button */
+    background-color: #ffc0e9; /* Blue color for the update button */
 }
 
 .product-buttons form:last-child button {
@@ -136,7 +136,7 @@
 }
 
 .product-buttons form:first-child button {
-    background-color: #007bff; /* Blue color for the update button */
+    background-color: #ffc0e9; /* Blue color for the update button */
 }
 
 .product-buttons form:last-child button {
@@ -212,8 +212,8 @@
     display: inline-block;
     padding: 10px 20px;
     margin: 5px;
-    border: 1px solid #007bff; /* Blue border */
-    background-color: #007bff; /* Blue background */
+    border: 1px solid #94e1ea; /* Blue border */
+    background-color: #94e1ea; /* Blue background */
     color: white; /* White text */
     text-align: center;
     text-decoration: none;
@@ -222,10 +222,30 @@
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
+ .button-link2 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #fdcdcd; /* Blue border */
+    background-color: #fdcdcd; /* Blue background */
+    color: white; /* White text */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+.button-link2:hover{
+    background-color: #d49696; /* Darker blue background on hover/focus */
+    border-color: #d49696; /* Darker blue border on hover/focus */
+    color: #fff; /* Text color remains white */
+    text-decoration: none;
+}
 
 .button-link:hover, .button-link:focus {
-    background-color: #0056b3; /* Darker blue background on hover/focus */
-    border-color: #0056b3; /* Darker blue border on hover/focus */
+    background-color: #7fc9d1; /* Darker blue background on hover/focus */
+    border-color: #7fc9d1; /* Darker blue border on hover/focus */
     color: #fff; /* Text color remains white */
     text-decoration: none; /* No underline on hover/focus */
 }
@@ -234,6 +254,24 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     height: 100px; /* Or any height you want for the div */
+}
+.scroll{
+    position: fixed;
+    bottom: 2.2rem;
+    border-top: 2rem;
+    right: 3.2rem;
+}
+.scroll i{
+    align-items: center;
+    font-size: 60px;
+    color: #ffc0e9;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
+}
+.scroll i:hover{
+    scale: 1.3;
+    
 }
 
 /*LOADER*/
@@ -254,6 +292,10 @@
 .loader-container i{
     /* width: 15rem; */
     font-size: 350px;
+}
+.loader-container i:hover{
+    /* width: 15rem; */
+    color: #7fc9d1;
 }
 .loader-container.fade-out{
     top: 110%;

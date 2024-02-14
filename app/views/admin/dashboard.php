@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <a href="../">Go Back</a>
     <div class="button-link-div">
         <a href="product/create" class="button-link">Create a Product</a>
 
@@ -50,7 +49,7 @@
 
 
                     <!-- Delete Button/Form -->
-                    <a href="product/delete/<?php echo $product['ProductoID']; ?>" class="button-link">Delete</a>
+                    <a href="product/delete/<?php echo $product['ProductoID']; ?>" class="button-link2">Delete</a>
 
                 </div>
             </div>
@@ -58,6 +57,10 @@
 
     </div>
 
+        <!--Scroll top-->
+        <a href="/" class="scroll">
+          <i class='bx bxs-ghost bx-tada' ></i>
+        </a>
 
     <!--LOADER-->
     <div class="loader-container">
