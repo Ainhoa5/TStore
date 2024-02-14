@@ -9,8 +9,8 @@
         <?php echo isset($product) ? 'Edit Product' : 'Create Product'; ?>
     </title>
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>forms.css">
-            <!--BOX ICONS-->
-            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!--BOX ICONS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -123,37 +123,37 @@
     }
     ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    function loadCategories() {
-        $.ajax({
-            url: '/api/categorias', // Adjust this URL to your correct endpoint.
-            method: 'GET',
-            dataType: 'json', // Expects a response in JSON format.
-            success: function(categories) {
-                const select = $('#Categoria'); // Use jQuery to select the element.
-                categories.forEach(category => {
-                    // Append an option element to the select element for each category.
-                    select.append($('<option>', {
-                        value: category.cat_nom, // Use the category name as the option value.
-                        text: category.cat_nom // Also use the category name as the option text.
-                    }));
-                });
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error loading categories:', textStatus, errorThrown);
-            }
-        });
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function loadCategories() {
+            $.ajax({
+                url: '/api/categorias', // Adjust this URL to your correct endpoint.
+                method: 'GET',
+                dataType: 'json', // Expects a response in JSON format.
+                success: function (categories) {
+                    const select = $('#Categoria'); // Use jQuery to select the element.
+                    categories.forEach(category => {
+                        // Append an option element to the select element for each category.
+                        select.append($('<option>', {
+                            value: category.cat_nom, // Use the category name as the option value.
+                            text: category.cat_nom // Also use the category name as the option text.
+                        }));
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error loading categories:', textStatus, errorThrown);
+                }
+            });
+        }
 
-    $(document).ready(loadCategories);
-</script>
+        $(document).ready(loadCategories);
+    </script>
 
 
-            <!--Scroll top-->
-            <a href="/admin/dashboard" class="scroll">
-          <i class='bx bxs-ghost bx-tada' ></i>
-        </a>
+    <!--Scroll top-->
+    <a href="/admin/dashboard" class="scroll">
+        <i class='bx bxs-ghost bx-tada'></i>
+    </a>
 </body>
 
 </html>

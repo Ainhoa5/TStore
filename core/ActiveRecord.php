@@ -22,15 +22,22 @@ class ActiveRecord
     protected $table;
 
     /**
+     * @var string Nombre de la clave primaria de la tabla en la base de datos a la cual esta clase hace referencia.
+     */
+    protected $primaryKey;
+
+    /**
      * Constructor de la clase.
      *
      * @param \PDO $db Instancia de la conexión a la base de datos.
      * @param string $table Nombre de la tabla en la base de datos.
+     * @param string $id Nombre de la clave primaria de la tabla en la base de datos.
      */
-    public function __construct($db, $table)
+    public function __construct($db, $table, $primaryKey)
     {
         $this->db = $db;
         $this->table = $table;
+        $this->primaryKey = $primaryKey;
     }
 
     /**
@@ -60,7 +67,8 @@ class ActiveRecord
     public function findById($id)
     {
         try {
-            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+            // Usa la propiedad $this->primaryKey en la cláusula WHERE
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$this->primaryKey} = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -114,7 +122,7 @@ class ActiveRecord
             }
             $updatesString = implode(', ', $updates);
 
-            $sql = "UPDATE {$this->table} SET {$updatesString} WHERE id = :id";
+            $sql = "UPDATE {$this->table} SET {$updatesString} WHERE {$this->primaryKey} = :id";
             $stmt = $this->db->prepare($sql);
 
             foreach ($data as $key => $value) {
