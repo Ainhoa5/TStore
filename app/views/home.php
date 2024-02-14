@@ -92,7 +92,9 @@
         <div class="merch-container">
             <?php foreach ($latestProducts as $product): ?>
                 <div class='box'>
+                   
                     <div class='box-img'>
+                    <a href="/erasTour">
                         <!-- Image and product details -->
                         <?php
                         // Assuming $imgPath contains the path to the image folder relative to the server file system
@@ -104,7 +106,7 @@
                         ?>
 
                         <img src="<?php echo htmlspecialchars($imageUrl); ?>" alt="Product Image">
-
+                        </a>
                     </div>
                     <h2>
                         <?php echo htmlspecialchars($product['Nombre']); ?>
@@ -114,8 +116,9 @@
                     </h3>
                     <span>
                         <?php echo htmlspecialchars($product['Precio']); ?>€
-                    </span>
-                    <i class='bx bxs-cart'></i>
+                    </span><a href="/erasTour">
+                    <i class='bx bxs-badge-dollar bx-tada' ></i>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>

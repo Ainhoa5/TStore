@@ -119,7 +119,11 @@ header.sticky{
     margin-top: 60px;
     padding-top: 60px;
     padding-bottom: 100px;
+    
    
+}
+.item:hover{
+    scale: 1.1;
 }
 /*CARD*/
 .card{
@@ -138,10 +142,11 @@ header.sticky{
     font-weight: 100;
     margin: 0;
     padding: 0 20px;
+    padding-left: 20px;
     height: 80px;
     display: flex;
-    align-items:end;
-    justify-content:end;
+    align-items:start;
+    justify-content:start;
 }
 .card .checkout{
     position: absolute;
@@ -151,7 +156,7 @@ header.sticky{
     grid-template-columns: repeat(2, 1fr);
 }
 .card .checkout div{
-    background-color: var(--main-color);
+    background-color: #fdcdcd;
     color: var(--bg-color);
     width: 100%;
     height: 70px;
@@ -164,6 +169,19 @@ header.sticky{
 .card .checkout div:nth-child(2){
     background-color: var(--text-color);
     color: var(--bg-color);
+
+}
+.card .checkout button{
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
 
 }
 .active .card{
@@ -292,6 +310,10 @@ header.sticky{
 .loader-container i{
     /* width: 15rem; */
     font-size: 350px;
+}
+.loader-container i:hover{
+    /* width: 15rem; */
+    color: #fff0c0;
 }
 .loader-container.fade-out{
     top: 110%;

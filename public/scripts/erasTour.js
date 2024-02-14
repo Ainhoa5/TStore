@@ -37,7 +37,7 @@ function initApp(){
         <img src="img/products/${value.ImagenURL}" onerror="this.onerror=null;this.src='img/products/default-placeholder.png';">
             <div class="title">${value.Nombre}</div>
             <div class="price">${value.Precio+"€"}</div>
-            <button onclick="addToCard(${key})">Add To Card</button>
+            <button class="btn" onclick="addToCard(${key})">Add To Card</button>
         `;
         list.appendChild(newDiv);
     })
@@ -65,7 +65,7 @@ function reloadCard(){
 
         let newDiv = document.createElement('li');
         newDiv.innerHTML = `
-            <div><img src="img/products/${product.ImagenURL}"></div>
+            <div><img src="img/products/${product.ImagenURL}" onerror="this.onerror=null;this.src='img/products/default-placeholder.png';"></div>
             <div>${product.Nombre}</div>
             <div>
                 <button onclick="changeQuantity(${product.ProductoID}, ${product.quantity - 1})">-</button>
@@ -79,6 +79,7 @@ function reloadCard(){
     total.innerText = totalPrice.toLocaleString();
     quantity.innerText = count;
 }
+
 
 function changeQuantity(productId, quantity){
     if(quantity <= 0){
@@ -128,15 +129,16 @@ window.onscroll = () => {
 //SCROLL
 const sr = ScrollReveal({
   origin: 'top',
-  distance: '85px',
-  duration: 2200,
-  reset: true
+  distance: '285px',
+  duration: 2500,
+  reset: false
 })
 
 
-sr.reveal ('.container',{delay:400});
+sr.reveal ('.item',{delay:800});
+sr.reveal ('.contact',{delay:800});
 
-sr.reveal ('.card',{delay:200});
+
 
 
 //LOADER

@@ -46,14 +46,15 @@
             <h1>Card</h1>
             <ul class="listCard"></ul>
             <div class="checkout">
-            <button onclick="finalizeOrder()">Puta</button>
+            <button onclick="finalizeOrder()">Buy</button>
                 <div class="total">0</div>
                 <div class="closeShopping">Close</div>
                 
             </div>
         </div>        
 
-   
+       <!-- TEMPLATE FOOTER -->
+       <?php include '../app/views/partials/footer.php'; ?>
    
  <!--LOADER-->
  <div class="loader-container">

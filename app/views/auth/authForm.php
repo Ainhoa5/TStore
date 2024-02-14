@@ -17,7 +17,7 @@
 
 <body>
     <div class="container-form register hide">
-        <div class="information">
+        <div class="information2">
             <div class="info-childs">
                 <h2>Welcome</h2>
                 <p>Being a Swiftie is a lifestyle that may not be financially profitable, but emotionally, it's the best experience in this life.</p>

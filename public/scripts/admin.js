@@ -9,3 +9,14 @@ function fadeOut(){
 }
 
 window.onload = fadeOut;
+
+//SCROLL
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '85px',
+    duration: 2200,
+    reset: true
+})
+
+
+sr.reveal ('.product-parent',{delay:400});
