@@ -1,11 +1,29 @@
 <?php
 namespace App\Controllers;
+
 // In /app/controllers/ProductController.php
-//require_once 'config/app.php';
+
+/**
+ * Controlador para gestionar productos dentro del panel de administración.
+ *
+ * Proporciona métodos para crear, editar, eliminar y guardar productos,
+ * incluyendo la validación de los datos del formulario.
+ */
 class ProductController
 {
+
+    /**
+     * Modelo de producto para interactuar con la base de datos de productos.
+     *
+     * @var \App\Models\Product
+     */
     private $productModel;
 
+    /**
+     * Constructor de la clase.
+     *
+     * Establece la conexión con la base de datos e inicializa el modelo de producto.
+     */
     public function __construct()
     {
         $db = \Config\Database::connect();
@@ -19,11 +37,18 @@ class ProductController
         $this->productModel = new \App\Models\Product($db);
     }
 
-
+    /**
+     * Muestra el formulario para crear o editar un producto.
+     *
+     * Si se proporciona un ID, carga los datos del producto para editar.
+     * De lo contrario, muestra un formulario vacío para crear un nuevo producto.
+     *
+     * @param int|null $id ID del producto para editar, null para crear un nuevo producto.
+     */
     public function createForm($id = null)
     {
         $product = null;
-        
+
 
         session_start();
         if (isset($_SESSION['form_data'])) {
@@ -35,6 +60,11 @@ class ProductController
         require VIEWS_DIR . 'admin/formProduct.php';
     }
 
+    /**
+     * Elimina un producto basado en el ID proporcionado.
+     *
+     * @param int $id ID del producto a eliminar
+     */
     public function delete($id)
     {
         $this->productModel->delete($id); // Fetch product data for editing
@@ -43,6 +73,12 @@ class ProductController
         exit;
     }
 
+    /**
+     * Maneja la solicitud de guardar un producto.
+     *
+     * Este método valida los datos del formulario, crea un nuevo producto o actualiza uno existente
+     * dependiendo de si se proporcionó un ID de producto, y redirige al dashboard de administración.
+     */
     public function save()
     {
         $validator = new \Config\Validator();
@@ -55,7 +91,7 @@ class ProductController
             'Stock' => $_POST['Stock'] ?? '',
             'Categoria' => $_POST['Categoria'] ?? '',
             //'ImagenURL' => $_POST['ImagenURL'] ?? '',
-            // ... extract other fields
+            // ... extraer otros campos
         ];
         // Validation rules
         $rules = [
@@ -65,14 +101,14 @@ class ProductController
             'Stock' => ['isEmpty', 'isNumeric'],
             'Categoria' => ['isEmpty', 'isValidString'],
             //'ImagenURL' => ['isEmpty'],
-            // ... additional rules
+            // ... reglas adicionales
         ];
 
-        // Perform validation
+        // Realizar validación
         $errors = $validator->validate($data, $rules);
 
         if (!empty($errors)) {
-            // Save errors and form data to the session
+            // Guardar errores y datos del formulario en la sesión
             session_start();
             $_SESSION['validation_errors'] = $errors;
             $data['ProductoID'] = $_POST['ProductoID']; // add ID to data
