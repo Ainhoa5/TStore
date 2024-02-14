@@ -1,8 +1,6 @@
 <?php
 namespace App\Controllers;
 
-use Config\Functions;
-
 // In /app/controllers/AuthController.php
 
 class AuthController
@@ -11,6 +9,13 @@ class AuthController
     public function __construct()
     {
         $db = \Config\Database::connect(); // Assuming you have a static method to get the DB instance
+        if (!$db) {
+            // Manejar el error de conexión, por ejemplo:
+            session_start();
+            $_SESSION['error'] = 'No se pudo establecer la conexión con la base de datos.';
+            header('Location: errorPage'); // Suponiendo que tienes una página de error genérica
+            exit;
+        }
         $this->userModel = new \App\Models\User($db);
     }
     public function showAuthForm()

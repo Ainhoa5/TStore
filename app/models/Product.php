@@ -6,7 +6,7 @@ class Product extends \Core\ActiveRecord
 {
     public function __construct($db)
     {
-        parent::__construct($db, 'Productos');
+        parent::__construct($db, 'Productos', 'ProductoID');
     }
 
     // Add any product-specific methods here
