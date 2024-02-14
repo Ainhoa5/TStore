@@ -285,3 +285,4 @@
 [2024-02-06 21:34:39] Error: SQLSTATE[HY000] [1049] Unknown database 'tstoree'
 [2024-02-07 16:25:37] Error: SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
 [2024-02-10 18:21:15] Error: SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[2024-02-14 14:13:06] Error: SQLSTATE[HY000] [1049] Unknown database 'tstoree'

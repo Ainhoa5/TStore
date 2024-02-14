@@ -1,11 +1,17 @@
 <?php 
 namespace Config;
+// In /config/app.php
 
 use Dotenv\Dotenv;
 
-// In /config/app.php
+/**
+ * Configuración principal de la aplicación.
+ *
+ * Este archivo contiene definiciones de rutas de directorios, configuración de entorno,
+ * y la inclusión de clases y archivos necesarios para la operación de la aplicación.
+ */
 
-// Define directories
+// Definición de rutas de directorios para facilitar el acceso a diferentes partes de la aplicación.
 define('ROOT_DIR', realpath(__DIR__ . '/..'));
 define('VIEWS_DIR', ROOT_DIR . '/app/views/');
 define('MODELS_DIR', ROOT_DIR . '/app/models/');
@@ -21,25 +27,26 @@ define('IMG_PRODUCTS_PATH', IMG_PATH .'products/');
 define('JS_PATH', 'scripts/');
 
 
-// Core classes
-require_once CORE_DIR . 'ActiveRecord.php';
-require_once ROOT_DIR . '/Router.php';
+// Carga de clases core de la aplicación.
+require_once CORE_DIR . 'ActiveRecord.php'; // Clase base para el patrón Active Record.
+require_once ROOT_DIR . '/Router.php'; // Clase para manejar el enrutamiento.
 
-// Config files
+// Carga automática de dependencias a través de Composer.
 require __DIR__ . '/../vendor/autoload.php';
 
-require_once CONFIG_DIR . 'database.php';
-require_once CONFIG_DIR . 'functions.php';
-require_once CONFIG_DIR . 'Validator.php';
+// Carga de archivos de configuración y utilidades.
+require_once CONFIG_DIR . 'database.php'; // Configuración de la conexión a la base de datos.
+require_once CONFIG_DIR . 'functions.php'; // Funciones de utilidad.
+require_once CONFIG_DIR . 'Validator.php'; // Clase para validación de datos.
 
-// Models
+// Carga de modelos.
 require_once MODELS_DIR . 'Categories.php';
 require_once MODELS_DIR . 'DetallePedido.php';  
 require_once MODELS_DIR . 'Pedidos.php';
 require_once MODELS_DIR . 'Product.php';
 require_once MODELS_DIR . 'User.php';
 
-// Controllers 
+// Carga de controladores.
 require CONTROLLERS_DIR . 'AdminController.php';
 require CONTROLLERS_DIR . 'ApiClient.php';
 require CONTROLLERS_DIR . 'AuthController.php';
@@ -50,7 +57,7 @@ require CONTROLLERS_DIR . 'HomeController.php';
 require CONTROLLERS_DIR . 'PedidosController.php';
 require CONTROLLERS_DIR . 'ProductController.php';
 
-// Define enviroment variables
+// Configuración de variables de entorno.
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->safeLoad();
+$dotenv->safeLoad(); // Carga segura de variables de entorno desde el archivo .env.
 
