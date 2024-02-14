@@ -235,3 +235,27 @@
     align-items: center; /* Center vertically */
     height: 100px; /* Or any height you want for the div */
 }
+
+/*LOADER*/
+.loader-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+    color: #ffc0e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.loader-container i{
+    /* width: 15rem; */
+    font-size: 350px;
+}
+.loader-container.fade-out{
+    top: 110%;
+    opacity: 0;
+}
