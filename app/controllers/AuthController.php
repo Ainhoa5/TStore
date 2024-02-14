@@ -1,5 +1,8 @@
 <?php
 namespace App\Controllers;
+
+use Config\Functions;
+
 // In /app/controllers/AuthController.php
 
 class AuthController
@@ -40,11 +43,17 @@ class AuthController
                 $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
                 $userId = $userInfo['UsuarioID'];
                 $userRole = $userInfo['Rol'];
+                $userEmail = $userInfo['Email'];
+                
+               
 
                 // Store in session
                 session_start();
                 $_SESSION['user_id'] = $userId;
                 $_SESSION['user_role'] = $userRole;
+                $_SESSION['user_email'] = $userEmail;
+               
+            
 
                 // Redirect to the dashboard or appropriate page
                 header('Location: ./');
@@ -106,10 +115,13 @@ class AuthController
             $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
             $userId = $userInfo['UsuarioID'];
             $userRole = $userInfo['Rol'];
+          
 
             // Store in session
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_role'] = $userRole;
+           
+
             // Redirect to the appropriate page
             header('Location: ./');
             exit;
