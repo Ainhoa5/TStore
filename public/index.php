@@ -5,7 +5,7 @@
 // php -S localhost:3000 -t public
 require '../config/app.php';
 
-$router = new Router();
+$router = new Router;
 
 $router->define([
     '' => 'HomeController@index',
@@ -20,8 +20,7 @@ $router->define([
     'admin/product/edit/(:num)' => 'ProductController@createForm',
     'admin/product/delete/(:num)' => 'ProductController@delete',
     'product/save' => 'ProductController@save',
-    'erasTour' => 'ErasController@erasTour',
-    'order' => 'PedidosController@crearPedido',
+    'erasTour' => 'HomeController@erasTour',
     // API
     'admin/dashboard/categorias' => 'AdminController@showCategoriasDashboard',
     'createCategoria' => 'CategoriesController@showForm',
@@ -31,13 +30,12 @@ $router->define([
     'api/addCategoria' => 'CategoriesController@addCategoria',
     'api/updateCategoria' => 'CategoriesController@updateCategoria',
     'updateFormCategoria' => 'CategoriesController@fillUpdateForm',
+    // other routes...
 ]);
 
-/* $uri = $_SERVER['REQUEST_URI'];
-$uri = str_replace('/Projects/TStore/', '', $uri); // Adjust this based on your project structure
+$uri = $_SERVER['REQUEST_URI'];
+$uri = str_replace('/proyectos/TStore/', '', $uri); // Adjust this based on your project structure
 $uri = trim($uri, '/');
-$router->direct($uri); */
-$uri = trim($_SERVER['REQUEST_URI'], '/');
 $router->direct($uri);
 
 

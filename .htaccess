@@ -1,4 +1,5 @@
-Options -MultiViews
 RewriteEngine On
+RewriteBase /proyectos/TStore/public/
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php [QSA,L]

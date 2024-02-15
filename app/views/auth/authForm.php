@@ -16,23 +16,23 @@
 </head>
 
 <body>
-    <div class="container-form register hide">
+    <div class="container-form register">
         <div class="information">
             <div class="info-childs">
-                <h2>Welcome</h2>
-                <p>Being a Swiftie is a lifestyle that may not be financially profitable, but emotionally, it's the best experience in this life.</p>
-                <input type="button" value="Log in" id="sign-in">
+                <h2>Bienvenido</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui deleniti ratione tempora, alias pariatur non doloremque enim hic impedit praesentium repellat.</p>
+                <input type="button" value="Iniciar Sesión" id="sign-in">
             </div>
 
         </div>
         <div class="form-information">
             <div class="form-information-childs">
-                <h2>Create an account.</h2>
+                <h2>Crear una Cuenta</h2>
                 <div class="icons">
                     <i class='bx bx-envelope'></i>
                     <i class='bx bxl-meta'></i>
                 </div>
-                <p>Or use your email to sign up.</p>
+                <p>o usa tu email para registrarte</p>
                 <form class="form" action="process-signup" method="post">
                     <?php
                     session_start();
@@ -40,7 +40,7 @@
                     <!-- EMAIL -->
                     <label>
                         <i class='bx bxs-envelope'></i>
-                        <input type="email" name="email" placeholder="Email address">
+                        <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
                     <?php if (isset($_SESSION['validation_errors']['email'])) : ?>
                         <div class="error-message">
@@ -53,7 +53,7 @@
                     <!-- PASSWORD -->
                     <label>
                         <i class='bx bx-lock'></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </label>
                     
                     <?php if (isset($_SESSION['validation_errors']['password'])) : ?>
@@ -63,7 +63,7 @@
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
-                    <input type="submit" name="sign up" value="Sign up">
+                    <input type="submit" name="registrarse" value="Registrarse">
                 </form>
             </div>
         </div>
@@ -71,27 +71,27 @@
 
 
 
-    <div class="container-form login ">
+    <div class="container-form login hide">
         <div class="information">
             <div class="info-childs">
-                <h2>Welcome</h2>
-                <p>Being a Swiftie is a lifestyle that may not be financially profitable, but emotionally, it's the best experience in this life.</p>
-                <input type="button" value="sign-up" id="sign-up">
+                <h2>Bienvenido</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui deleniti ratione tempora, alias pariatur non doloremque enim hic impedit praesentium repellat.</p>
+                <input type="button" value="Registrarse" id="sign-up">
             </div>
 
         </div>
         <div class="form-information">
             <div class="form-information-childs">
-                <h2>Log in</h2>
+                <h2>Iniciar Sesión</h2>
                 <div class="icons">
                     <i class='bx bx-envelope'></i>
                     <i class='bx bxl-meta'></i>
                 </div>
-                <p>Log in with an account.</p>
+                <p>Iniciar Sesión con una cuenta</p>
                 <form class="form" action="process-login" method="post">
                     <label>
                         <i class='bx bxs-envelope'></i>
-                        <input type="email" name="email" placeholder="Email address">
+                        <input type="email" name="email" placeholder="Correo electrónico">
                     </label>
                     <?php if (isset($_SESSION['validation_errors']['email'])) : ?>
                         <div class="error-message">
@@ -102,7 +102,7 @@
                     <?php endif; ?>
                     <label>
                         <i class='bx bx-lock'></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </label>
                     <?php if (isset($_SESSION['validation_errors']['password'])) : ?>
                         <div class="error-message">
@@ -119,7 +119,7 @@
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
-                    <input type="submit" name="login" value="Log in">
+                    <input type="submit" name="login" value="Iniciar Sesión">
                 </form>
             </div>
         </div>
@@ -131,25 +131,9 @@
         unset($_SESSION['validation_errors'], $_SESSION['form_data']); // Clear the form data after populating the form
     }
     ?>
-
-        <!--Scroll top-->
-        <a href="/" class="scroll">
-        <i class='bx bxs-home-heart bx-tada' ></i>
-        </a>
-
-         <!--LOADER-->
-    <div class="loader-container">
-        <i class='bx bxs-album bx-spin' ></i>
-    </div>
-   
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-
-
     <!-- Enlace al JS -->
     <link rel="stylesheet" href="<?php echo $cssPath; ?>clientlogin.css">
     <script src="<?php echo JS_PATH; ?>clientlogin.js"></script>
-    
 </body>
 
 </html>

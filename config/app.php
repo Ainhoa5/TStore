@@ -1,8 +1,5 @@
 <?php 
 namespace Config;
-
-use Dotenv\Dotenv;
-
 // In /config/app.php
 
 // Define directories
@@ -22,35 +19,26 @@ define('JS_PATH', 'scripts/');
 
 
 // Core classes
-require_once CORE_DIR . 'ActiveRecord.php';
-require_once ROOT_DIR . '/Router.php';
+require_once CORE_DIR . 'ActiveRecord.php'; // Include the ActiveRecord class
+require_once ROOT_DIR . '/Router.php';       // Include the Router class
 
 // Config files
-require __DIR__ . '/../vendor/autoload.php';
-
-require_once CONFIG_DIR . 'database.php';
-require_once CONFIG_DIR . 'functions.php';
-require_once CONFIG_DIR . 'Validator.php';
+require_once CONFIG_DIR . 'database.php';    // Include the Database class
+require_once CONFIG_DIR . 'functions.php'; // last
+require_once CONFIG_DIR . 'Validator.php'; // last
 
 // Models
-require_once MODELS_DIR . 'Categories.php';
-require_once MODELS_DIR . 'DetallePedido.php';  
-require_once MODELS_DIR . 'Pedidos.php';
 require_once MODELS_DIR . 'Product.php';
 require_once MODELS_DIR . 'User.php';
+require_once MODELS_DIR . 'Categories.php';
 
 // Controllers 
-require CONTROLLERS_DIR . 'AdminController.php';
-require CONTROLLERS_DIR . 'ApiClient.php';
-require CONTROLLERS_DIR . 'AuthController.php';
-require CONTROLLERS_DIR . 'CategoriesController.php';
-require CONTROLLERS_DIR . 'ErasController.php';
-require CONTROLLERS_DIR . 'ErrorController.php';
 require CONTROLLERS_DIR . 'HomeController.php';
-require CONTROLLERS_DIR . 'PedidosController.php';
+require CONTROLLERS_DIR . 'AdminController.php';
 require CONTROLLERS_DIR . 'ProductController.php';
+require CONTROLLERS_DIR . 'AuthController.php';
+require CONTROLLERS_DIR . 'ErrorController.php';
+require CONTROLLERS_DIR . 'CategoriesController.php';
+require CONTROLLERS_DIR . 'ApiClient.php';
 
-// Define enviroment variables
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->safeLoad();
 

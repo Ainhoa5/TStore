@@ -2,10 +2,11 @@
 <section class="contact" id="contact">
         <div class="contact-content">
            <div class="contact-text">
-                <h2>Contact us.</h2>
+                <h2>Contáctanos</h2>
                 <p>
-                To contact us, do not hesitate to use the information provided below. You can email us at our email address or give us a call.
-                 Additionally, we invite you to follow us on our social media channels to stay informed about our latest news and updates.
+                    Para contactarnos, no dudes en utilizar la información proporcionada a continuación.
+                    Puedes escribirnos a nuestra dirección de correo electrónico o llamarnos.
+                    Además, te invitamos a seguirnos en nuestras redes sociales para mantenerte al tanto de nuestras últimas novedades y actualizaciones.
                    
                 </p>
                 <div class="social">
@@ -20,17 +21,17 @@
            <div class="details">
                 <!--Ubicación-->
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-location-plus'></i>West Reading, Pensilvania, United States</a>
+                    <a href="#"><i class='bx bx-location-plus'></i>Las Palmas de Gran Canaria</a>
                 </div>
 
                 <!--Correo-->
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-envelope'></i></i>taylorswift@umgstores.com.</i></a>
+                    <a href="#"><i class='bx bx-envelope'></i></i>Aromas&Recetas@gmail.com</i></a>
                 </div>
 
                 <!--Telefono-->
                 <div class="main-d">
-                    <a href="#"><i class='bx bx-phone-call'></i>+12 13 19 89 34</i></a>
+                    <a href="#"><i class='bx bx-phone-call'></i>+34 726 15 43 19</i></a>
                 </div>
 
            </div>

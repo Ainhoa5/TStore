@@ -11,6 +11,11 @@ namespace App\Controllers;
  */
 class CategoriesController
 {
+    /**
+     * Modelo de categorías para interactuar con la API.
+     *
+     * @var Categories
+     */
     private $model;
 
     /**
@@ -21,7 +26,7 @@ class CategoriesController
     public function __construct()
     {
         // Asegúrate de que la clase ApiClient y la URL base sean correctas.
-        $apiClient = new \APP\Controllers\ApiClient('http://localhost/Projects/PERSONAL_WebServicePostman/index.php?op=');
+        $apiClient = new ApiClient('http://localhost/Projects/PERSONAL_WebServicePostman/index.php?op=');
         $this->model = new \APP\Models\Categories($apiClient);
     }
     /**

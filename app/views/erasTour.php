@@ -15,8 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;700&family=Lato:wght@300;400;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
             <!-- NOSCRIPT -->
             <noscript>
                 <div style="background-color: white; color: black; padding: 10px; text-align: center;">
@@ -26,39 +24,34 @@
         <!--HEADER-->
         <?php include '../app/views/partials/header.php'; ?>
      
-    <script>
-    // Incrusta los datos del producto en una variable de JavaScript
-    const productos = <?php echo $productosJson; ?>;
-
-    </script>
-
         <div class="container">
-            <div class="list">
-
+        <header>
+            <h1>Your Shopping Cart</h1>
+            <div class="shopping">
+                <a href="#"><i class='bx bx-cart-alt'></i></a>
+                <span class="quantity">0 </span>
             </div>
-
-            
-
-        </div>
-
-    <!--TIENDA-->
-    <div class="card">
-            <h1>Card</h1>
-            <ul class="listCard"></ul>
-            <div class="checkout">
-            <button onclick="finalizeOrder()">Puta</button>
-                <div class="total">0</div>
-                <div class="closeShopping">Close</div>
-                
-            </div>
-        </div>        
-
-   
-   
- <!--LOADER-->
- <div class="loader-container">
-    <i class='bx bx-dollar bx-tada' ></i>
+        </header>
+        <div class="list"></div>
     </div>
+    <div class="card">
+        <h1>Card</h1>
+        <ul class="listCard"></ul>
+        <div class="checkout">
+            <div class="total">0</div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+     <?php include '../templates/footer.php'; ?>
+
+
+      <!--Scroll top-->
+      <a href="#" class="scroll">
+    <i class='bx bxs-up-arrow bx-tada' ></i>
+    </a>
+
 
     <script src="https://unpkg.com/scrollreveal"></script>
     
