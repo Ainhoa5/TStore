@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use Config\Functions;
+
 // In /app/controllers/AuthController.php
 
 /**
@@ -81,8 +83,6 @@ class AuthController
                 $userId = $userInfo['UsuarioID'];
                 $userRole = $userInfo['Rol'];
                 $userEmail = $userInfo['Email'];
-                
-               
 
                 // Store in session
                 session_start();
