@@ -27,7 +27,7 @@ function updateCategoriesView(categories) {
 
     categories.forEach(category => { // Crea y configura elementos del DOM para cada categoría
         const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'category-item'; // Agregado para estilizar
+        categoryDiv.className = 'product-container'; // Agregado para estilizar
 
         const categoryName = document.createElement('h3');
         const categoryDesc = document.createElement('p');
@@ -41,13 +41,13 @@ function updateCategoriesView(categories) {
         // Configuración del input oculto
         hiddenInput.type = 'hidden';
         hiddenInput.value = category.cat_id;
-        hiddenInput.className = 'category-id'; // Clase para identificar el input oculto
+        hiddenInput.className = 'product-data'; // Clase para identificar el input oculto
 
         // Configurando botones
         editButton.textContent = 'Editar';
         deleteButton.textContent = 'Eliminar';
-        editButton.className = 'edit-btn'; // Clase para estilizar e identificar
-        deleteButton.className = 'delete-btn'; // Clase para estilizar e identificar
+        editButton.className = 'button-link'; // Clase para estilizar e identificar
+        deleteButton.className = 'button-link2'; // Clase para estilizar e identificar
         deleteButton.setAttribute('data-category-id', category.cat_id);
         editButton.setAttribute('data-category-id', category.cat_id);
 

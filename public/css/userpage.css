@@ -389,7 +389,7 @@ header.sticky{
         --big-font: 3.3rem;
         --h2-font: 2rem;
     }
-    .home-img img{
+    body{
         width: 100%;
         max-width: 490px;
         height: auto;
@@ -412,7 +412,7 @@ header.sticky{
     .home-text{
         padding-top: 60px;
     }
-    .home-img{
+    body{
         text-align: center;
     }
     .about{
@@ -428,6 +428,11 @@ header.sticky{
         gap: 1.5rem;
     }
     .contact-img img{
+        width: 100%;
+        max-width: 170px;
+        height: auto;
+    }
+    body{
         width: 100%;
         max-width: 170px;
         height: auto;

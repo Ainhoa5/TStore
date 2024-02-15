@@ -1,4 +1,4 @@
-#modern-form {
+#modern-form, #edit-categoria-form, #category-form {
     max-width: 500px;
     margin: 0 auto;
     padding: 2rem;
@@ -7,7 +7,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#modern-form .form-group {
+
+#modern-form .form-group, #edit-categoria-form, #category-form {
     margin-bottom: 1rem;
 }
 
@@ -19,7 +20,11 @@
 }
 
 #modern-form .form-group input,
-#modern-form .form-group textarea {
+#modern-form .form-group textarea,
+#edit-categoria-form .form-group input,
+#edit-categoria-form .form-group textarea,
+#category-form .form-group input,
+#category-form .form-group textarea {
     width: 100%;
     max-width: 100%;
     padding: 0.8rem;
@@ -31,13 +36,19 @@
 }
 
 #modern-form .form-group input:focus,
-#modern-form .form-group textarea:focus {
+#modern-form .form-group textarea:focus,
+#edit-categoria-form .form-group input:focus,
+#edit-categoria-form .form-group textarea:focus,
+#category-form .form-group input:focus,
+#category-form .form-group textarea:focus {
     border-color: #94e1ea;
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
-#modern-form button[type="submit"] {
+#modern-form button[type="submit"],
+#edit-categoria-form button[type="submit"],
+#category-form button[type="submit"] {
     width: 100%;
     padding: 1rem;
     border: none;
@@ -49,10 +60,14 @@
     transition: background-color 0.3s ease;
 }
 
-#modern-form button[type="submit"]:hover {
+#modern-form button[type="submit"]:hover,
+#edit-categoria-form button[type="submit"]:hover,
+#category-form button[type="submit"]:hover {
     background-color: #0056b3;
 }
-#modern-form {
+#modern-form,
+#edit-categoria-form,
+#category-form {
     max-width: 500px;
     margin: 0 auto;
     padding: 2rem;

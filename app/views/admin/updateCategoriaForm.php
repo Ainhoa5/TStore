@@ -8,18 +8,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/updateForm.css">
+    <title>Category Update</title>
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>forms.css">
+        <!--BOX ICONS-->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <h1>Update Product</h1>
     <form id="edit-categoria-form">
+        <br>
+        <div class="form-group">
         <input type="hidden" id="cat_id" name="cat_id">
-        <input type="text" id="cat_nom" name="cat_nom" placeholder="Nombre de la Categoría" required>
-        <textarea id="cat_obs" name="cat_obs" placeholder="Observaciones de la Categoría"></textarea>
+        <input type="text" id="cat_nom" name="cat_nom" placeholder="Category Name" required>
+        <br>
+        <textarea id="cat_obs" name="cat_obs" placeholder="Category Description"></textarea>
+        <br>
 
-        <button type="submit">Actualizar Producto</button>
+        <button  type="submit">Update Product</button>
+        </div>
+
     </form>
     <script>
     /**
@@ -43,7 +50,13 @@
     });
 </script>
 
+    <!--Scroll top-->
+    <a href="/admin/dashboard/categorias" class="scroll">
+        <i class='bx bxs-ghost bx-tada'></i>
+    </a>
+
     <script src="/scripts/updateCategoriaForm.js"></script>
+
 </body>
 
 </html>

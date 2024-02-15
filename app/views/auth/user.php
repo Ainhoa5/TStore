@@ -1,4 +1,5 @@
 <!-- In /app/views/auth/user.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +19,21 @@
 </head>
 <body>
         <!-- TEMPLATE HEADER -->
-        <?php include '../app/views/partials/header.php'; ?>
+        <?php
+
+use Config\Functions;
+
+ include '../app/views/partials/header.php'; 
+        ?>
+
+
+        
     <div class="container">
       <div class="boxcontainer">
        <div class="box">
         <div class="content">
           <img src="/img/index/05_Lover_Slider.png">
-          <h2>Profile <br><span>Your Profile</span></h2>
+          <h2>Hi! <br><span><?php  echo($_SESSION['user_email']); ?></span></h2>
           <a href="logout">logout</a>
         </div>
        </div>
