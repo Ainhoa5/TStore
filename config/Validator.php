@@ -1,4 +1,5 @@
 <?php
+
 namespace Config;
 
 // In /config/Validator.php
@@ -122,7 +123,17 @@ class Validator
         }
     }
 
-     private function isValidImage($file, $field) {
+    /**
+     * Valida si el archivo proporcionado es una imagen válida según los criterios especificados.
+     *
+     * Esta función verifica si el archivo cargado cumple con las restricciones de tipo y tamaño.
+     * Los tipos de archivos permitidos son JPEG y PNG, y el tamaño máximo del archivo es de 5MB.
+     *
+     * @param array $file El archivo a validar, típicamente un elemento del array $_FILES.
+     * @param string $field El nombre del campo utilizado para reportar errores de validación.
+     */
+    private function isValidImage($file, $field)
+    {
         // Define allowed file types and max file size (5MB in this case)
         $allowedTypes = ['image/jpeg', 'image/png'];
         $maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
@@ -147,4 +158,3 @@ class Validator
     }
     // Add more validation methods as needed...
 }
-
