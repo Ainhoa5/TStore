@@ -1,3 +1,12 @@
+/*MÉTODO EN JS PARA EL HEADER DEL MENÚ*/
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", function() {
+    header.classList.toggle("sticky", this.window.scrollY > 80);
+});
+
+
+
 let openShopping = document.querySelector('.shopping');
 let closeShopping = document.querySelector('.closeShopping');
 let list = document.querySelector('.list');
@@ -6,61 +15,28 @@ let body = document.querySelector('body');
 let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
 
+
+
 openShopping.addEventListener('click', ()=>{
     body.classList.add('active');
 })
+
 closeShopping.addEventListener('click', ()=>{
     body.classList.remove('active');
 })
+console.log(productos);
+//productos
 
-//PRODUCTS
-let products = [
-    {
-        id: 1,
-        name: 'Product 01',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 2,
-        name: 'Product 02',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 3,
-        name: 'Product 03',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 4,
-        name: 'Product 04',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 5,
-        name: 'Product 05',
-        image: '01.png',
-        price: 12      
-    },
-    {
-        id: 6,
-        name: 'Product 06',
-        image: '01.png',
-        price: 12      
-    }
-];
+
 let listCards = [];
 function initApp(){
-    products.forEach((value, key)=>{
+    productos.forEach((value, key)=>{
         let newDiv = document.createElement('div');
         newDiv.classList.add('item');
         newDiv.innerHTML = `
-            <img src="img/${value.image}"/>
-            <div class="title">${value.name}</div>
-            <div class="price">${value.price+"€"}</div>
+        <img src="img/products/${value.ImagenURL}" onerror="this.onerror=null;this.src='img/products/default-placeholder.png';">
+            <div class="title">${value.Nombre}</div>
+            <div class="price">${value.Precio+"€"}</div>
             <button onclick="addToCard(${key})">Add To Card</button>
         `;
         list.appendChild(newDiv);
@@ -68,46 +44,108 @@ function initApp(){
 }
 initApp();
 function addToCard(key) {
-    if(listCards[key] == null){
-        listCards[key] = products[key];
-        listCards[key].quantity = 1;
+    let productId = productos[key].ProductoID;
+    if(!listCards[productId]){
+        listCards[productId] = {...productos[key], quantity: 1};
+    } else {
+        listCards[productId].quantity++;
     }
     reloadCard();
 }
+
 function reloadCard(){
     listCard.innerHTML = '';
     let count = 0;
     let totalPrice = 0;
-    listCards.forEach((value, key) => {
-        totalPrice = totalPrice + value.price;
-        count = count + value.quantity;
-    
-        if(value != null){
-            let newDiv = document.createElement('li');
-            newDiv.innerHTML = `
-                <div><img src="img/${value.image}"</div>
-                <div>${value.name}</div>
-                <div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
-                    <div class="count">${value.quantity}</div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
-                </div>
 
-            `
-            listCard.appendChild(newDiv);
-        }
-    
-    })
+    Object.values(listCards).forEach((product) => {
+        let productTotalPrice = product.Precio * product.quantity;
+        totalPrice += productTotalPrice;
+        count += product.quantity;
+
+        let newDiv = document.createElement('li');
+        newDiv.innerHTML = `
+            <div><img src="img/products/${product.ImagenURL}"></div>
+            <div>${product.Nombre}</div>
+            <div>
+                <button onclick="changeQuantity(${product.ProductoID}, ${product.quantity - 1})">-</button>
+                <div class="count">${product.quantity}</div>
+                <button onclick="changeQuantity(${product.ProductoID}, ${product.quantity + 1})">+</button>
+            </div>
+        `;
+        listCard.appendChild(newDiv);
+    });
+
     total.innerText = totalPrice.toLocaleString();
     quantity.innerText = count;
 }
 
-function changeQuantity(key, quantity){
-    if(quantity == 0){
-        delete listCards[key];
-    }else{
-        listCards[key].quantity = quantity;
-        listCards[key].price = products[key].price * quantity;
+function changeQuantity(productId, quantity){
+    if(quantity <= 0){
+        delete listCards[productId];
+    } else {
+        listCards[productId].quantity = quantity;
     }
     reloadCard();
 }
+
+function finalizeOrder() {
+    fetch('/order', { // Asegúrate de reemplazar esto con la URL correcta del servidor
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            productos: Object.values(listCards) // Convierte el objeto listCards a un array y lo envía
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log( data.message);
+       alert(String(data.message));
+        // Aquí puedes manejar la respuesta del servidor, como redirigir al usuario o mostrar un mensaje de éxito
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+
+// MENU
+let menu = document.querySelector('#menu-icon');
+let navlist = document.querySelector('.navlist');
+menu.onclick = () => {
+    menu.classList.toggle('bx-x');
+    navlist.classList.toggle('open');
+};
+
+window.onscroll = () => {
+    menu.classList.remove('bx-x');
+    navlist.classList.remove('open');
+}
+
+
+//SCROLL
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '85px',
+  duration: 2200,
+  reset: true
+})
+
+
+sr.reveal ('.container',{delay:400});
+
+sr.reveal ('.card',{delay:200});
+
+
+//LOADER
+function loader(){
+    document.querySelector('.loader-container').classList.add('fade-out');
+}
+
+function fadeOut(){
+    setInterval(loader, 1200);
+}
+
+window.onload = fadeOut;

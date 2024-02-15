@@ -22,6 +22,7 @@ body{
     max-width: 900px; /*Tamaño máximo que tendrá el formulario */
     transition: all 1s ease;
     margin: 10px;
+    margin-top: 200px;
     /* border: solid thin black; */
 }
 
@@ -200,4 +201,43 @@ body{
         border-bottom-left-radius: 20px;
         border-top-right-radius: 0px;
     }
+}
+
+/*LOADER*/
+.loader-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: #fff;
+    color: #aec0fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.loader-container i{
+    /* width: 15rem; */
+    font-size: 350px;
+}
+.loader-container.fade-out{
+    top: 110%;
+    opacity: 0;
+}
+
+.scroll{
+    position: fixed;
+    bottom: 2.2rem;
+    border-top: 2rem;
+    right: 3.2rem;
+}
+.scroll i{
+    align-items: center;
+    font-size: 50px;
+    color: #aec0fc;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
 }
