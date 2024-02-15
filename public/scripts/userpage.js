@@ -28,15 +28,6 @@ const sr = ScrollReveal({
 
 sr.reveal ('.container',{delay:400});
 
-sr.reveal ('.about-img',{});
-sr.reveal ('.about-text',{delay:250});
-
-sr.reveal ('.middle-text',{});
-sr.reveal ('.row-btn,.shop-content',{delay:250});
-
-sr.reveal ('.slider',{delay:300});
-sr.reveal ('.review-content,.contact',{delay:250});
-sr.reveal ('.merch-container, .box',{delay:250});
 
 //LOADER
 function loader(){
@@ -44,7 +35,7 @@ function loader(){
 }
 
 function fadeOut(){
-    setInterval(loader, 1000);
+    setInterval(loader, 1200);
 }
 
 window.onload = fadeOut;

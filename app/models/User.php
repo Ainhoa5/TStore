@@ -1,15 +1,39 @@
 <?php
 namespace App\Models;
+
 // In /app/models/User.php
+
+/**
+ * Modelo de usuario para manejar las operaciones de la base de datos relacionadas con los usuarios.
+ *
+ * Este modelo proporciona funcionalidades para verificar credenciales de usuario,
+ * crear nuevos usuarios, y obtener información de usuario específica.
+ */
 class User
 {
+    /**
+     * Instancia de la base de datos para realizar operaciones de base de datos.
+     *
+     * @var \PDO
+     */
     protected $db;
 
+    /**
+     * Constructor del modelo de usuario.
+     *
+     * @param \PDO $db Instancia de la conexión a la base de datos.
+     */
     public function __construct($db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Verifica las credenciales de inicio de sesión del usuario.
+     *
+     * @param array $fields Contiene los campos 'email' y 'password' para autenticación.
+     * @return bool Retorna true si las credenciales son correctas, de lo contrario false.
+     */
     public function verificarCredenciales($fields)
     {
         try {
@@ -44,7 +68,12 @@ class User
     }
 
 
-
+    /**
+     * Crea un nuevo usuario en la base de datos.
+     *
+     * @param array $fields Contiene los campos necesarios para crear el usuario, incluyendo 'email' y 'password'.
+     * @return bool Retorna true si el usuario es creado con éxito, de lo contrario false.
+     */
     public function createUser($fields)
     {
         try {
@@ -54,7 +83,7 @@ class User
                 return false;
             }
 
-            // Assuming 'password' field holds the hashed password
+            // 'password' field holds the hashed password
             $email = $fields['email'];
             $passwordHash = $fields['password'];
 
@@ -80,10 +109,16 @@ class User
         }
     }
 
+    /**
+     * Obtiene la información de usuario por email.
+     *
+     * @param string $email El email del usuario para buscar su información.
+     * @return array|false Retorna un array asociativo con la información del usuario o false en caso de error.
+     */
     public function getUserInfoByEmail($email)
     {
         try {
-            $query = "SELECT UsuarioID, Rol FROM Usuarios WHERE Email = :email";
+            $query = "SELECT UsuarioID, Rol, Email  FROM Usuarios WHERE Email = :email";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
@@ -96,6 +131,12 @@ class User
 
     }
 
+    /**
+     * Verifica si el email ya existe en la base de datos.
+     *
+     * @param string $email El email a verificar.
+     * @return bool Retorna true si el email ya existe, de lo contrario false.
+     */
     public function emailExists($email)
     {
         try {

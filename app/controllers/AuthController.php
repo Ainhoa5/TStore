@@ -1,31 +1,65 @@
 <?php
 namespace App\Controllers;
 
+use Config\Functions;
+
 // In /app/controllers/AuthController.php
 
+/**
+ * Controlador de autenticación para gestionar las operaciones relacionadas con el usuario.
+ *
+ * Este controlador maneja las vistas de formulario de autenticación, registro, y la lógica de inicio
+ * y cierre de sesión de los usuarios.
+ */
 class AuthController
 {
+    /**
+     * Modelo de usuario para interactuar con la base de datos de usuarios.
+     *
+     * @var \App\Models\User
+     */
     private $userModel;
+
+    /**
+     * Constructor del AuthController.
+     *
+     * Establece la conexión con la base de datos e inicializa el modelo de usuario.
+     */
     public function __construct()
     {
-        $db = \Config\Database::connect(); // Assuming you have a static method to get the DB instance
+        $db = \Config\Database::connect();
         if (!$db) {
-            // Manejar el error de conexión, por ejemplo:
+            // Manejar el error de conexión:
             session_start();
             $_SESSION['error'] = 'No se pudo establecer la conexión con la base de datos.';
-            header('Location: errorPage'); // Suponiendo que tienes una página de error genérica
+            header('Location: errorPage'); // redirigir a la página de error genérica
             exit;
         }
         $this->userModel = new \App\Models\User($db);
     }
+
+    /**
+     * Muestra el formulario de autenticación para inicio de sesión o registro.
+     */
     public function showAuthForm()
     {
-        require VIEWS_DIR . 'auth/authForm.php'; // Path to your home view file
+        require VIEWS_DIR . 'auth/authForm.php';
     }
+
+    /**
+     * Muestra la página de perfil del usuario.
+     */
     public function showUserPage()
     {
-        require VIEWS_DIR . 'auth/user.php'; // Path to your home view file
+        require VIEWS_DIR . 'auth/user.php';
     }
+
+    /**
+     * Procesa el inicio de sesión del usuario.
+     *
+     * Valida los campos del formulario y verifica las credenciales contra la base de datos.
+     * Redirige al usuario según el resultado de la autenticación.
+     */
     public function processLogin()
     {
         $validator = new \Config\Validator();
@@ -36,7 +70,7 @@ class AuthController
         ];
         $rules = [
             'email' => ['isEmpty', 'isValidEmail'],
-            'password' => ['isEmpty'], // Removed 'isSecurePassword' as it's not needed for login
+            'password' => ['isEmpty'],
         ];
 
         $errors = $validator->validate($fields, $rules);
@@ -48,11 +82,15 @@ class AuthController
                 $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
                 $userId = $userInfo['UsuarioID'];
                 $userRole = $userInfo['Rol'];
+                $userEmail = $userInfo['Email'];
 
                 // Store in session
                 session_start();
                 $_SESSION['user_id'] = $userId;
                 $_SESSION['user_role'] = $userRole;
+                $_SESSION['user_email'] = $userEmail;
+               
+            
 
                 // Redirect to the dashboard or appropriate page
                 header('Location: ./');
@@ -72,7 +110,12 @@ class AuthController
         }
     }
 
-
+    /**
+     * Procesa el registro de un nuevo usuario.
+     *
+     * Valida los campos del formulario y, si son válidos, crea un nuevo registro de usuario en la base de datos.
+     * Redirige al usuario según el resultado del registro.
+     */
     public function processSignUp()
     {
         $validator = new \Config\Validator();
@@ -114,10 +157,13 @@ class AuthController
             $userInfo = $this->userModel->getUserInfoByEmail($fields['email']);
             $userId = $userInfo['UsuarioID'];
             $userRole = $userInfo['Rol'];
+          
 
             // Store in session
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_role'] = $userRole;
+           
+
             // Redirect to the appropriate page
             header('Location: ./');
             exit;
@@ -131,6 +177,11 @@ class AuthController
         }
     }
 
+    /**
+     * Cierra la sesión del usuario.
+     *
+     * Elimina los datos de la sesión del usuario y redirige a la página de inicio de sesión.
+     */
     public function logout()
     {
         session_start();
