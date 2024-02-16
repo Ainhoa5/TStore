@@ -1,4 +1,5 @@
 <?php
+
 namespace Config;
 
 // In /config/Validator.php
@@ -30,6 +31,13 @@ class Validator
             if (isset($rules[$field])) {
                 foreach ($rules[$field] as $rule) {
                     $this->$rule($value, $field);
+                }
+            }
+        }
+        foreach ($_FILES as $fileField => $fileValue) {
+            if (isset($rules[$fileField])) {
+                foreach ($rules[$fileField] as $rule) {
+                    $this->$rule($fileValue, $fileField);
                 }
             }
         }
@@ -115,5 +123,38 @@ class Validator
         }
     }
 
-    // Se pueden añadir más métodos de validación según sea necesario...
+    /**
+     * Valida si el archivo proporcionado es una imagen válida según los criterios especificados.
+     *
+     * Esta función verifica si el archivo cargado cumple con las restricciones de tipo y tamaño.
+     * Los tipos de archivos permitidos son JPEG y PNG, y el tamaño máximo del archivo es de 5MB.
+     *
+     * @param array $file El archivo a validar, típicamente un elemento del array $_FILES.
+     * @param string $field El nombre del campo utilizado para reportar errores de validación.
+     */
+    private function isValidImage($file, $field)
+    {
+        // Define allowed file types and max file size (5MB in this case)
+        $allowedTypes = ['image/jpeg', 'image/png'];
+        $maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+
+        // Check if file is uploaded
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            $this->errors[$field][] = 'Error uploading file';
+            return;
+        }
+
+        // Check file size
+        if ($file['size'] > $maxFileSize) {
+            $this->errors[$field][] = 'File is too large. Maximum size is 5MB.';
+            return;
+        }
+
+        // Check file type
+        if (!in_array($file['type'], $allowedTypes)) {
+            $this->errors[$field][] = 'Invalid file type. Only JPEG and PNG are allowed.';
+            return;
+        }
+    }
+    // Add more validation methods as needed...
 }

@@ -118,7 +118,7 @@ class User
     public function getUserInfoByEmail($email)
     {
         try {
-            $query = "SELECT UsuarioID, Rol FROM Usuarios WHERE Email = :email";
+            $query = "SELECT UsuarioID, Rol, Email  FROM Usuarios WHERE Email = :email";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
