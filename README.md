@@ -12,10 +12,6 @@ Este proyecto tiene como objetivo crear una página web para vender merchandisin
    4. [Instalar dependencias](#instalar-dependencias)
 3. [Iniciar el servidor de desarrollo](#iniciar-el-servidor-de-desarrollo)
 4. [Uso](#uso)
-5. [Diseño](#diseño)
-6. [Desarrollo](#desarrollo)
-7. [Pruebas](#pruebas)
-8. [Despliegue](#despliegue)
 
 ## Pre-requisitos
 
