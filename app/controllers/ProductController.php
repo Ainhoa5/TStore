@@ -79,8 +79,14 @@ class ProductController
     /**
      * Maneja la solicitud de guardar un producto.
      *
-     * Este método valida los datos del formulario, crea un nuevo producto o actualiza uno existente
-     * dependiendo de si se proporcionó un ID de producto, y redirige al dashboard de administración.
+     * Este método valida los datos del formulario recibidos a través de $_POST, crea un nuevo producto o actualiza uno existente
+     * dependiendo de si se proporcionó un ID de producto. Finalmente, redirige al dashboard de administración.
+     * Utiliza la clase Validator para realizar la validación de los datos del formulario.
+     * 
+     * @uses \Config\Validator Para validar los datos del formulario de producto.
+     * 
+     * No retorna un valor explícitamente pero realiza una redirección a otra página basada en el resultado de la operación.
+     * @return void
      */
     public function save()
     {
