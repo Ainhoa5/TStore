@@ -41,6 +41,7 @@ class HomeController
      *
      * Recupera los últimos productos del modelo de productos y carga la vista de inicio
      * para mostrarlos.
+     * @return void No retorna ningún valor, pero incluye la vista home.php para su renderización en el navegador.
      */
     public function index()
     {
@@ -51,6 +52,7 @@ class HomeController
      * Muestra la página 'Eras Tour'.
      *
      * Carga la vista correspondiente a la página 'Eras Tour'.
+     * @return void No retorna ningún valor, pero incluye la vista erasTour.php para su renderización en el navegador.
      */
     public function erasTour()
     {

@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+
 // In /app/controllers/HomeController.php
 
 /**
@@ -8,15 +9,18 @@ namespace App\Controllers;
  * Este controlador se utiliza para mostrar una vista genérica de error cuando ocurre
  * una situación excepcional o se solicita una ruta no existente.
  */
-class ErrorController {
-    
+class ErrorController
+{
+
     /**
      * Muestra la página de error.
      *
      * Este método carga la vista correspondiente a la página de error, proporcionando
      * una respuesta visual al usuario cuando algo va mal en la aplicación.
+     * @return void No retorna ningún valor, pero incluye la vista errorPage.php para su renderización en el navegador.
      */
-    public function errorPage() {
+    public function errorPage()
+    {
         require VIEWS_DIR . 'errorPage.php';
     }
 }

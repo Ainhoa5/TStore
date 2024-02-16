@@ -43,6 +43,8 @@ class PedidosController
      * Este método recibe datos de un pedido y sus productos asociados, crea un nuevo pedido
      * en la base de datos y luego agrega los detalles del pedido. Requiere que el usuario esté
      * autenticado y tenga un ID de usuario válido en la sesión.
+     * 
+     * @return void No retorna datos directamente, pero envía una respuesta JSON al cliente.
      */
     public function crearPedido()
     {

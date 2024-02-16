@@ -35,6 +35,7 @@ class ErasController
      *
      * Recupera todos los productos disponibles y los prepara para ser presentados
      * en la vista de 'Eras Tour', codificándolos en formato JSON para su uso en el cliente.
+     * @return void No retorna ningún valor, pero incluye la vista erasTour.php para su renderización en el navegador.
      */
     public function erasTour()
     {

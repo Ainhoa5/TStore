@@ -29,6 +29,7 @@ class CategoriesController
      *
      * Carga la vista del dashboard de categorías, donde se utilizará AJAX
      * para cargar dinámicamente el contenido.
+     * @return void No retorna ningún valor, pero incluye la vista dashboardCategoria.php para su renderización en el navegador.
      */
     public function showDashboard()
     {
@@ -37,6 +38,7 @@ class CategoriesController
 
     /**
      * Muestra el formulario para añadir una nueva categoría.
+     * @return void No retorna ningún valor, pero incluye la vista formCategoria.php para su renderización en el navegador.
      */
     public function showForm()
     {
@@ -47,6 +49,7 @@ class CategoriesController
      * Envía las categorías existentes en formato JSON.
      *
      * Recupera todas las categorías a través del modelo y las devuelve en formato JSON.
+     * @return void
      */
     public function getCategoriasJson()
     {
@@ -60,6 +63,8 @@ class CategoriesController
      * Elimina una categoría específica.
      *
      * Recibe los datos necesarios para eliminar una categoría y la elimina a través del modelo.
+     * 
+     * @return void
      */
     public function deleteCategoria()
     {
@@ -73,7 +78,8 @@ class CategoriesController
     /**
      * Añade una nueva categoría.
      *
-     * Recibe los datos de la nueva categoría y la añade a través del modelo.
+     * Recibe los datos de la nueva categoría y la añade a través del modelo. * 
+     * @return void
      */
     public function addCategoria()
     {
@@ -88,7 +94,8 @@ class CategoriesController
     /**
      * Actualiza una categoría existente.
      *
-     * Recibe los datos actualizados de una categoría y la actualiza a través del modelo.
+     * Recibe los datos actualizados de una categoría y la actualiza a través del modelo. * 
+     * @return void
      */
     public function updateCategoria()
     {
@@ -102,7 +109,8 @@ class CategoriesController
     /**
      * Obtiene los detalles de una categoría específica por su ID.
      *
-     * Recibe el ID de una categoría y devuelve sus detalles a través del modelo.
+     * Recibe el ID de una categoría y devuelve sus detalles a través del modelo. * 
+     * @return void
      */
     public function getCategoriaById()
     {
@@ -114,7 +122,8 @@ class CategoriesController
     }
 
     /**
-     * Carga el formulario de actualización de categorías que será rellenado con los datos de una categoría específica.
+     * Carga el formulario de actualización de categorías que será rellenado con los datos de una categoría específica. * 
+     * @return void
      */
     public function fillUpdateForm()
     {

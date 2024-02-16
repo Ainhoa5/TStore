@@ -38,6 +38,7 @@ class AuthController
 
     /**
      * Muestra el formulario de autenticación para inicio de sesión o registro.
+     * @return void
      */
     public function showAuthForm()
     {
@@ -46,6 +47,7 @@ class AuthController
 
     /**
      * Muestra la página de perfil del usuario.
+     * @return void
      */
     public function showUserPage()
     {
@@ -55,8 +57,17 @@ class AuthController
     /**
      * Procesa el inicio de sesión del usuario.
      *
-     * Valida los campos del formulario y verifica las credenciales contra la base de datos.
-     * Redirige al usuario según el resultado de la autenticación.
+     * Este método valida los campos de correo electrónico y contraseña del formulario de inicio de sesión.
+     * Si los campos son válidos, verifica las credenciales contra los registros de la base de datos.
+     * Si la autenticación es exitosa, almacena la información relevante del usuario en la sesión y
+     * redirige al usuario a la página de inicio o dashboard. En caso de error en la validación o 
+     * credenciales incorrectas, redirige al usuario de nuevo al formulario de inicio de sesión
+     * con mensajes de error adecuados.
+     *
+     * @uses \Config\Validator para validar los campos del formulario.
+     * @uses \App\Models\User::verificarCredenciales() para verificar las credenciales del usuario.
+     *
+     * @return void No retorna directamente, pero envía al cliente a diferentes rutas basadas en el resultado de la autenticación.
      */
     public function processLogin()
     {
@@ -107,8 +118,18 @@ class AuthController
     /**
      * Procesa el registro de un nuevo usuario.
      *
-     * Valida los campos del formulario y, si son válidos, crea un nuevo registro de usuario en la base de datos.
-     * Redirige al usuario según el resultado del registro.
+     * Valida los campos de correo electrónico y contraseña proporcionados a través del formulario de registro.
+     * Además, realiza validaciones adicionales según sea necesario (por ejemplo, comprobar si el correo electrónico ya está registrado).
+     * Si todas las validaciones son exitosas, procede a crear un nuevo registro de usuario en la base de datos,
+     * hash de la contraseña incluido. Luego, almacena la información del usuario recién creado en la sesión y redirige
+     * al usuario a una página apropiada (por ejemplo, el dashboard). Si hay errores de validación o el proceso de registro falla,
+     * redirige al usuario de nuevo al formulario de registro con mensajes de error adecuados.
+     *
+     * @uses \Config\Validator para realizar la validación de los campos del formulario.
+     * @uses \App\Models\User::emailExists() para verificar si el correo electrónico ya está registrado.
+     * @uses \App\Models\User::createUser() para crear el registro del nuevo usuario en la base de datos.
+     *
+     * @return void No retorna ningún valor directamente, pero produce una redirección basada en el resultado del proceso de registro.
      */
     public function processSignUp()
     {
@@ -169,9 +190,18 @@ class AuthController
     }
 
     /**
-     * Cierra la sesión del usuario.
+     * Cierra la sesión del usuario activo.
      *
-     * Elimina los datos de la sesión del usuario y redirige a la página de inicio de sesión.
+     * Este método finaliza la sesión del usuario actual al eliminar todos los datos de sesión existentes.
+     * Tras limpiar la sesión, redirige al usuario a la página principal. Es importante para garantizar
+     * que no queden datos de sesión residuales que puedan afectar a la seguridad o al comportamiento
+     * de la aplicación para futuras solicitudes.
+     *
+     * @uses session_start() para asegurar que la sesión esté iniciada antes de intentar manipularla.
+     * @uses session_unset() para liberar todas las variables de sesión.
+     * @uses session_destroy() para destruir la sesión.
+     *
+     * @return void No retorna ningún valor, pero envía al cliente a la raíz del sitio web.
      */
     public function logout()
     {

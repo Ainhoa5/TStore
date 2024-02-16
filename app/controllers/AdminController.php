@@ -29,6 +29,7 @@ class AdminController
 
     /**
      * Muestra el dashboard del administrador con una lista de productos.
+     * @return void
      */
     public function showDashboard()
     {
@@ -38,6 +39,7 @@ class AdminController
 
     /**
      * Muestra el dashboard de categorías del administrador.
+     * @return void
      */
     public function showCategoriasDashboard()
     {
