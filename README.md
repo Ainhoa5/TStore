@@ -1,63 +1,67 @@
-# Proyecto Web Merchandising Taylor Swift
+# TStore
 
 Este proyecto tiene como objetivo crear una página web para vender merchandising de Taylor Swift. El desarrollo se llevará a cabo sin el uso de frameworks, utilizando PHP y JavaScript.
 
 ## Índice
 
-1. [Diseño](#diseño)
-2. [Desarrollo](#desarrollo)
-3. [Pruebas](#pruebas)
-4. [Despliegue](#despliegue)
+1. [Pre-requisitos](#pre-requisitos)
+2. [Instalación](#instalación)
+   1. [Clonar el repositorio](#clonar-el-repositorio)
+   2. [Configurar la base de datos](#configurar-la-base-de-datos)
+   3. [Configurar el entorno](#configurar-el-entorno)
+   4. [Instalar dependencias](#instalar-dependencias)
+3. [Iniciar el servidor de desarrollo](#iniciar-el-servidor-de-desarrollo)
+4. [Uso](#uso)
+5. [Diseño](#diseño)
+6. [Desarrollo](#desarrollo)
+7. [Pruebas](#pruebas)
+8. [Despliegue](#despliegue)
 
+## Pre-requisitos
 
-## Diseño
+Lista de software necesario para instalar y ejecutar el proyecto:
+- PHP 8.2.12 o superior
+- MySQL 5.7 o superior
+- Composer (para gestionar dependencias PHP)
+- Un servidor web como Apache o Nginx
 
-- **Wireframes y Mockups**:
-    - [x] Crear wireframes para diseñar la estructura básica de la página.
-    - [x] Diseñar mockups para tener una vista previa del diseño final.
-    
-- **Diseño de Base de Datos**:
-    - [x] Diseñar el esquema de la base de datos.
-    - [x] Determinar las relaciones entre las tablas.
-    
-- **Diseño del Sistema**:
-    - [ ] Definir la arquitectura del sistema.
-    - [ ] Planificar el flujo de datos y las interacciones entre el frontend y el backend.
+## Instalación
 
-## Desarrollo
+### Clonar el repositorio
+```bash
+git clone https://github.com/Ainhoa5/TStore.git
+cd TStore
+```
 
-- **Backend (PHP)**:
-    - [ ] Desarrollar la lógica del servidor, incluyendo la gestión de la base de datos.
-    - [ ] Implementar la autenticación y autorización.
-    - [ ] Desarrollar las APIs necesarias.
-    
-- **Frontend (JavaScript)**:
-    - [ ] Implementar la estructura HTML y CSS.
-    - [ ] Desarrollar la lógica del cliente utilizando JavaScript.
-    
-- **Optimización**:
-    - [ ] Optimizar el rendimiento.
-    - [ ] Asegurar la accesibilidad y la responsividad de la página.
+### Configurar la base de datos
 
-## Pruebas
+Crea una base de datos MySQL y un usuario con los permisos adecuados. Luego, importa .sql proporcionado en other/sql para crear la base de datos y su estructura
 
-- **Pruebas Unitarias**:
-    - [ ] Escribir y ejecutar pruebas unitarias para el backend y el frontend.
-    
-- **Pruebas de Integración**:
-    - [ ] Escribir y ejecutar pruebas de integración.
-    
-- **Pruebas de Usabilidad y Accesibilidad**:
-    - [ ] Realizar pruebas de usabilidad.
-    - [ ] Comprobar la accesibilidad de la página.
+### Configurar el entorno
 
-## Despliegue
+Copia el archivo .env.example a .env y ajusta las variables de entorno según tu configuración:
+cp .env.example .env
+```bash
+cp .env.example .env
+```
+Edita .env para configurar las credenciales de la base de datos, el entorno de aplicación y cualquier otra configuración necesaria.
 
-- **Configuración del Servidor**:
-    - [ ] Configurar el servidor y la base de datos.
-    - [ ] Configurar el dominio y el SSL.
-    
-- **Despliegue**:
-    - [ ] Desplegar la aplicación en el servidor.
-    - [ ] Realizar pruebas en el entorno de producción para asegurar que todo funcione correctamente.
+### Instalar dependencias
 
+Utiliza Composer para instalar las dependencias del proyecto:
+
+```bash
+composer install
+```
+
+## Iniciar el servidor de desarrollo
+
+Si estás utilizando PHP's built-in server:
+
+```bash
+php -S localhost:3000 -t public
+```
+
+## Uso
+
+Lee la documentación para comprender la estructura y funcionamiento de la aplicación
