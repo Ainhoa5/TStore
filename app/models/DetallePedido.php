@@ -27,16 +27,21 @@ class DetallePedido extends \Core\ActiveRecord
     /**
      * Crea un nuevo detalle de pedido en la base de datos.
      *
-     * Inserta un registro en la tabla DetallesPedidos asociando un producto a un pedido,
-     * incluyendo la cantidad y el precio unitario del producto.
-     *
      * @param int $pedidoId ID del pedido al cual se asocia el detalle.
      * @param array $producto Array asociativo que contiene los datos del producto, incluyendo su ID, cantidad y precio.
      */
     public function crearDetallePedido($pedidoId, $producto)
     {
-        $stmt = $this->db->prepare("INSERT INTO DetallesPedidos (PedidoID, ProductoID, Cantidad, PrecioUnitario) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$pedidoId, $producto['ProductoID'], $producto['quantity'], $producto['Precio']]);
+        // Prepara los datos para insertarlos utilizando la función create de ActiveRecord.
+        $data = [
+            'PedidoID' => $pedidoId,
+            'ProductoID' => $producto['ProductoID'],
+            'Cantidad' => $producto['quantity'],
+            'PrecioUnitario' => $producto['Precio']
+        ];
+
+        // Utiliza la función create heredada de ActiveRecord para insertar el nuevo detalle de pedido.
+        return $this->create($data);
     }
 
 }
